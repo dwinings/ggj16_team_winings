@@ -1,1 +1,3 @@
 David is the pivotal member of this team.
+
+use `git checkout -b "mybranchname"` to create your own branch.
