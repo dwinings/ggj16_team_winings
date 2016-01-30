@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour {
       instance = this;
       deathImage = GameObject.FindGameObjectWithTag("DeathImage");
       deathText = GameObject.FindGameObjectWithTag("DeathText").GetComponent<Text>();
+      healthText = GameObject.FindGameObjectWithTag("HealthText").GetComponent<Text>();
+      cashText = GameObject.FindGameObjectWithTag("CashText").GetComponent<Text>();
       deathImage.SetActive(false);
     } else if(instance != this) {
       Destroy(gameObject);
