@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
   public Text deathText;
   public GameObject deathImage;
   public BoardManager boardScript;
+  public MusicManager musicManager = new MusicManager();
   private int level = 1;
   public int playerHitPoints = 10;
   public int playerCash = 10;
