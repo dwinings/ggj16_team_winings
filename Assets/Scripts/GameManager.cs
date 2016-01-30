@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour {
   public Text cashText;
 
   public GameObject spawnPoint;
+  public GameObject tower;
   public GameObject exitPoint;
 
 	void Awake() {

@@ -24,7 +24,8 @@ public class BoardManager : MonoBehaviour {
 	public Count wallCount = new Count(5, 9);
 	public Count foodCount = new Count(1, 5);
 	public GameObject exit;
-  public GameObject spawnPoint;
+	public GameObject spawnPoint;
+  public GameObject tower;
 	public GameObject[] floorTiles;
 	public GameObject[] wallTiles;
 	public GameObject[] foodTiles;
@@ -35,6 +36,7 @@ public class BoardManager : MonoBehaviour {
 	private List<Vector3> gridPositions = new List<Vector3>();
   public GameObject enemy;
   private Vector3 spawnPosition;
+  private Vector3 towerPosition;
 
 	void InitializeList() {
 		gridPositions.Clear();
@@ -91,6 +93,7 @@ public class BoardManager : MonoBehaviour {
 	// Entry Point
 	public void SetupScene(int level) {
     spawnPosition = GameManager.instance.spawnPoint.transform.position;
+    towerPosition = GameManager.instance.tower.transform.position;
 		BoardSetup();
 		InitializeList();
 	}
