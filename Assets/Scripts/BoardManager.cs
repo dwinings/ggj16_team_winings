@@ -34,9 +34,10 @@ public class BoardManager : MonoBehaviour {
 
 	public Transform boardHolder;
 	private List<Vector3> gridPositions = new List<Vector3>();
-  public GameObject enemy;
   private Vector3 spawnPosition;
   private Vector3 towerPosition;
+  public Wave spawnWave;
+  private float timeTillNextSpawn;
 
 	void InitializeList() {
 		gridPositions.Clear();
@@ -48,6 +49,7 @@ public class BoardManager : MonoBehaviour {
 	}
 
 	void BoardSetup() {
+    spawnWave = new Wave();
 		boardHolder = new GameObject("Board").transform;
 		for (int x = -1; x < columns + 1; x++) {
 			for (int y = -1; y < rows + 1; y++) {
@@ -61,7 +63,8 @@ public class BoardManager : MonoBehaviour {
 				instance.transform.SetParent(boardHolder);
 			}
 		}
-    SpawnDude();
+
+    spawnWave = new Wave();
 	}
 
 	Vector3 RandomPosition() {
@@ -85,9 +88,13 @@ public class BoardManager : MonoBehaviour {
     return enemyTiles[Random.Range(0, enemyTiles.Length)];
   }
 
-  public void SpawnDude() {
-    GameObject instance = Instantiate(GetRandomEnemy(), spawnPosition, Quaternion.identity) as GameObject;
+  // Returns the delay for the nextdude
+  public float SpawnDude() {
+    GameObject enemyObject =  GetRandomEnemy();
+    Enemy enemy = enemyObject.GetComponent<Enemy>();
+    GameObject instance = Instantiate(enemyObject, spawnPosition, Quaternion.identity) as GameObject;
     instance.transform.SetParent(boardHolder);
+    return spawnWave.generateNextSpawn(enemy.difficulty);
   }
 
 	// Entry Point

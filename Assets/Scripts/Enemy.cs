@@ -10,6 +10,7 @@ public class Enemy : MovingObject {
   private bool skipMove;
   public int hitPoints;
   public float speed;
+  public float difficulty;
 
   protected override void Start() {
     GameManager.instance.AddEnemyToList(this);

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
   public float levelStartDelay = 2f;
   public float turnDelay;
   public int spawnInterval;
-  private int timeTillNextSpawn;
+  private float timeTillNextSpawn;
   public static GameManager instance = null;
 
   public Text deathText;
@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour {
       instance = this;
       deathImage = GameObject.FindGameObjectWithTag("DeathImage");
       deathText = GameObject.FindGameObjectWithTag("DeathText").GetComponent<Text>();
+      healthText = GameObject.FindGameObjectWithTag("HealthText").GetComponent<Text>();
+      cashText = GameObject.FindGameObjectWithTag("CashText").GetComponent<Text>();
       deathImage.SetActive(false);
     } else if(instance != this) {
       Destroy(gameObject);
@@ -101,12 +103,15 @@ public class GameManager : MonoBehaviour {
       return;
     }
 
-    timeTillNextSpawn -= 1;
+    timeTillNextSpawn -= 1f;
 
-    if (timeTillNextSpawn == 0) {
-      boardScript.SpawnDude();
-      timeTillNextSpawn = spawnInterval;
+    if(boardScript.spawnWave.IsWaveOver() && enemies.Count == 0) {
+      boardScript.spawnWave.BeginNextLevel();
+      timeTillNextSpawn = 0f;
+    } else if (timeTillNextSpawn < float.Epsilon) {
+      timeTillNextSpawn = boardScript.SpawnDude();
     }
+
     enemiesMoving = true;
     StartCoroutine(MoveEnemies());
   }
