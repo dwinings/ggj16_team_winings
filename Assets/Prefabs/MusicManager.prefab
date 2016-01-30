@@ -40,7 +40,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.238
+  m_Volume: 0.592
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -115,10 +115,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 49163747af9cb46e09faf369c25e410c, type: 3}
+  - {fileID: 8300000, guid: 4b84e9a7573e84509a0b0ca7abe6bf93, type: 3}
   clipIndex: 0
   selectRandom: 1
-  playMusic: 1
+  playMusic: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -140,19 +140,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Volume
-      value: 0.238
+      value: 0.592
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: clips.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 49163747af9cb46e09faf369c25e410c, type: 3}
+      objectReference: {fileID: 8300000, guid: 4b84e9a7573e84509a0b0ca7abe6bf93, type: 3}
     - target: {fileID: 0}
       propertyPath: clips.Array.data[1]
       value: 
       objectReference: {fileID: 8300000, guid: 49163747af9cb46e09faf369c25e410c, type: 3}
     - target: {fileID: 0}
-      propertyPath: playMusic
+      propertyPath: m_PlayOnAwake
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: playMusic
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

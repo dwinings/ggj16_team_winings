@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour {
   private float timeTillNextSpawn;
   public static GameManager instance = null;
 
-  public Text deathText;
+  public float WAVE_TEXT_DURATION;
+  public float WAVE_COOLDOWN_DURATION;
   public GameObject deathImage;
   public BoardManager boardScript;
   private int level = 1;
@@ -19,24 +20,30 @@ public class GameManager : MonoBehaviour {
   public int playerCash = 10;
   public List<Enemy> enemies;
   private bool enemiesMoving;
+  private bool waveTransitioning;
   public bool playersTurn = true;
   private bool doingSetup;
 
-  public Text healthText;
-  public Text cashText;
 
   public GameObject spawnPoint;
   public GameObject tower;
   public GameObject exitPoint;
 
+  public Text waveText;
+  public Text deathText;
+  public Text healthText;
+  public Text cashText;
+
 	void Awake() {
     if(instance == null) {
       instance = this;
       deathImage = GameObject.FindGameObjectWithTag("DeathImage");
+      waveText = GameObject.FindGameObjectWithTag("WaveText").GetComponent<Text>();
       deathText = GameObject.FindGameObjectWithTag("DeathText").GetComponent<Text>();
       healthText = GameObject.FindGameObjectWithTag("HealthText").GetComponent<Text>();
       cashText = GameObject.FindGameObjectWithTag("CashText").GetComponent<Text>();
       deathImage.SetActive(false);
+      deathText.text = "";
     } else if(instance != this) {
       Destroy(gameObject);
     }
@@ -96,18 +103,35 @@ public class GameManager : MonoBehaviour {
     }
   }
 
+  IEnumerator TransitionWave() {
+
+    if(boardScript.spawnWave.level - 1 != 0) {
+      deathText.text = "Wave " + (boardScript.spawnWave.level - 1) + ", complete!";
+      yield return new WaitForSeconds(WAVE_TEXT_DURATION);
+      deathText.text = "";
+      yield return new WaitForSeconds(WAVE_COOLDOWN_DURATION);
+    }
+    deathText.text = "Wave " + boardScript.spawnWave.level + ", prepare yourself!";
+    yield return new WaitForSeconds(WAVE_TEXT_DURATION);
+    deathText.text = "";
+
+    boardScript.spawnWave.BeginNextLevel();
+    timeTillNextSpawn = 0f;
+    waveTransitioning = false;
+  }
+
   void Update() {
     UpdateText();
     CheckIfGameOver();
-    if(enemiesMoving) {
+    if(enemiesMoving || waveTransitioning) {
       return;
     }
 
     timeTillNextSpawn -= 1f;
 
     if(boardScript.spawnWave.IsWaveOver() && enemies.Count == 0) {
-      boardScript.spawnWave.BeginNextLevel();
-      timeTillNextSpawn = 0f;
+      waveTransitioning = true;
+      StartCoroutine(TransitionWave());
     } else if (timeTillNextSpawn < float.Epsilon) {
       timeTillNextSpawn = boardScript.SpawnDude();
     }
