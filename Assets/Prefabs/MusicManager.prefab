@@ -115,10 +115,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 4b84e9a7573e84509a0b0ca7abe6bf93, type: 3}
+  - {fileID: 8300000, guid: 49163747af9cb46e09faf369c25e410c, type: 3}
   clipIndex: 0
   selectRandom: 1
-  playMusic: 0
+  playMusic: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -145,7 +145,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: clips.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 4b84e9a7573e84509a0b0ca7abe6bf93, type: 3}
+      objectReference: {fileID: 8300000, guid: 49163747af9cb46e09faf369c25e410c, type: 3}
     - target: {fileID: 0}
       propertyPath: clips.Array.data[1]
       value: 
@@ -156,7 +156,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: playMusic
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

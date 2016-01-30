@@ -27,6 +27,7 @@ public class BoardManager : MonoBehaviour {
 	public GameObject spawnPoint;
   public GameObject tower;
 	public GameObject[] floorTiles;
+  public GameObject[] towerTiles;
 	public GameObject[] wallTiles;
 	public GameObject[] foodTiles;
 	public GameObject[] enemyTiles;
@@ -55,9 +56,11 @@ public class BoardManager : MonoBehaviour {
 			for (int y = -1; y < rows + 1; y++) {
 				GameObject toInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
 				// Outside of the level
-				if (x == -1 || x == columns || y == -1 || y == rows) {
-					toInstantiate = outerWallTiles[Random.Range(0, outerWallTiles.Length)];
-				}
+        if (x == -1 || x == columns || y == -1 || y == rows) {
+          toInstantiate = outerWallTiles [Random.Range (0, outerWallTiles.Length)];
+        } else if (((x == 6) || (x == 7) || (x == 8)) && ((y == 3) || (y == 7))) {
+          toInstantiate = towerTiles [Random.Range (0, towerTiles.Length)];
+        }
 				GameObject instance = Instantiate(toInstantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
 
 				instance.transform.SetParent(boardHolder);

@@ -11,6 +11,8 @@ public class TowerPallet : MonoBehaviour
 
   private Camera camera;
   private static GameObject draggable;
+  private static Ray ray;
+  private static RaycastHit hit;
 
   public void Start() {
     camera = Camera.main;
@@ -27,9 +29,11 @@ public class TowerPallet : MonoBehaviour
   }
 
   public void OnMouseUp() {
-    Vector2 endPos = draggable.transform.position;
     Destroy (draggable);
-    Instantiate (tower, endPos, Quaternion.identity);
+    ray = camera.ScreenPointToRay (Input.mousePosition);
+    if (Physics.Raycast (ray, out hit)) {
+      Instantiate (tower, hit.transform.position, Quaternion.identity);
+    }
   }
 
   private GameObject getDraggable() {

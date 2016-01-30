@@ -15,6 +15,7 @@ TagManager:
   - HealthText
   - CashText
   - WaveText
+  - Entrance
   layers:
   - Default
   - TransparentFX
