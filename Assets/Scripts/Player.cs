@@ -49,7 +49,7 @@ public class Player : MovingObject {
     }
 	}
 
-  protected override void AttemptMove <T> (int xDir, int yDir) {
+  protected override void AttemptMove <T> (float xDir, float yDir) {
     food--;
     foodText.text = string.Format("Food: {0}", food);
 

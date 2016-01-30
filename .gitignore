@@ -1,0 +1,7 @@
+/Temp/**/*
+/Library/metadata/**/*
+/Library/CurrentLayout.dwlt
+/Library/assetDatabase3
+/Library/expandedItems
+/obj/debug/**/*
+*.meta
