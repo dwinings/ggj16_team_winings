@@ -12,6 +12,8 @@ TagManager:
   - DeathText
   - Tower
   - Projectile
+  - HealthText
+  - CashText
   layers:
   - Default
   - TransparentFX
