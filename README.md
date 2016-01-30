@@ -13,23 +13,14 @@ To push those changes
 To merge your changes into master assuming you've pushed all of your changes to your own branch
 `git checkout master`
 `git pull`
-`git checkout <my local branch>`
-`git merge master`
+`git merge <my local branch>`
 
 At this point we may have merge conflicts
 We will resolve all of them and then commit changes
 `git commit`
 
-Now we push those changes to our local branch
+Now we push those changes back up to master
 `git push`
 
-
-Now we can checkout master and pull changes
-`git checkout master`
-`git pull`
-
-Now we merge our branch into master
-`git merge <our local branch>`
-
-We shouldn't have merge conflicts but if so resolve and commit them and finally push master
-`git push`
+And switch back to our branch
+`git checkout <local branch>`
