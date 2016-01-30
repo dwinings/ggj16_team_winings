@@ -99,6 +99,7 @@ MonoBehaviour:
   hitPoints: 5
   speed: 2
   difficulty: 5
+  cashVal: 1
 --- !u!212 &21226902
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -159,6 +160,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: difficulty
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: cashVal
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
