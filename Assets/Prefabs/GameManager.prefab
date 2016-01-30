@@ -43,18 +43,22 @@ MonoBehaviour:
   levelStartDelay: 2
   turnDelay: 0.5
   spawnInterval: 3
-  deathText: {fileID: 0}
+  WAVE_TEXT_DURATION: 2
+  WAVE_COOLDOWN_DURATION: 5
   deathImage: {fileID: 0}
   boardScript: {fileID: 0}
+  musicManager: {fileID: 0}
   playerHitPoints: 999
   playerCash: 10
   enemies: []
   playersTurn: 1
-  healthText: {fileID: 0}
-  cashText: {fileID: 0}
   spawnPoint: {fileID: 109196, guid: 858d875daf94f4f56abe721ddb3149be, type: 2}
   tower: {fileID: 168186, guid: ce01a0ebcc2544661ad1303d760c41b6, type: 2}
   exitPoint: {fileID: 152602, guid: de19177c8bc614508ab6af34b8e1ac7b, type: 2}
+  waveText: {fileID: 0}
+  deathText: {fileID: 0}
+  healthText: {fileID: 0}
+  cashText: {fileID: 0}
 --- !u!114 &11481990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -87,14 +91,14 @@ MonoBehaviour:
   - {fileID: 196050, guid: 09c368fa1f867433c8f343c0f0549b11, type: 2}
   - {fileID: 130542, guid: b6c9557124d3d4ff7813b87871348eb5, type: 2}
   wallTiles:
-  - {fileID: 143980, guid: 7f6c5573ad7554be5a8aa0fbc781c4bd, type: 2}
-  - {fileID: 186196, guid: dfc7159b6dcd8453c88018ec925fb1e8, type: 2}
-  - {fileID: 159454, guid: 769c3f488b5d34c8dbe74f6b66d95f08, type: 2}
-  - {fileID: 179174, guid: 095d30d8c458f42bfb00301334052097, type: 2}
-  - {fileID: 191938, guid: f44303f787f284e1a9409b90c4393d8f, type: 2}
-  - {fileID: 106128, guid: 946cbb71aa08943f0a764bc6cee03b76, type: 2}
-  - {fileID: 118238, guid: 70973a6902f5e4a2e893baebf643432f, type: 2}
-  - {fileID: 148932, guid: 64767962394d5423fa5a49c17fa47f5f, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   foodTiles:
   - {fileID: 0}
   - {fileID: 0}
@@ -167,6 +171,14 @@ Prefab:
       value: 
       objectReference: {fileID: 11453412, guid: 7519926167ff84f0a82c10ecacc7e305,
         type: 2}
+    - target: {fileID: 0}
+      propertyPath: WAVE_TEXT_DURATION
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: WAVE_COOLDOWN_DURATION
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 198570}

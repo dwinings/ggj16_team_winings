@@ -27,17 +27,17 @@ public class Enemy : MovingObject {
   public void MoveEnemy() {
     int xDir = 0;
     int yDir = 0;
-    if(Mathf.Abs(target.position.x - transform.position.x) < float.Epsilon) {
-      if(Mathf.Abs(target.position.y - transform.position.y) < float.Epsilon) {
-        Destroy(this.gameObject);
-      } else {
-        yDir = target.position.y > transform.position.y ? 1 : -1;
-      }
-    } else {
-      xDir = target.position.x > transform.position.x ? 1 : -1;
+    float xDist = (Mathf.Abs(target.position.x - transform.position.x));
+    float yDist = (Mathf.Abs(target.position.y - transform.position.y));
+
+
+    if (xDist < float.Epsilon && yDist < float.Epsilon) {
+      Destroy(this.gameObject);
     }
 
-    AttemptMove<Player>(xDir * speed, yDir * speed);
+    Vector3 movementVector = Vector3.MoveTowards(transform.position, target.position, speed) - transform.position;
+
+    AttemptMove<Player>(movementVector.x, movementVector.y);
   }
 
   public void OnTriggerEnter2D(Collider2D other) {

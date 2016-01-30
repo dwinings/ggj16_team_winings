@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour {
 	void Awake() {
     if(instance == null) {
       instance = this;
+      spawnPoint = GameObject.FindGameObjectWithTag("Entrance");
+      exitPoint = GameObject.FindGameObjectWithTag("Exit");
       deathImage = GameObject.FindGameObjectWithTag("DeathImage");
       waveText = GameObject.FindGameObjectWithTag("WaveText").GetComponent<Text>();
       deathText = GameObject.FindGameObjectWithTag("DeathText").GetComponent<Text>();
