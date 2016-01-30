@@ -8,6 +8,8 @@ public class Enemy : MovingObject {
   private Animator animator;
   private Transform target;
   private bool skipMove;
+  public int hitPoints;
+  public float speed;
 
   protected override void Start() {
     GameManager.instance.AddEnemyToList(this);
@@ -16,15 +18,15 @@ public class Enemy : MovingObject {
     base.Start();
   }
 
-  protected override void AttemptMove<T> (int xDir, int yDir) {
+  protected override void AttemptMove<T> (float xDir, float yDir) {
     base.AttemptMove<T>(xDir, yDir);
   }
 
   public void MoveEnemy() {
     int xDir = 0;
     int yDir = 0;
-    if(Mathf.Abs(target.position.x - transform.position.x) < 0.5f) {
-      if(Mathf.Abs(target.position.y - transform.position.y) < 0.5f) {
+    if(Mathf.Abs(target.position.x - transform.position.x) < float.Epsilon) {
+      if(Mathf.Abs(target.position.y - transform.position.y) < float.Epsilon) {
         Destroy(this.gameObject);
       } else {
         yDir = target.position.y > transform.position.y ? 1 : -1;
@@ -33,7 +35,14 @@ public class Enemy : MovingObject {
       xDir = target.position.x > transform.position.x ? 1 : -1;
     }
 
-    AttemptMove<Player>(xDir, yDir);
+    AttemptMove<Player>(xDir * speed, yDir * speed);
+  }
+
+  public void OnTriggerEnter2D(Collider2D other) {
+    if (other.tag == "Exit") {
+      Destroy(this.gameObject);
+      GameManager.instance.playerHitPoints -= playerDamage;
+    }
   }
 
   protected override void OnCantMove <T> (T component) {

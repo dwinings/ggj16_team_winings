@@ -18,8 +18,8 @@ public class BoardManager : MonoBehaviour {
 	}
 
 
-	public int columns = 8;
-	public int rows = 8;
+	public int columns = 16;
+	public int rows = 16;
 
 	public Count wallCount = new Count(5, 9);
 	public Count foodCount = new Count(1, 5);
@@ -79,8 +79,12 @@ public class BoardManager : MonoBehaviour {
 		}
 	}
 
+  public GameObject GetRandomEnemy() {
+    return enemyTiles[Random.Range(0, enemyTiles.Length)];
+  }
+
   public void SpawnDude() {
-    GameObject instance = Instantiate(enemy, spawnPosition, Quaternion.identity) as GameObject;
+    GameObject instance = Instantiate(GetRandomEnemy(), spawnPosition, Quaternion.identity) as GameObject;
     instance.transform.SetParent(boardHolder);
   }
 
@@ -89,10 +93,5 @@ public class BoardManager : MonoBehaviour {
     spawnPosition = GameManager.instance.spawnPoint.transform.position;
 		BoardSetup();
 		InitializeList();
-		// LayoutObjectAtRandom(wallTiles, wallCount.minimum, wallCount.maximum);
-		// LayoutObjectAtRandom(foodTiles, foodCount.minimum, foodCount.maximum);
-		int enemyCount = (int)Mathf.Log(level, 2f);
-		LayoutObjectAtRandom(enemyTiles, enemyCount, enemyCount);
-		Instantiate(exit, new Vector3(columns - 1, rows - 1, 0f), Quaternion.identity);
 	}
 }
