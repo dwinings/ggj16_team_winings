@@ -90,6 +90,8 @@ MonoBehaviour:
   - {fileID: 182678, guid: 90a477fdd2e85403dada599915b09081, type: 2}
   - {fileID: 196050, guid: 09c368fa1f867433c8f343c0f0549b11, type: 2}
   - {fileID: 130542, guid: b6c9557124d3d4ff7813b87871348eb5, type: 2}
+  towerTiles:
+  - {fileID: 167760, guid: 24d48fd54c21f48eaa9e9442ac841208, type: 2}
   wallTiles:
   - {fileID: 0}
   - {fileID: 0}
@@ -117,6 +119,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: towerTiles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: enemy
       value: 
