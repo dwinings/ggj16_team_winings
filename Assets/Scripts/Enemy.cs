@@ -11,6 +11,7 @@ public class Enemy : MovingObject {
   public int hitPoints;
   public float speed;
   public float difficulty;
+	public int cashVal;
 
   protected override void Start() {
     GameManager.instance.AddEnemyToList(this);
@@ -44,6 +45,13 @@ public class Enemy : MovingObject {
       Destroy(this.gameObject);
       GameManager.instance.playerHitPoints -= playerDamage;
     }
+		else if (other.tag == "Projectile") {
+			hitPoints -= 7;
+			if (hitPoints <= 0) {
+				GameManager.instance.playerCash += cashVal;
+				Destroy(this.gameObject);
+			}
+		}
   }
 
   protected override void OnCantMove <T> (T component) {
