@@ -9,7 +9,6 @@ public class Projectile : MonoBehaviour {
 
 	public float speed;
 
-
 	// Use this for initialization
 	void Start () {
 		FindTarget ();

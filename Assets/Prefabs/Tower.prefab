@@ -82,6 +82,10 @@ Prefab:
       propertyPath: projectile
       value: 
       objectReference: {fileID: 122766, guid: dbf37c6a6dee7475b9450849a60125fb, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Name
+      value: OrangeTower
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 168186}

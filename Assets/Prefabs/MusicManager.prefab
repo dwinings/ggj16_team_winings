@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 38d609056fc3340fd9dcf0d03b56641b, type: 3}
+  - {fileID: 8300000, guid: 49163747af9cb46e09faf369c25e410c, type: 3}
   clipIndex: 0
   selectRandom: 1
   playMusic: 1
@@ -126,6 +126,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: clips.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: panLevelCustomCurve.m_RotationOrder
       value: 0
@@ -138,6 +142,14 @@ Prefab:
       propertyPath: m_Volume
       value: 0.592
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: clips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 49163747af9cb46e09faf369c25e410c, type: 3}
+    - target: {fileID: 0}
+      propertyPath: clips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 49163747af9cb46e09faf369c25e410c, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 185658}
