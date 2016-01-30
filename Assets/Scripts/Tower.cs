@@ -7,8 +7,8 @@ public class Tower : MonoBehaviour {
   public GameObject projectile;
 	// Use this for initialization
 	void Awake () {
-    projectileSpawn = transform.Find ("ProjectileSpawn").transform.position;
-    InvokeRepeating ("LaunchProjectile", 2, 1f);
+    // projectileSpawn = transform.Find ("ProjectileSpawn").transform.position;
+    // InvokeRepeating ("LaunchProjectile", 2, 1f);
 	}
 
   void LaunchProjectile() {
