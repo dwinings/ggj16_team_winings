@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Policies>
+  <PolicySet name="Default" id="Default">
+    <TextStylePolicy inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/x-csharp">
+      <FileWidth>120</FileWidth>
+      <TabWidth>2</TabWidth>
+      <IndentWidth>2</IndentWidth>
+      <NoTabsAfterNonTabs>True</NoTabsAfterNonTabs>
+    </TextStylePolicy>
+    <CSharpFormattingPolicy inheritsSet="Mono" inheritsScope="text/x-csharp" scope="text/x-csharp">
+      <NamespaceBraceStyle>EndOfLine</NamespaceBraceStyle>
+      <ClassBraceStyle>EndOfLine</ClassBraceStyle>
+      <InterfaceBraceStyle>EndOfLine</InterfaceBraceStyle>
+      <StructBraceStyle>EndOfLine</StructBraceStyle>
+      <EnumBraceStyle>EndOfLine</EnumBraceStyle>
+      <MethodBraceStyle>EndOfLine</MethodBraceStyle>
+      <ConstructorBraceStyle>EndOfLine</ConstructorBraceStyle>
+      <DestructorBraceStyle>EndOfLine</DestructorBraceStyle>
+      <BeforeMethodDeclarationParentheses>False</BeforeMethodDeclarationParentheses>
+      <BeforeMethodCallParentheses>False</BeforeMethodCallParentheses>
+      <BeforeConstructorDeclarationParentheses>False</BeforeConstructorDeclarationParentheses>
+      <BeforeIndexerDeclarationBracket>False</BeforeIndexerDeclarationBracket>
+      <BeforeDelegateDeclarationParentheses>False</BeforeDelegateDeclarationParentheses>
+      <AfterDelegateDeclarationParameterComma>True</AfterDelegateDeclarationParameterComma>
+      <NewParentheses>False</NewParentheses>
+      <IfParentheses>False</IfParentheses>
+      <WhileParentheses>False</WhileParentheses>
+      <ForParentheses>False</ForParentheses>
+      <ForeachParentheses>False</ForeachParentheses>
+      <CatchParentheses>False</CatchParentheses>
+      <SwitchParentheses>False</SwitchParentheses>
+      <LockParentheses>False</LockParentheses>
+      <UsingParentheses>False</UsingParentheses>
+      <SpacesBeforeBrackets>False</SpacesBeforeBrackets>
+    </CSharpFormattingPolicy>
+  </PolicySet>
+</Policies>
