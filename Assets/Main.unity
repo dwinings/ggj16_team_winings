@@ -1133,6 +1133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 198570, guid: e2506ce46ee82487581852fc035b52b0, type: 2}
   musicManager: {fileID: 11461756, guid: a7595f457899d45bc8dcd201c7161791, type: 2}
+  sfxManager: {fileID: 11425818, guid: 7f2a4c28ed3fa4736b19740ebd40256b, type: 2}
 --- !u!1001 &1716277345
 Prefab:
   m_ObjectHideFlags: 0
