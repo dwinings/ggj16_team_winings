@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour {
   private bool doingSetup;
 
   public GameObject spawnPoint;
+  public GameObject tower;
   public GameObject exitPoint;
 
 	void Awake() {
