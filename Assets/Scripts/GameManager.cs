@@ -77,9 +77,17 @@ public class GameManager : MonoBehaviour {
 	}
 
   public void GameOver() {
+    MusicManager.instance.Stop();
+    SFXManager.instance.PlaySoundAt("game_over", this.transform.position);
     enabled = false;
     deathText.text = "Your \"crystals\" have been eaten.";
     deathImage.SetActive(true);
+    StartCoroutine (ReturnToMenu ());
+  }
+
+  IEnumerator ReturnToMenu() {
+    yield return new WaitForSeconds(5);
+    Application.LoadLevel (0);
   }
 
   IEnumerator MoveEnemies() {
@@ -140,6 +148,8 @@ public class GameManager : MonoBehaviour {
   void Update() {
     UpdateText();
     CheckIfGameOver();
+    if (Input.GetKeyDown(KeyCode.N))
+      MusicManager.instance.StartJoke();
     if(enemiesMoving || waveTransitioning) {
       return;
     }
