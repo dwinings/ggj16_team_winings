@@ -112,7 +112,7 @@ MonoBehaviour:
   enemyTiles:
   - {fileID: 146564, guid: 591adc192a34841068abf4445242eabd, type: 2}
   - {fileID: 137998, guid: 4979ed719b4db4a439a211b6cf4284de, type: 2}
-  - {fileID: 138368, guid: 07e5072b286c64275bd274c6db2b1caa, type: 2}
+  - {fileID: 137998, guid: 07e5072b286c64275bd274c6db2b1caa, type: 2}
   outerWallTiles:
   - {fileID: 154780, guid: aef2d949c789b49d28e25f12d3171ac3, type: 2}
   - {fileID: 186754, guid: 140779e6a789c4c1eb6e3fe77cac222d, type: 2}
@@ -231,7 +231,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: enemyTiles.Array.data[2]
       value: 
-      objectReference: {fileID: 138368, guid: 07e5072b286c64275bd274c6db2b1caa, type: 2}
+      objectReference: {fileID: 137998, guid: 07e5072b286c64275bd274c6db2b1caa, type: 2}
     - target: {fileID: 0}
       propertyPath: enemyTiles.Array.data[1]
       value: 

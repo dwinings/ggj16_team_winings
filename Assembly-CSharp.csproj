@@ -46,8 +46,10 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Credits\Video\PlayVideo.cs" />
+     <Compile Include="Assets\Instructions\QuitOnClick.cs" />
      <Compile Include="Assets\Menu\Scripts\LoadOnClick.cs" />
      <Compile Include="Assets\Menu\Scripts\MainMenu.cs" />
+     <Compile Include="Assets\Menu\Scripts\QuitOnEsc.cs" />
      <Compile Include="Assets\Scripts\BoardManager.cs" />
      <Compile Include="Assets\Scripts\Burn.cs" />
      <Compile Include="Assets\Scripts\Debuff.cs" />
@@ -57,6 +59,7 @@
      <Compile Include="Assets\Scripts\MovingObject.cs" />
      <Compile Include="Assets\Scripts\MusicManager.cs" />
      <Compile Include="Assets\Scripts\ParticleSystemAutoDestory.cs" />
+     <Compile Include="Assets\Scripts\PedestalPallet.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Projectile.cs" />
      <Compile Include="Assets\Scripts\Rend.cs" />
