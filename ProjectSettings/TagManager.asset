@@ -20,6 +20,7 @@ TagManager:
   - GreenTower
   - BlueTower
   - WhiteTower
+  - Pedestal
   layers:
   - Default
   - TransparentFX
