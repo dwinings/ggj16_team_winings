@@ -62,6 +62,9 @@ MonoBehaviour:
   deathText: {fileID: 0}
   healthText: {fileID: 0}
   cashText: {fileID: 0}
+  aLittleDamaged: {fileID: 21300054, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
+  MostlyDamaged: {fileID: 21300056, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
+  VeryDamaged: {fileID: 21300058, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
 --- !u!114 &11481990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -108,7 +111,7 @@ MonoBehaviour:
   enemyTiles:
   - {fileID: 137998, guid: 4979ed719b4db4a439a211b6cf4284de, type: 2}
   - {fileID: 146564, guid: 591adc192a34841068abf4445242eabd, type: 2}
-  - {fileID: 138368, guid: 1b98222d1fb6d457784f15da38d6cc4a, type: 2}
+  - {fileID: 138368, guid: 07e5072b286c64275bd274c6db2b1caa, type: 2}
   outerWallTiles:
   - {fileID: 154780, guid: aef2d949c789b49d28e25f12d3171ac3, type: 2}
   - {fileID: 186754, guid: 140779e6a789c4c1eb6e3fe77cac222d, type: 2}
@@ -224,6 +227,25 @@ Prefab:
       propertyPath: pedestal
       value: 
       objectReference: {fileID: 167760, guid: 8411888022f4e45ea84992adcfbe55c4, type: 2}
+    - target: {fileID: 0}
+      propertyPath: aLittleDamaged
+      value: 
+      objectReference: {fileID: 21300054, guid: fbe1e7b94bb1a4a099d5bcb15a00141c,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: MostlyDamaged
+      value: 
+      objectReference: {fileID: 21300056, guid: fbe1e7b94bb1a4a099d5bcb15a00141c,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: VeryDamaged
+      value: 
+      objectReference: {fileID: 21300058, guid: fbe1e7b94bb1a4a099d5bcb15a00141c,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: enemyTiles.Array.data[2]
+      value: 
+      objectReference: {fileID: 138368, guid: 07e5072b286c64275bd274c6db2b1caa, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 198570}

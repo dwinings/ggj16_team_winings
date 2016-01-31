@@ -168,6 +168,8 @@ public class GameManager : MonoBehaviour {
     CheckIfGameOver();
     if (Input.GetKeyDown(KeyCode.N))
       MusicManager.instance.StartJoke();
+    if (Input.GetKeyDown(KeyCode.Escape))
+      Application.LoadLevel (0); 
     if(enemiesMoving || waveTransitioning) {
       return;
     }
