@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Credits\Video\PlayVideo.cs" />
+     <Compile Include="Assets\Instructions\QuitOnClick.cs" />
      <Compile Include="Assets\Menu\Scripts\LoadOnClick.cs" />
      <Compile Include="Assets\Menu\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\BoardManager.cs" />
