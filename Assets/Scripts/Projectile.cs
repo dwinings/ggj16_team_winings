@@ -38,7 +38,6 @@ public class Projectile : MonoBehaviour {
 
 	public void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Enemy") {
-      SFXManager.instance.PlaySoundAt("proj_hit", this.transform.position);
 			Destroy(this.gameObject);
 		}
 	}

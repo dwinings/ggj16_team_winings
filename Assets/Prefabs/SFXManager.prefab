@@ -123,6 +123,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: af3b77c85404f4af587568aaf1a3302c, type: 3}
   - name: game_over
     clip: {fileID: 8300000, guid: 7eed7c8204cd44b878cfda553e328b69, type: 3}
+  - name: enemy_die_2
+    clip: {fileID: 8300000, guid: 12fc9e2402e6e44de9dc130edefc9fae, type: 3}
+  - name: crystal_hit
+    clip: {fileID: 8300000, guid: b6ecb6d0d03b04e14b3b348e49a8865c, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -132,7 +136,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: audioClips.Array.size
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: audioClips.Array.data[0].name
@@ -168,20 +172,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: audioClips.Array.data[4].name
-      value: wave_clear
+      value: enemy_die_2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: audioClips.Array.data[4].clip
       value: 
-      objectReference: {fileID: 8300000, guid: af3b77c85404f4af587568aaf1a3302c, type: 3}
+      objectReference: {fileID: 8300000, guid: 12fc9e2402e6e44de9dc130edefc9fae, type: 3}
     - target: {fileID: 0}
       propertyPath: audioClips.Array.data[5].name
-      value: wave_clear
+      value: crystal_hit
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: audioClips.Array.data[5].clip
       value: 
-      objectReference: {fileID: 8300000, guid: af3b77c85404f4af587568aaf1a3302c, type: 3}
+      objectReference: {fileID: 8300000, guid: b6ecb6d0d03b04e14b3b348e49a8865c, type: 3}
     - target: {fileID: 0}
       propertyPath: audioClips.Array.data[6].name
       value: wave_clear

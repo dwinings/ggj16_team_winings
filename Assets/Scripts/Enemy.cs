@@ -82,6 +82,7 @@ public class Enemy : MovingObject {
     if (other.tag == "Exit") {
       Destroy(this.gameObject);
       GameManager.instance.playerHitPoints -= playerDamage;
+      SFXManager.instance.PlaySoundAt ("crystal_hit", this.transform.position);
     }
 		else if (other.tag == "Projectile") {
       int index = 0;
@@ -111,10 +112,13 @@ public class Enemy : MovingObject {
         index += 1;
       }
 
-			if (hitPoints <= 0) {
-        GameManager.instance.playerCash += Bounty();
-				Destroy(this.gameObject);
-			}
+      if (hitPoints <= 0) {
+        SFXManager.instance.PlaySoundAt ("enemy_die_2", this.transform.position);
+        GameManager.instance.playerCash += Bounty ();
+        Destroy (this.gameObject);
+      } else {
+        SFXManager.instance.PlaySoundAt ("proj_hit", this.transform.position);
+      }
 		}
   }
 
