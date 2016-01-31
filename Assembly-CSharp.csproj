@@ -49,6 +49,8 @@
      <Compile Include="Assets\Menu\Scripts\LoadOnClick.cs" />
      <Compile Include="Assets\Menu\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\BoardManager.cs" />
+     <Compile Include="Assets\Scripts\Burn.cs" />
+     <Compile Include="Assets\Scripts\Debuff.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Loader.cs" />
@@ -56,7 +58,9 @@
      <Compile Include="Assets\Scripts\MusicManager.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Projectile.cs" />
+     <Compile Include="Assets\Scripts\Rend.cs" />
      <Compile Include="Assets\Scripts\SFXManager.cs" />
+     <Compile Include="Assets\Scripts\Slow.cs" />
      <Compile Include="Assets\Scripts\Tower.cs" />
      <Compile Include="Assets\Scripts\TowerPallet.cs" />
      <Compile Include="Assets\Scripts\Wall.cs" />
