@@ -10,6 +10,7 @@ public class Tower : MonoBehaviour {
 	public GameObject blankGreenTile;
 	public GameObject blankBlueTile;
 	public GameObject blankWhiteTile;
+	public float adjacentDistanceConstant;
 
 	public GameObject[] enemies;
 	public float range;
@@ -53,7 +54,7 @@ public class Tower : MonoBehaviour {
 		if (AllOrangeTowers.Length != 0) {
 			foreach (GameObject OrangeTower in AllOrangeTowers) {
 				float distance = (Mathf.Sqrt (Mathf.Pow ((transform.position.x - OrangeTower.transform.position.x), 2) + Mathf.Pow ((transform.position.y - OrangeTower.transform.position.y), 2)));
-				if (distance > 0 && distance < 2) {
+				if (distance > 0 && distance < adjacentDistanceConstant) {
 					if (aBOT == null) {
 						aBOT = Instantiate (blankOrangeTile, transform.position, Quaternion.identity) as GameObject;
 						connectedTowers.Add (0);
@@ -65,7 +66,7 @@ public class Tower : MonoBehaviour {
 		if (AllGreenTowers.Length != 0) {
 			foreach (GameObject GreenTower in AllGreenTowers) {
 				float distance = (Mathf.Sqrt (Mathf.Pow ((transform.position.x - GreenTower.transform.position.x), 2) + Mathf.Pow ((transform.position.y - GreenTower.transform.position.y), 2)));
-				if (distance > 0 && distance < 2) {
+				if (distance > 0 && distance < adjacentDistanceConstant) {
 					if (aBGT == null) {
 						aBGT = Instantiate (blankGreenTile, transform.position, Quaternion.identity) as GameObject;
 						connectedTowers.Add (1);
@@ -77,7 +78,7 @@ public class Tower : MonoBehaviour {
 		if (AllWhiteTowers.Length != 0) {
 			foreach (GameObject WhiteTower in AllWhiteTowers) {
 				float distance = (Mathf.Sqrt (Mathf.Pow ((transform.position.x - WhiteTower.transform.position.x), 2) + Mathf.Pow ((transform.position.y - WhiteTower.transform.position.y), 2)));
-				if (distance > 0 && distance < 2) {
+				if (distance > 0 && distance < adjacentDistanceConstant) {
 					if (aBWT == null) {
 						aBWT = Instantiate (blankWhiteTile, transform.position, Quaternion.identity) as GameObject;
 						connectedTowers.Add (2);
@@ -89,7 +90,7 @@ public class Tower : MonoBehaviour {
 		if (AllBlueTowers.Length != 0) {
 			foreach (GameObject BlueTower in AllBlueTowers) {
 				float distance = (Mathf.Sqrt (Mathf.Pow ((transform.position.x - BlueTower.transform.position.x), 2) + Mathf.Pow ((transform.position.y - BlueTower.transform.position.y), 2)));
-				if (distance > 0 && distance < 2) {
+				if (distance > 0 && distance < adjacentDistanceConstant) {
 					if (aBBT == null) {
 						aBBT = Instantiate (blankBlueTile, transform.position, Quaternion.identity) as GameObject;
 						connectedTowers.Add (3);
