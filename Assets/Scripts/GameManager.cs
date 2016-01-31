@@ -38,6 +38,12 @@ public class GameManager : MonoBehaviour {
   public Text healthText;
   public Text cashText;
 
+	private float InitialHealth;
+	public Sprite aLittleDamaged;
+	public Sprite MostlyDamaged;
+	public Sprite VeryDamaged;
+
+
 	void Awake() {
     if(instance == null) {
       instance = this;
@@ -49,6 +55,7 @@ public class GameManager : MonoBehaviour {
       healthText = GameObject.FindGameObjectWithTag("HealthText").GetComponent<Text>();
       cashText = GameObject.FindGameObjectWithTag("CashText").GetComponent<Text>();
       deathImage.SetActive(false);
+			InitialHealth = playerHitPoints;
       deathText.text = "";
     } else if(instance != this) {
       Destroy(gameObject);
@@ -112,6 +119,17 @@ public class GameManager : MonoBehaviour {
     cashText.text = "\"Crystals\": " + playerCash;
   }
 
+	public void UpdateCrystal() {
+		SpriteRenderer crystalRenderer = exitPoint.GetComponent<SpriteRenderer>();
+		if (playerHitPoints < (InitialHealth * 0.30f)) {
+			crystalRenderer.sprite = VeryDamaged;
+		} else if (playerHitPoints < (InitialHealth * 0.60f)) {
+			crystalRenderer.sprite = MostlyDamaged;
+		} else if (playerHitPoints < (InitialHealth * 0.99f)) {
+			crystalRenderer.sprite = aLittleDamaged;
+		}
+	}
+
   void CheckIfGameOver() {
     if (playerHitPoints <= 0) {
       GameOver();
@@ -146,6 +164,7 @@ public class GameManager : MonoBehaviour {
 
   void Update() {
     UpdateText();
+		UpdateCrystal ();
     CheckIfGameOver();
     if (Input.GetKeyDown(KeyCode.N))
       MusicManager.instance.StartJoke();
