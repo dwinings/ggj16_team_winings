@@ -77,6 +77,8 @@ public class GameManager : MonoBehaviour {
 	}
 
   public void GameOver() {
+    MusicManager.instance.Stop();
+    SFXManager.instance.PlaySoundAt("game_over", this.transform.position);
     enabled = false;
     deathText.text = "Your \"crystals\" have been eaten.";
     deathImage.SetActive(true);
@@ -140,6 +142,8 @@ public class GameManager : MonoBehaviour {
   void Update() {
     UpdateText();
     CheckIfGameOver();
+    if (Input.GetKeyDown(KeyCode.N))
+      MusicManager.instance.StartJoke();
     if(enemiesMoving || waveTransitioning) {
       return;
     }
