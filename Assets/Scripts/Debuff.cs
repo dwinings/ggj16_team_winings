@@ -12,5 +12,5 @@ public abstract class Debuff {
     return Time.time > expiration;
   }
 
-  public abstract void Update(Enemy target);
+  public abstract void ApplyToEnemy(Enemy target);
 }

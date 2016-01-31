@@ -23,6 +23,10 @@ public class Wave {
     return DIFFICULTY_COEFFICIENT * level * Mathf.Log(level);
   }
 
+  public float HealthMultiplier() {
+    return 1f + ((level - 1f) * 0.1f);
+  }
+
   public float generateNextSpawn(float lastDifficulty) {
     difficultyAlreadySpawned += lastDifficulty;
     int finishedPercent = (int)(difficultyAlreadySpawned * 100f / MaxDifficulty());
