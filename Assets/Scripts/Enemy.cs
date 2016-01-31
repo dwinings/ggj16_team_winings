@@ -68,6 +68,7 @@ public class Enemy : MovingObject {
 
   public void OnTriggerEnter2D(Collider2D other) {
     if (other.tag == "Exit") {
+      Debug.Log (playerDamage);
       Destroy(this.gameObject);
       GameManager.instance.playerHitPoints -= playerDamage;
     }

@@ -27,11 +27,11 @@ public class BoardManager : MonoBehaviour {
 	public GameObject spawnPoint;
   public GameObject tower;
 	public GameObject[] floorTiles;
-  public GameObject[] pedestalTile;
 	public GameObject[] wallTiles;
 	public GameObject[] foodTiles;
 	public GameObject[] enemyTiles;
 	public GameObject[] outerWallTiles;
+  public GameObject pedestal;
 
 	public Transform boardHolder;
 	private List<Vector3> gridPositions = new List<Vector3>();
@@ -39,12 +39,20 @@ public class BoardManager : MonoBehaviour {
   private Vector3 towerPosition;
   public Wave spawnWave;
   private float timeTillNextSpawn;
+  private List<int[]> pedestalPlacement = new List<int[]>();
 
 	void InitializeList() {
 		gridPositions.Clear();
+    pedestalPlacement.Clear ();
 		for (int x = 1; x < columns - 1; x++) {
 			for (int y = 1; y < rows - 1; y++) {
 				gridPositions.Add(new Vector3 (x, y, 0f));
+        if (((x == 6) || (x == 7)) && ((y == 3) || (y == 7))) {
+          int[] p = new int[2];
+          p[0] = x;
+          p[1] = y;
+          pedestalPlacement.Add (p);
+        }
 			}
 		}
 	}
@@ -58,17 +66,26 @@ public class BoardManager : MonoBehaviour {
 				// Outside of the level
         if (x == -1 || x == columns || y == -1 || y == rows) {
           toInstantiate = outerWallTiles [Random.Range (0, outerWallTiles.Length)];
-        } else if (((x == 6) || (x == 7) || (x == 8)) && ((y == 3) || (y == 7))) {
-          toInstantiate = pedestalTile [Random.Range (0, pedestalTile.Length)];
-        }
+        } 
 				GameObject instance = Instantiate(toInstantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
 
 				instance.transform.SetParent(boardHolder);
 			}
-		}
 
+		}
+    renderPedestals ();
     spawnWave = new Wave();
 	}
+
+  void renderPedestals() {
+    foreach(int[] i in pedestalPlacement) {
+      float x = (float) i[0];
+      float y = (float) i[1];
+      Vector3 p = new Vector3 (x, y, 7f);
+      GameObject instance = Instantiate (pedestal, p, Quaternion.identity) as GameObject;
+      instance.transform.SetParent (boardHolder);
+    }
+  }
 
 	Vector3 RandomPosition() {
 		int randomIndex = Random.Range(0, gridPositions.Count);
@@ -104,7 +121,7 @@ public class BoardManager : MonoBehaviour {
 	public void SetupScene(int level) {
     spawnPosition = GameManager.instance.spawnPoint.transform.position;
     towerPosition = GameManager.instance.tower.transform.position;
+    InitializeList();
 		BoardSetup();
-		InitializeList();
 	}
 }
