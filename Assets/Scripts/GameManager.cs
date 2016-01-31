@@ -82,6 +82,12 @@ public class GameManager : MonoBehaviour {
     enabled = false;
     deathText.text = "Your \"crystals\" have been eaten.";
     deathImage.SetActive(true);
+    StartCoroutine (ReturnToMenu ());
+  }
+
+  IEnumerator ReturnToMenu() {
+    yield return new WaitForSeconds(5);
+    Application.LoadLevel (0);
   }
 
   IEnumerator MoveEnemies() {
