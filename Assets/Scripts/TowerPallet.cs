@@ -30,7 +30,6 @@ public class TowerPallet : MonoBehaviour
   public void OnMouseDown() {
     currentCash = GameManager.instance.playerCash;
     if (currentCash >= towerCost) {
-      GameManager.instance.playerCash -= towerCost;
       GameManager.instance.UpdateText ();
       draggable = getDraggable ();
     } else {
@@ -49,12 +48,14 @@ public class TowerPallet : MonoBehaviour
  public void OnMouseUp() {
     if (draggable) {
       Destroy (draggable);
+      ray = camera.ScreenPointToRay (Input.mousePosition);
+      if (Physics.Raycast (ray, out hit) && (currentCash >= towerCost)) {
+        Instantiate (tower, hit.transform.position, Quaternion.identity);
+        Destroy (hit.transform.gameObject.GetComponent<BoxCollider> ());
+        GameManager.instance.playerCash -= towerCost;
+      }
+      currentCash = 0;
     }
-    ray = camera.ScreenPointToRay (Input.mousePosition);
-    if (Physics.Raycast (ray, out hit) && (currentCash >= towerCost)) {
-      Instantiate (tower, hit.transform.position, Quaternion.identity);
-    }
-    currentCash = 0;
   }
 
   private GameObject getDraggable() {

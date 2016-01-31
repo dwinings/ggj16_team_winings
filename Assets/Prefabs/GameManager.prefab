@@ -51,7 +51,7 @@ MonoBehaviour:
   WAVE_COOLDOWN_DURATION: 5
   deathImage: {fileID: 0}
   boardScript: {fileID: 0}
-  playerHitPoints: 1
+  playerHitPoints: 999
   playerCash: 100
   enemies: []
   playersTurn: 1
@@ -93,8 +93,6 @@ MonoBehaviour:
   - {fileID: 182678, guid: 90a477fdd2e85403dada599915b09081, type: 2}
   - {fileID: 196050, guid: 09c368fa1f867433c8f343c0f0549b11, type: 2}
   - {fileID: 130542, guid: b6c9557124d3d4ff7813b87871348eb5, type: 2}
-  pedestalTile:
-  - {fileID: 167760, guid: 8411888022f4e45ea84992adcfbe55c4, type: 2}
   wallTiles:
   - {fileID: 0}
   - {fileID: 0}
@@ -115,6 +113,7 @@ MonoBehaviour:
   - {fileID: 154780, guid: aef2d949c789b49d28e25f12d3171ac3, type: 2}
   - {fileID: 186754, guid: 140779e6a789c4c1eb6e3fe77cac222d, type: 2}
   - {fileID: 166994, guid: 909824f4e7b514fbea375b1034c22f71, type: 2}
+  pedestal: {fileID: 167760, guid: 8411888022f4e45ea84992adcfbe55c4, type: 2}
   boardHolder: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
@@ -161,7 +160,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: playerHitPoints
-      value: 1
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: spawnInterval
@@ -222,9 +221,9 @@ Prefab:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: enemyTiles.Array.data[2]
+      propertyPath: pedestal
       value: 
-      objectReference: {fileID: 138368, guid: 1b98222d1fb6d457784f15da38d6cc4a, type: 2}
+      objectReference: {fileID: 167760, guid: 8411888022f4e45ea84992adcfbe55c4, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 198570}
