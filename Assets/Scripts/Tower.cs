@@ -16,7 +16,7 @@ public class Tower : MonoBehaviour {
 	public float range;
 
 
-	private GameObject[] AllOrangeTowers;
+	private GameObject[] allOrangeTowers;
 	private GameObject[] AllGreenTowers;
 	private GameObject[] AllWhiteTowers;
 	private GameObject[] AllBlueTowers;
@@ -35,6 +35,24 @@ public class Tower : MonoBehaviour {
 	// Blue   = 3
 
 	void Awake () {
+
+    int myVal = 0;
+    switch(tag) {
+    case "RedTower":
+      myVal = 0;
+      break;
+    case "GreenTower":
+      myVal = 1;
+      break;
+    case "WhiteTower":
+      myVal = 2;
+      break;
+    case "BlueTower":
+      myVal = 3;
+      break;
+    }
+    connectedTowers.Add(myVal);
+   
 		InvokeRepeating ("EnemiesInRange", 2, 1f);
 		InvokeRepeating ("SenseTowers", 0, 1f);
 	}
@@ -50,9 +68,9 @@ public class Tower : MonoBehaviour {
 	}
 
 	public void SenseTowers() {
-		AllOrangeTowers = GameObject.FindGameObjectsWithTag("OrangeTower");
-		if (AllOrangeTowers.Length != 0) {
-			foreach (GameObject OrangeTower in AllOrangeTowers) {
+    allOrangeTowers = GameObject.FindGameObjectsWithTag("OrangeTower");
+		if (allOrangeTowers.Length != 0) {
+			foreach (GameObject OrangeTower in allOrangeTowers) {
 				float distance = (Mathf.Sqrt (Mathf.Pow ((transform.position.x - OrangeTower.transform.position.x), 2) + Mathf.Pow ((transform.position.y - OrangeTower.transform.position.y), 2)));
 				if (distance > 0 && distance < adjacentDistanceConstant) {
 					if (aBOT == null) {
@@ -102,7 +120,6 @@ public class Tower : MonoBehaviour {
 
   void LaunchProjectile() {
 		Projectile shot = Instantiate(projectile, transform.position, Quaternion.identity) as Projectile;
-		shot.connectedTowers = this.connectedTowers;
+    shot.connectedTowers = new List<int>(connectedTowers);
   }
-		
 }

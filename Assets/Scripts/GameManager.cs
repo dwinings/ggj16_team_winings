@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
+  public int orangeDamage;
+  public int blueDamage;
+  public int greenDamage;
+  public int whiteDamage;
+
   public float levelStartDelay = 2f;
   public float turnDelay;
   public int spawnInterval;
@@ -78,6 +83,7 @@ public class GameManager : MonoBehaviour {
   }
 
   IEnumerator MoveEnemies() {
+    UpdateEnemies();
     yield return new WaitForSeconds(turnDelay);
     if (enemies.Count == 0) {
       yield return new WaitForSeconds(turnDelay);
@@ -121,6 +127,15 @@ public class GameManager : MonoBehaviour {
     timeTillNextSpawn = 0f;
     waveTransitioning = false;
   }
+
+  public void UpdateEnemies() {
+    foreach(Enemy enemy in enemies) {
+      if (enemy != null) {
+        enemy.TickDebuff();
+      }
+    }
+  }
+
 
   void Update() {
     UpdateText();

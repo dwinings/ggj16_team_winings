@@ -96,9 +96,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   playerDamage: 2
-  hitPoints: 20
+  baseMaxHitPoints: 20
+  maxHitPoints: 0
+  hitPoints: 0
   speed: 2
+  currentSpeed: 0
   difficulty: 5
+  baseDamageMultiplier: 1
+  damageMultiplier: 0
   cashVal: 1
 --- !u!212 &21226902
 SpriteRenderer:
@@ -155,7 +160,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: hitPoints
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: difficulty
@@ -164,6 +169,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: cashVal
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: baseDamageMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: baseMaxHitPoints
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
