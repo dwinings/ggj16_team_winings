@@ -9,7 +9,7 @@ public class Rend : Debuff {
   }
 
   public override void ApplyToEnemy(Enemy target) {
-    target.damageMultiplier *= 1.2f;
+    target.damageMultiplier *= 1.1f;
   }
 }
 

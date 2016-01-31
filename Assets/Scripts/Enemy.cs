@@ -36,7 +36,8 @@ public class Enemy : MovingObject {
   }
 
   public int Bounty() {
-    return ((int)difficulty * 3);
+	float math = (-0.333f * Mathf.Log ((3f * GameManager.instance.boardScript.spawnWave.level) + 1)) + 1.8f;
+		return (int)(difficulty * 2f * math);
   }
 
   public void TickDebuff() {

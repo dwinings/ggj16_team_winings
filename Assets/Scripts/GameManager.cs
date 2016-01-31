@@ -38,6 +38,11 @@ public class GameManager : MonoBehaviour {
   public Text healthText;
   public Text cashText;
 
+	public float InitialHealth;
+	public Sprite aLittleDamage;
+	public Sprite mostlyDamaged;
+	public Sprite veryDamaged;
+
 	void Awake() {
     if(instance == null) {
       instance = this;
@@ -48,6 +53,7 @@ public class GameManager : MonoBehaviour {
       deathText = GameObject.FindGameObjectWithTag("DeathText").GetComponent<Text>();
       healthText = GameObject.FindGameObjectWithTag("HealthText").GetComponent<Text>();
       cashText = GameObject.FindGameObjectWithTag("CashText").GetComponent<Text>();
+	  InitialHealth = playerHitPoints;
       deathImage.SetActive(false);
       deathText.text = "";
     } else if(instance != this) {
@@ -135,6 +141,18 @@ public class GameManager : MonoBehaviour {
     waveTransitioning = false;
   }
 
+  public void UpdateCrystal() {
+		SpriteRenderer crystalRenderer = exitPoint.GetComponent<SpriteRenderer> ();
+		float healthRatio = playerHitPoints / InitialHealth;
+		if (healthRatio < 0.3f) {
+			crystalRenderer.sprite = veryDamaged;
+		} else if (healthRatio < 0.6f) {
+			crystalRenderer.sprite = mostlyDamaged;
+		} else if (healthRatio < 0.99f) {
+			crystalRenderer.sprite = aLittleDamage;	
+		}
+  }
+
   public void UpdateEnemies() {
     foreach(Enemy enemy in enemies) {
       if (enemy != null) {
@@ -146,6 +164,7 @@ public class GameManager : MonoBehaviour {
 
   void Update() {
     UpdateText();
+	UpdateCrystal ();
     CheckIfGameOver();
     if (Input.GetKeyDown(KeyCode.N))
       MusicManager.instance.StartJoke();
