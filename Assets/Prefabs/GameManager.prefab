@@ -51,7 +51,7 @@ MonoBehaviour:
   WAVE_COOLDOWN_DURATION: 5
   deathImage: {fileID: 0}
   boardScript: {fileID: 0}
-  playerHitPoints: 1
+  playerHitPoints: 1001
   playerCash: 100
   enemies: []
   playersTurn: 1
@@ -161,7 +161,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: playerHitPoints
-      value: 1
+      value: 1001
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: spawnInterval
