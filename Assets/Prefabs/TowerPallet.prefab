@@ -56,6 +56,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tower: {fileID: 0}
+  towerCost: 0
+  towerCostText: {fileID: 0}
 --- !u!212 &21293798
 SpriteRenderer:
   m_ObjectHideFlags: 1

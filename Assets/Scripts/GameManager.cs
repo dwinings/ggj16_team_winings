@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour {
     enemiesMoving = false;
   }
 
-  void UpdateText() {
+  public void UpdateText() {
     healthText.text = "Energy: " + playerHitPoints;
     cashText.text = "\"Crystals\": " + playerCash;
   }
