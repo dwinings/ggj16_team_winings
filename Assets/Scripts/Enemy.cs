@@ -46,7 +46,7 @@ public class Enemy : MovingObject {
       GameManager.instance.playerHitPoints -= playerDamage;
     }
 		else if (other.tag == "Projectile") {
-			hitPoints -= 7;
+			hitPoints -= 5;
 			if (hitPoints <= 0) {
 				GameManager.instance.playerCash += cashVal;
 				Destroy(this.gameObject);
