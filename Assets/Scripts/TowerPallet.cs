@@ -1,39 +1,60 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class TowerPallet : MonoBehaviour
 {
   public GameObject tower;
-
-  private Vector3 startPosition;
-  private Vector2 relativePosition;
+  public int towerCost;
+  public Text towerCostText;
 
   private Camera camera;
   private static GameObject draggable;
   private static Ray ray;
   private static RaycastHit hit;
+  private Vector2 relativePosition;
+  private Vector3 offset = new Vector3 (0f, 0f, 0f);
+  private int currentCash;
+  private static int initted = 0;
 
   public void Start() {
-    camera = Camera.main;
+    if (initted < 4) {
+      camera = Camera.main;
+      towerCostText.transform.position = camera.WorldToScreenPoint (transform.position) + offset;
+      towerCostText.text = "" + towerCost;
+      initted += 1;
+    }
   }
 
   public void OnMouseDown() {
-    draggable = getDraggable ();
+    currentCash = GameManager.instance.playerCash;
+    if (currentCash >= towerCost) {
+      GameManager.instance.playerCash -= towerCost;
+      GameManager.instance.UpdateText ();
+      draggable = getDraggable ();
+    } else {
+      Destroy (draggable);
+    }
   }
 
   public void OnMouseDrag() {
-    Transform dt = draggable.transform;
-    relativePosition = camera.ScreenToWorldPoint (Input.mousePosition);
-    dt.position = relativePosition;
+    if (draggable) {
+      Transform dt = draggable.transform;
+      relativePosition = camera.ScreenToWorldPoint (Input.mousePosition);
+      dt.position = relativePosition;
+    }
   }
 
-  public void OnMouseUp() {
-    Destroy (draggable);
+ public void OnMouseUp() {
+    if (draggable) {
+      Destroy (draggable);
+    }
     ray = camera.ScreenPointToRay (Input.mousePosition);
-    if (Physics.Raycast (ray, out hit)) {
+    if (Physics.Raycast (ray, out hit) && (currentCash >= towerCost)) {
       Instantiate (tower, hit.transform.position, Quaternion.identity);
     }
+    currentCash = 0;
   }
 
   private GameObject getDraggable() {

@@ -16,6 +16,10 @@ TagManager:
   - CashText
   - WaveText
   - Entrance
+  - OrangeTower
+  - GreenTower
+  - BlueTower
+  - WhiteTower
   layers:
   - Default
   - TransparentFX
