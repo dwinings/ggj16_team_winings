@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour {
   public float WAVE_COOLDOWN_DURATION;
   public GameObject deathImage;
   public BoardManager boardScript;
-  public MusicManager musicManager = new MusicManager();
   private int level = 1;
   public int playerHitPoints = 10;
   public int playerCash = 10;
@@ -74,7 +73,7 @@ public class GameManager : MonoBehaviour {
 
   public void GameOver() {
     enabled = false;
-    deathText.text = "You have been eaten by a grue";
+    deathText.text = "Your \"crystals\" have been eaten.";
     deathImage.SetActive(true);
   }
 
@@ -112,8 +111,8 @@ public class GameManager : MonoBehaviour {
       deathText.text = "Wave " + (boardScript.spawnWave.level - 1) + ", complete!";
       yield return new WaitForSeconds(WAVE_TEXT_DURATION);
       deathText.text = "";
-      yield return new WaitForSeconds(WAVE_COOLDOWN_DURATION);
     }
+    yield return new WaitForSeconds(WAVE_COOLDOWN_DURATION);
     deathText.text = "Wave " + boardScript.spawnWave.level + ", prepare yourself!";
     yield return new WaitForSeconds(WAVE_TEXT_DURATION);
     deathText.text = "";

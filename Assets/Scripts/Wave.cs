@@ -13,6 +13,8 @@ public class Wave {
   public void BeginNextLevel() {
     //Debug.Log("Beginning Wave #" + level);
     level += 1;
+    if (level > 2) 
+      SFXManager.instance.PlaySound("wave_clear");
     difficultyAlreadySpawned = 0f;
   }
 

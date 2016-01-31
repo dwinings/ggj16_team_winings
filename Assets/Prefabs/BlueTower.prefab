@@ -12,7 +12,7 @@ GameObject:
   - 212: {fileID: 21258904}
   m_Layer: 0
   m_Name: BlueTower
-  m_TagString: Tower
+  m_TagString: BlueTower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40,7 +40,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c35a7064ea374bbabe6c873ac869051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 122766, guid: dbf37c6a6dee7475b9450849a60125fb, type: 2}
+  projectile: {fileID: 11454618, guid: 25ccb615ef28d46ad8c5fc8285c0c119, type: 2}
+  blankOrangeTile: {fileID: 137278, guid: cef0c060444664b489bf973450a594e9, type: 2}
+  blankGreenTile: {fileID: 156634, guid: 90f748c022c594d549052433ff9aa377, type: 2}
+  blankBlueTile: {fileID: 122668, guid: bdc2d96b7f3df4e4695d31a14cc9f752, type: 2}
+  blankWhiteTile: {fileID: 165802, guid: 19d7b2751a9024586b4f7587fefd6c46, type: 2}
+  adjacentDistanceConstant: 2
   enemies: []
   range: 3
 --- !u!212 &21258904
@@ -83,6 +88,35 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: range
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 11454618, guid: 25ccb615ef28d46ad8c5fc8285c0c119,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: blankOrangeTile
+      value: 
+      objectReference: {fileID: 137278, guid: cef0c060444664b489bf973450a594e9, type: 2}
+    - target: {fileID: 0}
+      propertyPath: blankGreenTile
+      value: 
+      objectReference: {fileID: 156634, guid: 90f748c022c594d549052433ff9aa377, type: 2}
+    - target: {fileID: 0}
+      propertyPath: blankBlueTile
+      value: 
+      objectReference: {fileID: 122668, guid: bdc2d96b7f3df4e4695d31a14cc9f752, type: 2}
+    - target: {fileID: 0}
+      propertyPath: blankWhiteTile
+      value: 
+      objectReference: {fileID: 165802, guid: 19d7b2751a9024586b4f7587fefd6c46, type: 2}
+    - target: {fileID: 0}
+      propertyPath: adjacentDistanceConstant
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: BlueTower
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

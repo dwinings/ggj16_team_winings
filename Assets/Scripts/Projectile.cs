@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Projectile : MonoBehaviour {
 
@@ -8,6 +9,9 @@ public class Projectile : MonoBehaviour {
 	public Vector3 closestEnemyLastPosition;
 
 	public float speed;
+	public List<int> connectedTowers = new List<int>();
+
+  private bool will_hit = true;
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +24,7 @@ public class Projectile : MonoBehaviour {
 		foreach (GameObject enemy in enemies) {
 			float enemyDistance = (Mathf.Sqrt(Mathf.Pow((transform.position.x - enemy.transform.position.x), 2) + Mathf.Pow((transform.position.y - enemy.transform.position.y), 2)));
 			if (closestEnemy == null) {
+        will_hit = false;
 				closestEnemy = enemy;
 				closestEnemyLastPosition =  closestEnemy.transform.position;
 			}
@@ -33,6 +38,7 @@ public class Projectile : MonoBehaviour {
 
 	public void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Enemy") {
+      SFXManager.instance.PlaySoundAt("proj_hit", this.transform.position);
 			Destroy(this.gameObject);
 		}
 	}
@@ -46,6 +52,7 @@ public class Projectile : MonoBehaviour {
 			float rot_z = Mathf.Atan2 (diff.y, diff.x) * Mathf.Rad2Deg;
 			transform.rotation = Quaternion.Euler (0f, 0f, rot_z - 90);
 		} else if (transform.position == closestEnemyLastPosition) {
+      SFXManager.instance.PlaySoundAt("proj_miss", this.transform.position);
 			Destroy(this.gameObject);
 		} else {
 			transform.position = Vector2.MoveTowards (transform.position, closestEnemyLastPosition, speed * Time.deltaTime);
