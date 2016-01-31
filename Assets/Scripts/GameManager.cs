@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour {
   public bool playersTurn = true;
   private bool doingSetup;
 
-
   public GameObject spawnPoint;
   public GameObject tower;
   public GameObject exitPoint;

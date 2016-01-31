@@ -96,6 +96,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   playerDamage: 2
+  gotToCrystalParticleEffect: {fileID: 419084, guid: 02f4525f1fd1f4703be95394462922ab,
+    type: 2}
+  iAmSlainParticleEffect: {fileID: 482542, guid: 74d512cf2333448c6bf3c25f18854553,
+    type: 2}
   baseMaxHitPoints: 100
   maxHitPoints: 0
   hitPoints: 0
@@ -154,6 +158,14 @@ Prefab:
       propertyPath: hitPoints
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: gotToCrystalParticleEffect
+      value: 
+      objectReference: {fileID: 419084, guid: 02f4525f1fd1f4703be95394462922ab, type: 2}
+    - target: {fileID: 0}
+      propertyPath: iAmSlainParticleEffect
+      value: 
+      objectReference: {fileID: 482542, guid: 74d512cf2333448c6bf3c25f18854553, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 138368}
