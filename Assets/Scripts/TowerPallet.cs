@@ -14,7 +14,7 @@ public class TowerPallet : MonoBehaviour
   private static Ray ray;
   private static RaycastHit hit;
   private Vector2 relativePosition;
-  private Vector3 offset = new Vector3 (75f, 0f, 0f);
+  private Vector3 offset = new Vector3 (0f, 0f, 0f);
   private int currentCash;
   private static int initted = 0;
 
