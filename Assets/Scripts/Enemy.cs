@@ -63,7 +63,7 @@ public class Enemy : MovingObject {
     AttemptMove<Player>(movementVector.x, movementVector.y);
   }
 
-  public void applyDebuff(System.Type clazz, float duration) {
+  public void ApplyDebuff(System.Type clazz, float duration) {
     bool foundOne = false;
     foreach (Debuff debuff in debuffs) {
       if (debuff.GetType() == clazz) {
@@ -93,19 +93,18 @@ public class Enemy : MovingObject {
         int healthLoss;
         switch ((TowerTypes)effect) {
         case TowerTypes.ORANGE_TOWER:
-          applyDebuff(typeof(Burn), 5);
+          ApplyDebuff(typeof(Burn), 5);
           ApplyDamage((int)(GameManager.instance.orangeDamage * damageComboScaler));
           break;
         case TowerTypes.BLUE_TOWER:
-          applyDebuff(typeof(Slow), 2);
+          ApplyDebuff(typeof(Slow), 2);
           ApplyDamage((int)(GameManager.instance.blueDamage * damageComboScaler));
           break;
         case TowerTypes.GREEN_TOWER:
           ApplyDamage((int)(GameManager.instance.greenDamage * damageComboScaler));
-          hitPoints -= GameManager.instance.greenDamage;
           break;
         case TowerTypes.WHITE_TOWER:
-          applyDebuff(typeof(Rend), 4);
+          ApplyDebuff(typeof(Rend), 4);
           ApplyDamage((int)(GameManager.instance.whiteDamage * damageComboScaler));
           break;
         }
