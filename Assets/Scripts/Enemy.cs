@@ -6,6 +6,8 @@ using System.Collections.Generic;
 public class Enemy : MovingObject {
 
   public int playerDamage;
+  public Transform gotToCrystalParticleEffect;
+  public Transform iAmSlainParticleEffect;
 
   private Animator animator;
   private Transform target;
@@ -43,7 +45,30 @@ public class Enemy : MovingObject {
 
     debuffs.RemoveAll(debuff => debuff.IsExpired());
     debuffs.ForEach(debuff => debuff.ApplyToEnemy(this));
+    List<Color> colors  = new List<Color>();
+    colors.Add(Color.white);
+    debuffs.ForEach(debuff => colors.Add(debuff.MyColor()));
+    Color result = CombineColors(colors);
+    this.GetComponent<SpriteRenderer>().color = result;
   }
+
+  public static Color CombineColors(List<Color> aColors)
+ {
+     Color result = new Color(0f, 0f, 0f, 0f);
+     foreach(Color c in aColors)
+     {
+         result.r += c.r;
+         result.g += c.g;
+         result.b += c.b;
+         result.a += c.a;
+     }
+
+    result.r /= aColors.Count;
+    result.g /= aColors.Count;
+    result.b /= aColors.Count;
+    result.a /= aColors.Count;
+    return result;
+ }
 
   protected override void AttemptMove<T> (float xDir, float yDir) {
     base.AttemptMove<T>(xDir, yDir);
@@ -80,6 +105,7 @@ public class Enemy : MovingObject {
 
   public void OnTriggerEnter2D(Collider2D other) {
     if (other.tag == "Exit") {
+      Instantiate(gotToCrystalParticleEffect, target.position, Quaternion.identity);
       Destroy(this.gameObject);
       GameManager.instance.playerHitPoints -= playerDamage;
       SFXManager.instance.PlaySoundAt ("crystal_hit", this.transform.position);
@@ -113,6 +139,7 @@ public class Enemy : MovingObject {
       }
 
       if (hitPoints <= 0) {
+        Instantiate(iAmSlainParticleEffect, transform.position, Quaternion.identity);
         SFXManager.instance.PlaySoundAt ("enemy_die_2", this.transform.position);
         GameManager.instance.playerCash += Bounty ();
         Destroy (this.gameObject);
