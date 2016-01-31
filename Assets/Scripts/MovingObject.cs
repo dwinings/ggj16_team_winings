@@ -58,7 +58,7 @@ public abstract class MovingObject : MonoBehaviour {
 
 	
 	// Update is called once per frame
-	void Update () {
+	void TickDebuff () {
 	
 	}
 }

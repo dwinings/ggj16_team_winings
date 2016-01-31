@@ -40,6 +40,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b2311a7d81140a683d70055044e201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orangeDamage: 5
+  blueDamage: 3
+  greenDamage: 3
+  whiteDamage: 10
   levelStartDelay: 2
   turnDelay: 0.5
   spawnInterval: 3
@@ -48,7 +52,7 @@ MonoBehaviour:
   deathImage: {fileID: 0}
   boardScript: {fileID: 0}
   playerHitPoints: 999
-  playerCash: 10
+  playerCash: 100
   enemies: []
   playersTurn: 1
   spawnPoint: {fileID: 109196, guid: 858d875daf94f4f56abe721ddb3149be, type: 2}
@@ -197,6 +201,26 @@ Prefab:
       propertyPath: towerTiles.Array.data[0]
       value: 
       objectReference: {fileID: 167760, guid: 8411888022f4e45ea84992adcfbe55c4, type: 2}
+    - target: {fileID: 0}
+      propertyPath: orangeDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: blueDamage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: greenDamage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: whiteDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: playerCash
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 198570}
