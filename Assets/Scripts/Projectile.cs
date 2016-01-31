@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Projectile : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class Projectile : MonoBehaviour {
 	public Vector3 closestEnemyLastPosition;
 
 	public float speed;
+	public List<int> connectedTowers = new List<int>();
 
   private bool will_hit = true;
 
