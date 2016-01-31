@@ -5,6 +5,7 @@ public class MusicManager : MonoBehaviour {
 
   public static MusicManager instance = null;
   public AudioClip [] clips;
+  public AudioClip menuMusic;
   public AudioClip jokeAudio;
 	public int clipIndex = 0;
 	public bool selectRandom = true;
@@ -35,6 +36,16 @@ public class MusicManager : MonoBehaviour {
     if (playMusic) {
       var audio = GetComponent<AudioSource> ();
       audio.clip = jokeAudio;
+      audio.loop = true;
+      audio.Play ();
+    }
+  }
+
+  public void StartMenuMusic () {
+    Stop ();
+    if (playMusic) {
+      var audio = GetComponent<AudioSource> ();
+      audio.clip = menuMusic;
       audio.loop = true;
       audio.Play ();
     }
