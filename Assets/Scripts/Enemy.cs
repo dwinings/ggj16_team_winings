@@ -113,14 +113,13 @@ public class Enemy : MovingObject {
       }
 
 			if (hitPoints <= 0) {
-				GameManager.instance.playerCash += cashVal;
+        GameManager.instance.playerCash += Bounty();
 				Destroy(this.gameObject);
 			}
 		}
   }
 
   public void ApplyDamage(int damage) {
-    Debug.Log("Damage multiplier: " + damageMultiplier);
     hitPoints -= ((int)(damage * damageMultiplier));
   }
 
