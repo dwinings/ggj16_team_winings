@@ -1,125 +1,78 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 
 public class Tower : MonoBehaviour {
 
 	public Projectile projectile;
 
-	public GameObject blankOrangeTile;
-	public GameObject blankGreenTile;
-	public GameObject blankBlueTile;
-	public GameObject blankWhiteTile;
 	public float adjacentDistanceConstant;
+  public float fireSpeed = 1f;
 
 	public GameObject[] enemies;
 	public float range;
-
-
-	private GameObject[] allOrangeTowers;
-	private GameObject[] AllGreenTowers;
-	private GameObject[] AllWhiteTowers;
-	private GameObject[] AllBlueTowers;
-
-	private GameObject aBOT;
-	private GameObject aBGT;
-	private GameObject aBBT;
-	private GameObject aBWT;
-
-	private List<int> connectedTowers = new List<int>();
-
-	// Array numbers being given to Projectile
-	// Orange = 0
-	// Green  = 1
-	// White  = 2
-	// Blue   = 3
+	public List<TowerManager.TowerTypes> connectedTowers = new List<TowerManager.TowerTypes>();
+  public TowerManager.TowerTypes towerType;
+  private List<Vector2> directions;
+  private float cooldownUntil = 0f;
 
 	void Awake () {
-
-    int myVal = 0;
-    switch(tag) {
-    case "RedTower":
-      myVal = 0;
-      break;
-    case "GreenTower":
-      myVal = 1;
-      break;
-    case "WhiteTower":
-      myVal = 2;
-      break;
-    case "BlueTower":
-      myVal = 3;
-      break;
-    }
-    connectedTowers.Add(myVal);
-   
-		InvokeRepeating ("EnemiesInRange", 2, 1f);
-		InvokeRepeating ("SenseTowers", 0, 1f);
+    directions = new List<Vector2>(new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right });
+    connectedTowers.Add(towerType);
+    TowerManager.instance.towers.Add(this);
+    TowerManager.instance.towers.ForEach(tower => tower.RegenerateAdjacentTowers());
 	}
 
-	void EnemiesInRange() {
+  void Update() {
+    if (Time.time >= cooldownUntil) {
+      if (MaybeShootHim()) {
+        cooldownUntil = Time.time + (1 / fireSpeed);
+      } else {
+        cooldownUntil = Time.time + 0.1f;
+      }
+    }
+  }
+
+ public bool MaybeShootHim() {
 		enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+    Physics2D.Raycast(transform.position, Vector2.up);
 		foreach (GameObject enemy in enemies) {
 			float distance = (Mathf.Sqrt(Mathf.Pow((transform.position.x - enemy.transform.position.x), 2) + Mathf.Pow((transform.position.y - enemy.transform.position.y), 2)));
 			if (distance > 0 && distance < range) {
-				LaunchProjectile ();
+				LaunchProjectile();
+        return true;
 			}
 		}
+    return false;
 	}
 
-	public void SenseTowers() {
-    allOrangeTowers = GameObject.FindGameObjectsWithTag("OrangeTower");
-		if (allOrangeTowers.Length != 0) {
-			foreach (GameObject OrangeTower in allOrangeTowers) {
-				float distance = (Mathf.Sqrt (Mathf.Pow ((transform.position.x - OrangeTower.transform.position.x), 2) + Mathf.Pow ((transform.position.y - OrangeTower.transform.position.y), 2)));
-				if (distance > 0 && distance < adjacentDistanceConstant) {
-					if (aBOT == null) {
-						aBOT = Instantiate (blankOrangeTile, transform.position, Quaternion.identity) as GameObject;
-						connectedTowers.Add (0);
-					}
-				}
-			}
-		}
-		AllGreenTowers = GameObject.FindGameObjectsWithTag("GreenTower");
-		if (AllGreenTowers.Length != 0) {
-			foreach (GameObject GreenTower in AllGreenTowers) {
-				float distance = (Mathf.Sqrt (Mathf.Pow ((transform.position.x - GreenTower.transform.position.x), 2) + Mathf.Pow ((transform.position.y - GreenTower.transform.position.y), 2)));
-				if (distance > 0 && distance < adjacentDistanceConstant) {
-					if (aBGT == null) {
-						aBGT = Instantiate (blankGreenTile, transform.position, Quaternion.identity) as GameObject;
-						connectedTowers.Add (1);
-					}
-				}
-			}
-		}
-		AllWhiteTowers = GameObject.FindGameObjectsWithTag("WhiteTower");
-		if (AllWhiteTowers.Length != 0) {
-			foreach (GameObject WhiteTower in AllWhiteTowers) {
-				float distance = (Mathf.Sqrt (Mathf.Pow ((transform.position.x - WhiteTower.transform.position.x), 2) + Mathf.Pow ((transform.position.y - WhiteTower.transform.position.y), 2)));
-				if (distance > 0 && distance < adjacentDistanceConstant) {
-					if (aBWT == null) {
-						aBWT = Instantiate (blankWhiteTile, transform.position, Quaternion.identity) as GameObject;
-						connectedTowers.Add (2);
-					}
-				}
-			}
-		}
-		AllBlueTowers = GameObject.FindGameObjectsWithTag("BlueTower");
-		if (AllBlueTowers.Length != 0) {
-			foreach (GameObject BlueTower in AllBlueTowers) {
-				float distance = (Mathf.Sqrt (Mathf.Pow ((transform.position.x - BlueTower.transform.position.x), 2) + Mathf.Pow ((transform.position.y - BlueTower.transform.position.y), 2)));
-				if (distance > 0 && distance < adjacentDistanceConstant) {
-					if (aBBT == null) {
-						aBBT = Instantiate (blankBlueTile, transform.position, Quaternion.identity) as GameObject;
-						connectedTowers.Add (3);
-					}
-				}
-			}
-		}
+	public void RegenerateAdjacentTowers() {
+    GameObject[] towerObjects = GameObject.FindGameObjectsWithTag("Tower");
+    List<Vector2> toDelete = new List<Vector2>();
+    Collider2D ourCollider = GetComponent<Collider2D>();
+
+    ourCollider.enabled = false;
+    foreach(Vector2 direction in directions) {
+      RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, direction, adjacentDistanceConstant);
+      foreach(RaycastHit2D hit in hits) {
+        if (hit.collider.gameObject.CompareTag("Tower")) {
+          Tower tower = hit.collider.gameObject.GetComponent<Tower>();
+          connectedTowers.Add(tower.towerType);
+          Instantiate(TowerManager.BlankTowerForType(tower.towerType), transform.position, Quaternion.identity);
+          toDelete.Add(direction);
+        }
+      }
+    }
+    ourCollider.enabled = true;
+
+    // Do this so we skip rays in directions for which we have towers
+    toDelete.ForEach(deletion => directions.Remove(deletion));
 	}
 
   void LaunchProjectile() {
 		Projectile shot = Instantiate(projectile, transform.position, Quaternion.identity) as Projectile;
-    shot.connectedTowers = new List<int>(connectedTowers);
+    shot.connectedTowers = new List<TowerManager.TowerTypes>(connectedTowers);
   }
 }

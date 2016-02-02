@@ -7,7 +7,6 @@ TagManager:
   - Food
   - Exit
   - Enemy
-  - Soda
   - DeathImage
   - DeathText
   - Tower
@@ -21,6 +20,8 @@ TagManager:
   - BlueTower
   - WhiteTower
   - Pedestal
+  - Soda
+  - Tower
   layers:
   - Default
   - TransparentFX
@@ -63,6 +64,15 @@ TagManager:
     locked: 0
   - name: Items
     uniqueID: 1861650685
+    locked: 0
+  - name: FloorAddons
+    uniqueID: 3459087365
+    locked: 0
+  - name: TowerAddons
+    uniqueID: 223080769
+    locked: 0
+  - name: Towers
+    uniqueID: 1615045119
     locked: 0
   - name: Units
     uniqueID: 3393972251

@@ -9,30 +9,36 @@ public class Enemy : MovingObject {
   public Transform gotToCrystalParticleEffect;
   public Transform iAmSlainParticleEffect;
 
-  private Animator animator;
   private Transform target;
-  private bool skipMove;
   public int baseMaxHitPoints;
   public int maxHitPoints;
   public int hitPoints;
+  public float tickTime = 1f;
+  private float lastTick;
   public float speed;
   public float currentSpeed;
   public float difficulty;
   public float baseDamageMultiplier;
   public float damageMultiplier;
-	public int cashVal;
+  public float effectDamageMultiplier = 1f;
 
   private List<Debuff> debuffs = new List<Debuff>();
 
-  enum TowerTypes: int {ORANGE_TOWER, GREEN_TOWER, WHITE_TOWER, BLUE_TOWER};
-
   protected override void Start() {
     GameManager.instance.AddEnemyToList(this);
-    animator = GetComponent<Animator>();    
     maxHitPoints = (int)(baseMaxHitPoints * GameManager.instance.boardScript.spawnWave.HealthMultiplier());
     hitPoints = maxHitPoints;
     target = GameManager.instance.exitPoint.transform;
+    lastTick = Time.time - 1f;
     base.Start();
+  }
+
+  public void Update() {
+    if (lastTick + tickTime < Time.time) {
+      lastTick = Time.time;
+      TickDebuffs();
+    }
+    transform.position =  Vector2.MoveTowards(transform.position, GameManager.instance.exitPoint.transform.position, currentSpeed * Time.deltaTime);
   }
 
   public int Bounty() {
@@ -40,36 +46,26 @@ public class Enemy : MovingObject {
 		return (int)(difficulty * 2f * math);
   }
 
-  public void TickDebuff() {
+  public void TickDebuffs() {
+    effectDamageMultiplier = 1f;
     currentSpeed = speed;
-    damageMultiplier = baseDamageMultiplier;
 
     debuffs.RemoveAll(debuff => debuff.IsExpired());
     debuffs.ForEach(debuff => debuff.ApplyToEnemy(this));
     List<Color> colors  = new List<Color>();
     colors.Add(Color.white);
-    debuffs.ForEach(debuff => colors.Add(debuff.MyColor()));
+    debuffs.ForEach(debuff => colors.Add(debuff.debuffColor));
     Color result = CombineColors(colors);
     this.GetComponent<SpriteRenderer>().color = result;
   }
 
-  public static Color CombineColors(List<Color> aColors)
- {
-     Color result = new Color(0f, 0f, 0f, 0f);
-     foreach(Color c in aColors)
-     {
-         result.r += c.r;
-         result.g += c.g;
-         result.b += c.b;
-         result.a += c.a;
-     }
-
-    result.r /= aColors.Count;
-    result.g /= aColors.Count;
-    result.b /= aColors.Count;
-    result.a /= aColors.Count;
-    return result;
- }
+  public static Color CombineColors(List<Color> aColors) {
+    Color result = new Color(0f, 0f, 0f, 0f);
+    foreach (Color c in aColors) {
+      result += c;
+    }
+    return result / aColors.Count;
+  }
 
   protected override void AttemptMove<T> (float xDir, float yDir) {
     base.AttemptMove<T>(xDir, yDir);
@@ -79,28 +75,29 @@ public class Enemy : MovingObject {
     float xDist = (Mathf.Abs(target.position.x - transform.position.x));
     float yDist = (Mathf.Abs(target.position.y - transform.position.y));
 
-
     if (xDist < float.Epsilon && yDist < float.Epsilon) {
       Destroy(this.gameObject);
     }
 
     Vector3 movementVector = Vector3.MoveTowards(transform.position, target.position, currentSpeed) - transform.position;
-
-    AttemptMove<Player>(movementVector.x, movementVector.y);
+    Move(movementVector.x, movementVector.y);
   }
 
-  public void ApplyDebuff(System.Type clazz, float duration) {
-    bool foundOne = false;
-    foreach (Debuff debuff in debuffs) {
-      if (debuff.GetType() == clazz) {
-        debuff.expiration = Time.time + duration;
-        foundOne = true;
-      }
-    }
+  public void ApplyDebuff(System.Type clazz, float duration, float intensity) {
+    Debuff debuff = (Debuff)Activator.CreateInstance(clazz, duration, intensity);
 
-    if(!foundOne) {
-      Debuff debuff = (Debuff) Activator.CreateInstance(clazz, duration); 
-      debuffs.Add(debuff);
+    switch(debuff.stackingType) {
+      case Debuff.StackingType.DURATION:
+        Debuff oldDebuff = debuffs.Find(db => db.GetType() == debuff.GetType());
+        if (oldDebuff != null) {
+          oldDebuff.expiration += duration;
+        } else {
+          debuffs.Add(debuff);
+        }
+        break;
+      case Debuff.StackingType.INTENSITY:
+        debuffs.Add(debuff);
+        break;
     }
   }
 
@@ -114,30 +111,32 @@ public class Enemy : MovingObject {
 		else if (other.tag == "Projectile") {
       int index = 0;
       Projectile proj = other.gameObject.GetComponent<Projectile>();
-      List<int> effects = proj.connectedTowers;
+      List<TowerManager.TowerTypes> effects = proj.connectedTowers;
+      int damage = 0;
 
-      foreach(int effect in effects) {
+      foreach(TowerManager.TowerTypes effect in effects) {
         float damageComboScaler = index > 0 ? 0.5f : 1f;
-        int healthLoss;
-        switch ((TowerTypes)effect) {
-        case TowerTypes.ORANGE_TOWER:
-          ApplyDebuff(typeof(Burn), 5);
-          ApplyDamage((int)(GameManager.instance.orangeDamage * damageComboScaler));
+        switch (effect) {
+        case TowerManager.TowerTypes.ORANGE_TOWER:
+          ApplyDebuff(typeof(Burn), 5, 3f);
+          damage += ((int)(GameManager.instance.orangeDamage * damageComboScaler));
           break;
-        case TowerTypes.BLUE_TOWER:
-          ApplyDebuff(typeof(Slow), 2);
-          ApplyDamage((int)(GameManager.instance.blueDamage * damageComboScaler));
+        case TowerManager.TowerTypes.BLUE_TOWER:
+          ApplyDebuff(typeof(Slow), 2, 0.3f);
+          damage += ((int)(GameManager.instance.blueDamage * damageComboScaler));
           break;
-        case TowerTypes.GREEN_TOWER:
-          ApplyDamage((int)(GameManager.instance.greenDamage * damageComboScaler));
+        case TowerManager.TowerTypes.GREEN_TOWER:
+          damage += ((int)(GameManager.instance.greenDamage * damageComboScaler));
           break;
-        case TowerTypes.WHITE_TOWER:
-          ApplyDebuff(typeof(Rend), 4);
-          ApplyDamage((int)(GameManager.instance.whiteDamage * damageComboScaler));
+        case TowerManager.TowerTypes.WHITE_TOWER:
+          ApplyDebuff(typeof(Rend), 2, 0.1f);
+          damage += ((int)(GameManager.instance.whiteDamage * damageComboScaler));
           break;
         }
         index += 1;
       }
+
+      ApplyDamage(damage);
 
       if (hitPoints <= 0) {
         Instantiate(iAmSlainParticleEffect, transform.position, Quaternion.identity);
@@ -151,7 +150,10 @@ public class Enemy : MovingObject {
   }
 
   public void ApplyDamage(int damage) {
-    hitPoints -= ((int)(damage * damageMultiplier));
+    float realMultiplier = baseDamageMultiplier * effectDamageMultiplier;
+    int realDamage = (int) (damage * realMultiplier);
+    // Debug.Log("Applying " + damage + " damage to target with a " + realMultiplier + " multiplier (" + realDamage + ")");
+    hitPoints -= realDamage;
   }
 
   protected override void OnCantMove <T> (T component) {

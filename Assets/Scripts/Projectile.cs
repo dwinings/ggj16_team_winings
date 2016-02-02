@@ -9,9 +9,7 @@ public class Projectile : MonoBehaviour {
 	public Vector3 closestEnemyLastPosition;
 
 	public float speed;
-	public List<int> connectedTowers = new List<int>();
-
-  private bool will_hit = true;
+	public List<TowerManager.TowerTypes> connectedTowers = new List<TowerManager.TowerTypes>();
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +22,6 @@ public class Projectile : MonoBehaviour {
 		foreach (GameObject enemy in enemies) {
 			float enemyDistance = (Mathf.Sqrt(Mathf.Pow((transform.position.x - enemy.transform.position.x), 2) + Mathf.Pow((transform.position.y - enemy.transform.position.y), 2)));
 			if (closestEnemy == null) {
-        will_hit = false;
 				closestEnemy = enemy;
 				closestEnemyLastPosition =  closestEnemy.transform.position;
 			}

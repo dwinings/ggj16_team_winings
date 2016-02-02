@@ -18,22 +18,10 @@ public abstract class MovingObject : MonoBehaviour {
     inverseMoveTime = 1f / moveTime;
 	}
 
-  protected bool Move (float xDir, float yDir) {
+  protected void Move(float xDir, float yDir) {
     Vector2 start = transform.position;
     Vector2 end = start + new Vector2(xDir, yDir);
-
-    /*
-    // Don't hit own collider
-    boxCollider.enabled = false;
-    hit = Physics2D.Linecast(start, end, blockingLayer);
-    boxCollider.enabled = true;
-    */
-
-    //if (hit.transform == null) {
-      StartCoroutine(SmoothMovement(end));
-      return true;
-    //}
-    return false;
+    StartCoroutine(SmoothMovement(end));
   }
 
   protected IEnumerator SmoothMovement (Vector3 end) {
@@ -48,10 +36,7 @@ public abstract class MovingObject : MonoBehaviour {
   }
 
   protected virtual void AttemptMove<T> (float xDir, float yDir) where T: Component {
-    bool canMove = Move(xDir, yDir);
-
-    if (!canMove) {
-    }
+    Move(xDir, yDir);
   }
 
   protected abstract void OnCantMove<T>(T Component);

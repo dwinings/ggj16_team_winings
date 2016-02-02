@@ -45,24 +45,21 @@ MonoBehaviour:
   greenDamage: 5
   whiteDamage: 10
   levelStartDelay: 2
-  turnDelay: 0.5
-  spawnInterval: 3
-  WAVE_TEXT_DURATION: 2
-  WAVE_COOLDOWN_DURATION: 5
+  waveTextDuration: 3
+  waveCooldownDuration: 3
   deathImage: {fileID: 0}
   boardScript: {fileID: 0}
+  initialHealth: 0
+  initialCash: 0
   playerHitPoints: 30
-  playerCash: 40
+  playerCash: 1000
   enemies: []
-  playersTurn: 1
-  spawnPoint: {fileID: 109196, guid: 858d875daf94f4f56abe721ddb3149be, type: 2}
-  tower: {fileID: 168186, guid: ce01a0ebcc2544661ad1303d760c41b6, type: 2}
-  exitPoint: {fileID: 152602, guid: de19177c8bc614508ab6af34b8e1ac7b, type: 2}
   waveText: {fileID: 0}
   deathText: {fileID: 0}
   healthText: {fileID: 0}
   cashText: {fileID: 0}
-  InitialHealth: 0
+  spawnPoint: {fileID: 109196, guid: 858d875daf94f4f56abe721ddb3149be, type: 2}
+  exitPoint: {fileID: 152602, guid: de19177c8bc614508ab6af34b8e1ac7b, type: 2}
   aLittleDamage: {fileID: 21300054, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   mostlyDamaged: {fileID: 21300056, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   veryDamaged: {fileID: 21300058, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
@@ -87,7 +84,6 @@ MonoBehaviour:
     maximum: 5
   exit: {fileID: 197666, guid: 89ac9807b5e814022823568b70230bf1, type: 2}
   spawnPoint: {fileID: 168186, guid: ce01a0ebcc2544661ad1303d760c41b6, type: 2}
-  tower: {fileID: 167760, guid: 8411888022f4e45ea84992adcfbe55c4, type: 2}
   floorTiles:
   - {fileID: 174240, guid: a24edf19c35ee4d3cb11e7f86868be09, type: 2}
   - {fileID: 164226, guid: 26d9a5d2cc50d41b59179a1156a5e9cc, type: 2}
@@ -222,7 +218,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: playerCash
-      value: 40
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: pedestal
@@ -255,6 +251,14 @@ Prefab:
       value: 
       objectReference: {fileID: 21300058, guid: fbe1e7b94bb1a4a099d5bcb15a00141c,
         type: 3}
+    - target: {fileID: 0}
+      propertyPath: waveTextDuration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: waveCooldownDuration
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 198570}

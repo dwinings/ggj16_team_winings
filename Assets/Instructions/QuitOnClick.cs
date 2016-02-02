@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class QuitOnClick : MonoBehaviour {
 	
-	// Update is called once per frame
 	void Update () {
     if (Input.GetMouseButtonDown(0))
-      Application.LoadLevel (0);
+      SceneManager.LoadScene(0);
 	}
 }

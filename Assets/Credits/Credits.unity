@@ -402,8 +402,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdb821b24f2248d5a4f1189c07b1777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movie: {fileID: 15200000, guid: 9fd0e6b1e9cb94e13b63b4798a7c6c06, type: 3}
-  audio: {fileID: 1370568975}
+  movie: {fileID: 15200000, guid: da88d04a3ae00b849a1073f29aad9b06, type: 3}
+  myAudio: {fileID: 0}
 --- !u!82 &1370568975
 AudioSource:
   m_ObjectHideFlags: 0

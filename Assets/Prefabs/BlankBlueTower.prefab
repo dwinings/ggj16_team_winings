@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21247712}
   m_Layer: 0
   m_Name: BlankBlueTower
-  m_TagString: Tower
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,10 +52,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -900995045
+  m_SortingLayerID: 223080769
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300004, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.394}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1001 &100100000
@@ -68,6 +68,30 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SortingLayerID
+      value: 223080769
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.a
+      value: 0.394
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

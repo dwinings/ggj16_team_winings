@@ -11,7 +11,6 @@ public class Wave {
 
 
   public void BeginNextLevel() {
-    //Debug.Log("Beginning Wave #" + level);
     level += 1;
     if (level > 2) 
       SFXManager.instance.PlaySound("wave_clear");
@@ -31,15 +30,16 @@ public class Wave {
     difficultyAlreadySpawned += lastDifficulty;
     int finishedPercent = (int)(difficultyAlreadySpawned * 100f / MaxDifficulty());
     finishedPercent = Mathf.Min(100, finishedPercent);
-    GameManager.instance.waveText.text = string.Format("Wave {0}: {1}%", level - 1, finishedPercent);
+    GameManager.instance.SetText(GameManager.instance.waveText, string.Format("Wave {0}: {1}%", level - 1, finishedPercent));
     float decayFactor = 100f * ((difficultyAlreadySpawned / MaxDifficulty()) / MaxDifficulty());
     float normalizedDifficulty = (lastDifficulty / MaxDifficulty());
     float result = normalizedDifficulty * 10f * decayFactor;
-    // Debug.Log("Decay Factor: " + decayFactor + " ND: " + normalizedDifficulty);
-    // Debug.Log("Spawning in " + result + " seconds after adding " + lastDifficulty + " difficulty");
     result = Mathf.Max(MIN_SPAWN_TIME, result);
     result = Mathf.Min(MAX_SPAWN_TIME, result);
-    result = IsWaveOver() ? 9999999999f : result ;
+
+    // Debug.Log("Spawning in " + result + " seconds after adding " + lastDifficulty + " difficulty");
+    // Debug.Log("Decay Factor: " + decayFactor + " ND: " + normalizedDifficulty);
+
     return result;
   }
 

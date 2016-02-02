@@ -144,7 +144,7 @@ Prefab:
     - target: {fileID: 11412034, guid: 31403b8bd6f2c46bba5359a1026bb4f1, type: 2}
       propertyPath: tower
       value: 
-      objectReference: {fileID: 168186, guid: ce01a0ebcc2544661ad1303d760c41b6, type: 2}
+      objectReference: {fileID: 168186, guid: 6103139617e7187469512ee15b22fbd5, type: 2}
     - target: {fileID: 11412034, guid: 31403b8bd6f2c46bba5359a1026bb4f1, type: 2}
       propertyPath: towerCostText
       value: 
@@ -725,6 +725,10 @@ Prefab:
     - target: {fileID: 11464180, guid: 4987a602b8e0f4c0594bdb04c8c788aa, type: 2}
       propertyPath: m_Text
       value: You were eaten by a grue
+      objectReference: {fileID: 0}
+    - target: {fileID: 131702, guid: 4987a602b8e0f4c0594bdb04c8c788aa, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4987a602b8e0f4c0594bdb04c8c788aa, type: 2}
@@ -1470,6 +1474,7 @@ MonoBehaviour:
   gameManager: {fileID: 198570, guid: e2506ce46ee82487581852fc035b52b0, type: 2}
   musicManager: {fileID: 11461756, guid: a7595f457899d45bc8dcd201c7161791, type: 2}
   sfxManager: {fileID: 11425818, guid: 7f2a4c28ed3fa4736b19740ebd40256b, type: 2}
+  towerManager: {fileID: 11409832, guid: 628527db0df42f44f8b72e5be026064d, type: 2}
 --- !u!1001 &1716277345
 Prefab:
   m_ObjectHideFlags: 0

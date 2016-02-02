@@ -2,12 +2,16 @@
 using System;
 
 public abstract class Debuff {
+  public enum StackingType { DURATION, INTENSITY };
   public float expiration;
+  public float intensity;
 
-  public abstract Color MyColor();
+  public abstract StackingType stackingType { get; }
+  public abstract Color debuffColor { get; }
 
-  public Debuff(float duration) {
+  public Debuff(float duration, float intensity) {
     expiration = Time.time + duration;
+    this.intensity = intensity;
   }
 
   public bool IsExpired() {

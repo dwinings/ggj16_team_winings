@@ -1,32 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent (typeof(AudioSource))]
 
 public class PlayVideo : MonoBehaviour {
 
   public MovieTexture movie;
-  public AudioSource audio;
+  public AudioSource myAudio;
 
 	void Start () {
-    GetComponent<RawImage> ().texture = movie as MovieTexture;
-    audio = GetComponent<AudioSource> ();
-    audio.clip = movie.audioClip;
+    GetComponent<RawImage>().texture = movie as MovieTexture;
+    myAudio = GetComponent<AudioSource> ();
+    myAudio.clip = movie.audioClip;
     movie.Play ();
-    audio.Play ();
+    myAudio.Play ();
 	}
 	
 	void Update () {
     if (!movie.isPlaying) {
-      Start ();
+      Start();
       StartCoroutine(SomeCoroutine());
     }
 	}
 
-  private IEnumerator SomeCoroutine()
-  {
+  private IEnumerator SomeCoroutine() {
     yield return new WaitForSeconds (0);
-    Application.LoadLevel (0);
+    SceneManager.LoadScene(0);
   }
 }

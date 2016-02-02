@@ -10,9 +10,10 @@ GameObject:
   - 4: {fileID: 431076}
   - 114: {fileID: 11497878}
   - 212: {fileID: 21246672}
+  - 61: {fileID: 6163272}
   m_Layer: 0
   m_Name: GreenTower
-  m_TagString: GreenTower
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,6 +30,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!61 &6163272
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116372}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
 --- !u!114 &11497878
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -41,13 +56,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 11429932, guid: d8e4ac3b4086b469e8b9518374d2db3e, type: 2}
-  blankOrangeTile: {fileID: 137278, guid: cef0c060444664b489bf973450a594e9, type: 2}
-  blankGreenTile: {fileID: 156634, guid: 90f748c022c594d549052433ff9aa377, type: 2}
-  blankBlueTile: {fileID: 122668, guid: bdc2d96b7f3df4e4695d31a14cc9f752, type: 2}
-  blankWhiteTile: {fileID: 165802, guid: 19d7b2751a9024586b4f7587fefd6c46, type: 2}
-  adjacentDistanceConstant: 2
+  adjacentDistanceConstant: 1
+  fireSpeed: 1
   enemies: []
   range: 7
+  connectedTowers: 
+  towerType: 1
 --- !u!212 &21246672
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -72,7 +86,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -900995045
+  m_SortingLayerID: 1615045119
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300002, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -124,11 +138,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: adjacentDistanceConstant
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_TagString
-      value: GreenTower
+      value: Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SortingLayerID
+      value: 1615045119
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: towerType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
