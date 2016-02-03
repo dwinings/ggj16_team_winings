@@ -77,3 +77,9 @@ TagManager:
   - name: Units
     uniqueID: 3393972251
     locked: 0
+  - name: Text
+    uniqueID: 1187356515
+    locked: 0
+  - name: Damage
+    uniqueID: 3655177305
+    locked: 0

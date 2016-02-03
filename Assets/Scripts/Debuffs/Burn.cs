@@ -8,7 +8,7 @@ public class Burn : Debuff {
   public override Color debuffColor { get { return new Color(227f / 255f, 144f / 255f, 55f / 255f); } }
 
   public override void ApplyToEnemy(Enemy target) {
-    target.hitPoints -= (int)intensity;
+    target.ApplyDamage((int)intensity, Enemy.DamageType.TRUE);
   }
 }
 

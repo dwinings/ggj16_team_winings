@@ -7,7 +7,7 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 407216}
+  - 224: {fileID: 22457670}
   - 212: {fileID: 21253666}
   - 95: {fileID: 9500388}
   - 61: {fileID: 6109174}
@@ -20,18 +20,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &407216
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 146564}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
 --- !u!50 &5067776
 Rigidbody2D:
   serializedVersion: 2
@@ -100,15 +88,18 @@ MonoBehaviour:
     type: 2}
   iAmSlainParticleEffect: {fileID: 482542, guid: 74d512cf2333448c6bf3c25f18854553,
     type: 2}
+  healthBar: {fileID: 143280, guid: 7da8a73b991583146988ec7fc3396b36, type: 2}
+  damageNumberPrefab: {fileID: 141080, guid: 530c3305f649a8245b1d0e488eebedb5, type: 2}
   baseMaxHitPoints: 50
   maxHitPoints: 0
   hitPoints: 0
+  tickTime: 1
   speed: 1
   currentSpeed: 0
   difficulty: 2
   baseDamageMultiplier: 0.9
   damageMultiplier: 0
-  cashVal: 2
+  effectDamageMultiplier: 1
 --- !u!212 &21253666
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -139,6 +130,23 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!224 &22457670
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 146564}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -194,6 +202,18 @@ Prefab:
       propertyPath: iAmSlainParticleEffect
       value: 
       objectReference: {fileID: 482542, guid: 74d512cf2333448c6bf3c25f18854553, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_SortingLayerID
+      value: 1187356515
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 143280, guid: 7da8a73b991583146988ec7fc3396b36, type: 2}
+    - target: {fileID: 0}
+      propertyPath: damageNumberPrefab
+      value: 
+      objectReference: {fileID: 141080, guid: 530c3305f649a8245b1d0e488eebedb5, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 146564}

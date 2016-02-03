@@ -1033,6 +1033,7 @@ GameObject:
   - 224: {fileID: 1061248261}
   - 222: {fileID: 1061248263}
   - 114: {fileID: 1061248262}
+  - 114: {fileID: 1061248264}
   m_Layer: 5
   m_Name: DeathText
   m_TagString: DeathText
@@ -1099,6 +1100,20 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 661199371}
   m_GameObject: {fileID: 1061248260}
+--- !u!114 &1061248264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1061248260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1432713747
 GameObject:
   m_ObjectHideFlags: 0
@@ -1109,6 +1124,7 @@ GameObject:
   - 224: {fileID: 1432713748}
   - 222: {fileID: 1432713750}
   - 114: {fileID: 1432713749}
+  - 114: {fileID: 1432713751}
   m_Layer: 5
   m_Name: WaveText
   m_TagString: WaveText
@@ -1172,6 +1188,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1432713747}
+--- !u!114 &1432713751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1432713747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &1490911716
 Prefab:
   m_ObjectHideFlags: 0

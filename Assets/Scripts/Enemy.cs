@@ -1,15 +1,20 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 
 public class Enemy : MovingObject {
 
+  public enum DamageType { NORMAL, TRUE }
+
   public int playerDamage;
   public Transform gotToCrystalParticleEffect;
   public Transform iAmSlainParticleEffect;
 
   private Transform target;
+  public GameObject healthBar;
+  public GameObject damageNumberPrefab;
   public int baseMaxHitPoints;
   public int maxHitPoints;
   public int hitPoints;
@@ -26,11 +31,21 @@ public class Enemy : MovingObject {
 
   protected override void Start() {
     GameManager.instance.AddEnemyToList(this);
+    healthBar = Instantiate(healthBar, transform.position, Quaternion.identity) as GameObject;
+    healthBar.transform.parent = transform;
+    healthBar.transform.position = healthBar.transform.position + (new Vector3(0, 1)) * 0.7f;
     maxHitPoints = (int)(baseMaxHitPoints * GameManager.instance.boardScript.spawnWave.HealthMultiplier());
     hitPoints = maxHitPoints;
     target = GameManager.instance.exitPoint.transform;
     lastTick = Time.time - 1f;
     base.Start();
+  }
+
+  private void UpdateHealthBar() {
+    float healthPercent = ((float) hitPoints) / maxHitPoints;
+    Image image = healthBar.GetComponentInChildren<Image>();
+    image.rectTransform.sizeDelta = new Vector2((1.2f * healthPercent), 0.2f);
+    image.color = Color.Lerp(Color.red, Color.green, healthPercent);
   }
 
   public void Update() {
@@ -39,6 +54,7 @@ public class Enemy : MovingObject {
       TickDebuffs();
     }
     transform.position =  Vector2.MoveTowards(transform.position, GameManager.instance.exitPoint.transform.position, currentSpeed * Time.deltaTime);
+    UpdateHealthBar();
   }
 
   public int Bounty() {
@@ -136,7 +152,7 @@ public class Enemy : MovingObject {
         index += 1;
       }
 
-      ApplyDamage(damage);
+      ApplyDamage(damage, DamageType.NORMAL);
 
       if (hitPoints <= 0) {
         Instantiate(iAmSlainParticleEffect, transform.position, Quaternion.identity);
@@ -149,11 +165,28 @@ public class Enemy : MovingObject {
 		}
   }
 
-  public void ApplyDamage(int damage) {
-    float realMultiplier = baseDamageMultiplier * effectDamageMultiplier;
-    int realDamage = (int) (damage * realMultiplier);
+  public void ApplyDamage(int damage, DamageType damageType) {
+    int realDamage;
+    float realMultiplier = 0f;
+
+    switch (damageType) {
+      case DamageType.NORMAL:
+        realMultiplier = baseDamageMultiplier * effectDamageMultiplier;
+        break;
+      case DamageType.TRUE:
+        realMultiplier = 1;
+        break;
+    }
+    realDamage = (int)(damage * realMultiplier);
+
     // Debug.Log("Applying " + damage + " damage to target with a " + realMultiplier + " multiplier (" + realDamage + ")");
     hitPoints -= realDamage;
+
+    GameObject dn = Instantiate(damageNumberPrefab, transform.position, Quaternion.identity) as GameObject;
+    dn.transform.parent = transform;
+    Text dnText = dn.GetComponentInChildren<Text>();
+    dnText.color = damageType == DamageType.TRUE ? Color.white : new Color(1f, 86f / 255f, 86f / 255f);
+    dnText.text = "" + realDamage;
   }
 
   protected override void OnCantMove <T> (T component) {
