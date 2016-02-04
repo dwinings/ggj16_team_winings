@@ -3,14 +3,20 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 
-public class Enemy : MovingObject {
+public class Enemy : MonoBehaviour {
 
   public enum DamageType { NORMAL, TRUE }
 
   public int playerDamage;
   public Transform gotToCrystalParticleEffect;
   public Transform iAmSlainParticleEffect;
+
+  // Pathfinding tutorial
+
+  private Seeker seeker;
+  public Path path;
 
   private Transform target;
   public GameObject healthBar;
@@ -28,8 +34,10 @@ public class Enemy : MovingObject {
   public float effectDamageMultiplier = 1f;
 
   private List<Debuff> debuffs = new List<Debuff>();
+  private int currentWaypoint = 0;
+  private float nextWaypointDistance = 0.1f;
 
-  protected override void Start() {
+  protected void Start() {
     GameManager.instance.AddEnemyToList(this);
     healthBar = Instantiate(healthBar, transform.position, Quaternion.identity) as GameObject;
     healthBar.transform.SetParent(transform);
@@ -37,7 +45,9 @@ public class Enemy : MovingObject {
     hitPoints = maxHitPoints;
     target = GameManager.instance.exitPoint.transform;
     lastTick = Time.time - 1f;
-    base.Start();
+
+    seeker = GetComponent<Seeker>();
+    seeker.StartPath(transform.position, target.position, OnPathComplete);
   }
 
   private void UpdateHealthBar() {
@@ -48,8 +58,24 @@ public class Enemy : MovingObject {
       lastTick = Time.time;
       TickDebuffs();
     }
-    transform.position =  Vector2.MoveTowards(transform.position, GameManager.instance.exitPoint.transform.position, currentSpeed * Time.deltaTime);
     healthBar.GetComponent<HealthBar>().UpdatePercent(hitPoints / (float)maxHitPoints);
+    Pathfind();
+  }
+
+  public void Pathfind() {
+    if (path == null) {
+      return;
+    }
+    if (currentWaypoint > path.vectorPath.Count) {
+      Debug.Log("End Of Path Reached");
+      return;
+    }
+    Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
+    transform.Translate(dir * currentSpeed * Time.deltaTime);
+    if (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < nextWaypointDistance) {
+      currentWaypoint++;
+      return;
+    }
   }
 
   public int Bounty() {
@@ -78,10 +104,6 @@ public class Enemy : MovingObject {
     return result / aColors.Count;
   }
 
-  protected override void AttemptMove<T> (float xDir, float yDir) {
-    base.AttemptMove<T>(xDir, yDir);
-  }
-
   public void MoveEnemy() {
     float xDist = (Mathf.Abs(target.position.x - transform.position.x));
     float yDist = (Mathf.Abs(target.position.y - transform.position.y));
@@ -91,7 +113,7 @@ public class Enemy : MovingObject {
     }
 
     Vector3 movementVector = Vector3.MoveTowards(transform.position, target.position, currentSpeed) - transform.position;
-    Move(movementVector.x, movementVector.y);
+    transform.Translate(movementVector);
   }
 
   public void ApplyDebuff(System.Type clazz, float duration, float intensity) {
@@ -177,14 +199,17 @@ public class Enemy : MovingObject {
     // Debug.Log("Applying " + damage + " damage to target with a " + realMultiplier + " multiplier (" + realDamage + ")");
     hitPoints -= realDamage;
 
-    GameObject dn = Instantiate(damageNumberPrefab, transform.position, Quaternion.identity) as GameObject;
-    dn.transform.SetParent(transform);
-    Text dnText = dn.GetComponentInChildren<Text>();
+    GameObject damageNumber = Instantiate(damageNumberPrefab, transform.position, Quaternion.identity) as GameObject;
+    damageNumber.transform.SetParent(transform);
+    Text dnText = damageNumber.GetComponentInChildren<Text>();
     dnText.color = damageType == DamageType.TRUE ? Color.white : new Color(1f, 86f / 255f, 86f / 255f);
     dnText.text = "" + realDamage;
   }
 
-  protected override void OnCantMove <T> (T component) {
-    Destroy(this);
+  public void OnPathComplete(Path path) {
+    if (!path.error) {
+      this.path = path;
+      currentWaypoint = 0;
+    }
   }
 }

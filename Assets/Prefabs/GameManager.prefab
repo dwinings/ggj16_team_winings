@@ -41,8 +41,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orangeDamage: 5
-  blueDamage: 2
-  greenDamage: 5
+  blueDamage: 3
+  greenDamage: 3
   whiteDamage: 10
   levelStartDelay: 2
   waveTextDuration: 3
@@ -206,11 +206,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: blueDamage
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: greenDamage
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: whiteDamage

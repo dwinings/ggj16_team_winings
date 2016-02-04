@@ -11,7 +11,7 @@ GameObject:
   - 114: {fileID: 11464272}
   - 212: {fileID: 21270442}
   - 61: {fileID: 6169566}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: OrangeTower
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -147,6 +147,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

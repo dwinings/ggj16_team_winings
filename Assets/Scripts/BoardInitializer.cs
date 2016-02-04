@@ -57,11 +57,11 @@ public class BoardInitializer : MonoBehaviour {
 	void BoardSetup() {
     spawnWave = new Wave();
 		boardHolder = new GameObject("Board").transform;
-		for (int x = -1; x < columns + 1; x++) {
-			for (int y = -1; y < rows + 1; y++) {
+		for (int x = 0; x < columns; x++) {
+			for (int y = 0; y < rows; y++) {
 				GameObject toInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
 				// Outside of the level
-        if (x == -1 || x == columns || y == -1 || y == rows) {
+        if (x == 0 || x == columns - 1 || y == 0 || y == rows - 1) {
           toInstantiate = outerWallTiles [Random.Range (0, outerWallTiles.Length)];
         } 
 				GameObject instance = Instantiate(toInstantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;

@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour {
     boardScript = GetComponent<BoardInitializer>();	
     enemies.Clear();
     boardScript.SetupScene(0);
+    AstarPath.active.Scan();
 	}
 
   public void GameOver() {

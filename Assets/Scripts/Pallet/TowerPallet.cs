@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Pathfinding;
 
 public class TowerPallet : MonoBehaviour
 {
@@ -12,7 +13,6 @@ public class TowerPallet : MonoBehaviour
   private Camera palletCamera;
   private static GameObject draggable;
   private static Ray ray;
-  private static RaycastHit hit;
   private Vector2 relativePosition;
   private Vector3 offset = new Vector3(0f, 0f, 0f);
   private int currentCash;
@@ -49,11 +49,16 @@ public class TowerPallet : MonoBehaviour
  public void OnMouseUp() {
     if (draggable) {
       Destroy (draggable);
+      Vector3 mouseWorldPosition = palletCamera.ScreenToWorldPoint(Input.mousePosition);
+      mouseWorldPosition.z = 0f; // Just in case
       ray = palletCamera.ScreenPointToRay (Input.mousePosition);
-      if (Physics.Raycast(ray, out hit) && (currentCash >= towerCost)) {
-        Instantiate(tower, hit.transform.position, Quaternion.identity);
-        Destroy(hit.transform.gameObject.GetComponent<BoxCollider>());
-        GameManager.instance.playerCash -= towerCost;
+      RaycastHit2D hit = Physics2D.Raycast(mouseWorldPosition, Vector2.up, 0.0001f);
+      if (hit.collider && (currentCash >= towerCost)) {
+        if (hit.transform.gameObject.CompareTag("Pedestal")) {
+          GameObject instance = Instantiate(tower, hit.transform.position, Quaternion.identity) as GameObject;
+          Destroy(hit.transform.gameObject.GetComponent<BoxCollider2D>());
+          GameManager.instance.playerCash -= towerCost;
+        }
       }
       currentCash = 0;
     }

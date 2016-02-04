@@ -22,7 +22,7 @@ public class Tower : MonoBehaviour {
     connectedTowers.Add(towerType);
     TowerManager.instance.towers.Add(this);
     TowerManager.instance.towers.ForEach(tower => tower.RegenerateAdjacentTowers());
-	}
+  }
 
   void Update() {
     if (Time.time >= cooldownUntil) {

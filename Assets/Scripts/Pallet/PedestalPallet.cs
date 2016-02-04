@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Pathfinding;
 
 public class PedestalPallet : MonoBehaviour {
   public GameObject pedestal;
@@ -16,6 +17,7 @@ public class PedestalPallet : MonoBehaviour {
   private static int initted = 0;
   private Ray ray;
   private RaycastHit hit;
+  private Vector3 failureVector = new Vector3(-255, -255, -255);
 
   public void Start() {
     if (initted < 1) {
@@ -52,11 +54,15 @@ public class PedestalPallet : MonoBehaviour {
     if (draggable) {
       Destroy (draggable);
       Vector3 v = FindPedestalPlacement();
-      if (!v.Equals(Vector3.zero)) {
+      if (!v.Equals(failureVector)) {
         GameObject instance = Instantiate (pedestal, v, Quaternion.identity) as GameObject;
-        //instance.transform.SetParent (GameManager.instance.boardScript.boardHolder);
-        GameManager.instance.playerCash -= pedestalCost;
-        currentCash = 0;
+        if (NoPathBlockage(instance)) {
+          GameManager.instance.playerCash -= pedestalCost;
+          currentCash = 0;
+        } else {
+          Destroy(instance);
+          AstarPath.active.UpdateGraphs(instance.GetComponent<Collider2D>().bounds);
+        }
       }
     }
   }
@@ -69,52 +75,39 @@ public class PedestalPallet : MonoBehaviour {
     return d;
   }
 
-  private Vector3 FindPedestalPlacement() {
-    Vector3 curr = palletCamera.ScreenToWorldPoint(Input.mousePosition);
-    Vector3 closestObj = Vector3.zero;
-    float closestDist = -1;
-    GameObject[] pedestals = GameObject.FindGameObjectsWithTag ("Pedestal");
-    foreach (GameObject p in pedestals) {
-      float distance = (Mathf.Sqrt (Mathf.Pow ((curr.x - p.transform.position.x), 2) + Mathf.Pow ((curr.y -p.transform.position.y), 2)));
-      if (closestDist == -1 || closestDist > distance) {
-        closestDist = distance;
-        closestObj = p.transform.position;
-      }
-    }
-    if (closestDist <= adjacentDistanceConst) {
-      float x = closestObj.x;
-      float y = closestObj.y;
-      float xDifference = Mathf.Abs(curr.x - x);
-      float yDifference = Mathf.Abs(curr.y - y);
 
-      if (yDifference > xDifference) {
-        if (curr.y - y > 0) {
-          y = closestObj.y + 1;
-        } else {
-          y = closestObj.y - 1;
-        }
-      } else {
-        if (curr.x - x > 0) {
-          x = closestObj.x + 1;
-        } else {
-          x = closestObj.x - 1;
-        }
-      }
-      return new Vector3 (x, y, 0f);
-    } else {
-      GameObject enter = GameObject.FindGameObjectWithTag ("Entrance");
-      GameObject exit = GameObject.FindGameObjectWithTag ("Exit");
-      ray = palletCamera.ScreenPointToRay (Input.mousePosition);
-      // Debug.Log (Vector3.Distance (draggable.transform.position, enter.transform.position));
-      if((Vector3.Distance(draggable.transform.position, enter.transform.position) > 2) && 
-        (Vector3.Distance(draggable.transform.position, exit.transform.position) > 2) &&
-        (!(Physics.Raycast(ray, out hit)))) {
-          float x = (float)(int)Mathf.Round (curr.x);
-          float y = (float)(int)Mathf.Round (curr.y);
-          return new Vector3 (x, y, 0f);
-      } else {
-        return Vector3.zero;
-      }
+  private Vector3 FindPedestalPlacement() {
+    Vector3 worldPoint = palletCamera.ScreenToWorldPoint(Input.mousePosition);
+    worldPoint.z = 0f;
+
+    // Round onto our grid.
+    worldPoint.x = Mathf.Round(worldPoint.x);
+    worldPoint.y = Mathf.Round(worldPoint.y);
+
+    // Check if we're close to spawn/egress points.
+    GameObject enter = GameObject.FindGameObjectWithTag("Entrance");
+    GameObject exit = GameObject.FindGameObjectWithTag("Exit");
+    if ( (Vector3.Distance(worldPoint, enter.transform.position) <= 2)
+      || (Vector3.Distance(worldPoint, exit.transform.position) <= 2)) {
+      return failureVector;
     }
-  } 
+
+    // Very small raycast so we can see if we're on top of something
+    RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.up, 0.0001f);
+
+    if (hit.collider == null) {
+      return worldPoint;
+    } else {
+      return failureVector;
+    }
+  }
+
+  private bool NoPathBlockage(GameObject placedObject) {
+    var updateObject = new GraphUpdateObject(placedObject.GetComponent<Collider2D>().bounds);
+    Vector3 start = GameManager.instance.spawnPoint.transform.position;
+    Vector3 end = GameManager.instance.exitPoint.transform.position;
+    var startNode = AstarPath.active.GetNearest(start).node;
+    var endNode = AstarPath.active.GetNearest(end).node;
+    return GraphUpdateUtilities.UpdateGraphsNoBlock(updateObject, startNode, endNode);
+  }
 }
