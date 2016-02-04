@@ -32,8 +32,7 @@ public class Enemy : MovingObject {
   protected override void Start() {
     GameManager.instance.AddEnemyToList(this);
     healthBar = Instantiate(healthBar, transform.position, Quaternion.identity) as GameObject;
-    healthBar.transform.parent = transform;
-    healthBar.transform.position = healthBar.transform.position + (new Vector3(0, 1)) * 0.7f;
+    healthBar.transform.SetParent(transform);
     maxHitPoints = (int)(baseMaxHitPoints * GameManager.instance.boardScript.spawnWave.HealthMultiplier());
     hitPoints = maxHitPoints;
     target = GameManager.instance.exitPoint.transform;
@@ -42,10 +41,6 @@ public class Enemy : MovingObject {
   }
 
   private void UpdateHealthBar() {
-    float healthPercent = ((float) hitPoints) / maxHitPoints;
-    Image image = healthBar.GetComponentInChildren<Image>();
-    image.rectTransform.sizeDelta = new Vector2((1.2f * healthPercent), 0.2f);
-    image.color = Color.Lerp(Color.red, Color.green, healthPercent);
   }
 
   public void Update() {
@@ -54,7 +49,7 @@ public class Enemy : MovingObject {
       TickDebuffs();
     }
     transform.position =  Vector2.MoveTowards(transform.position, GameManager.instance.exitPoint.transform.position, currentSpeed * Time.deltaTime);
-    UpdateHealthBar();
+    healthBar.GetComponent<HealthBar>().UpdatePercent(hitPoints / (float)maxHitPoints);
   }
 
   public int Bounty() {
@@ -183,7 +178,7 @@ public class Enemy : MovingObject {
     hitPoints -= realDamage;
 
     GameObject dn = Instantiate(damageNumberPrefab, transform.position, Quaternion.identity) as GameObject;
-    dn.transform.parent = transform;
+    dn.transform.SetParent(transform);
     Text dnText = dn.GetComponentInChildren<Text>();
     dnText.color = damageType == DamageType.TRUE ? Color.white : new Color(1f, 86f / 255f, 86f / 255f);
     dnText.text = "" + realDamage;

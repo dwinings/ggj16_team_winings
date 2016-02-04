@@ -14,11 +14,11 @@ public class Tower : MonoBehaviour {
 	public float range;
 	public List<TowerManager.TowerTypes> connectedTowers = new List<TowerManager.TowerTypes>();
   public TowerManager.TowerTypes towerType;
-  private List<Vector2> directions;
+  private List<Vector2> directionsRemaining;
   private float cooldownUntil = 0f;
 
 	void Awake () {
-    directions = new List<Vector2>(new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right });
+    directionsRemaining = new List<Vector2>(new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right });
     connectedTowers.Add(towerType);
     TowerManager.instance.towers.Add(this);
     TowerManager.instance.towers.ForEach(tower => tower.RegenerateAdjacentTowers());
@@ -54,7 +54,7 @@ public class Tower : MonoBehaviour {
     Collider2D ourCollider = GetComponent<Collider2D>();
 
     ourCollider.enabled = false;
-    foreach(Vector2 direction in directions) {
+    foreach(Vector2 direction in directionsRemaining) {
       RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, direction, adjacentDistanceConstant);
       foreach(RaycastHit2D hit in hits) {
         if (hit.collider.gameObject.CompareTag("Tower")) {
@@ -68,7 +68,7 @@ public class Tower : MonoBehaviour {
     ourCollider.enabled = true;
 
     // Do this so we skip rays in directions for which we have towers
-    toDelete.ForEach(deletion => directions.Remove(deletion));
+    toDelete.ForEach(deletion => directionsRemaining.Remove(deletion));
 	}
 
   void LaunchProjectile() {

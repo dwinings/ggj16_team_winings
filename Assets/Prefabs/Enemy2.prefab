@@ -100,7 +100,7 @@ MonoBehaviour:
     type: 2}
   iAmSlainParticleEffect: {fileID: 482542, guid: 74d512cf2333448c6bf3c25f18854553,
     type: 2}
-  healthBar: {fileID: 143280, guid: 7da8a73b991583146988ec7fc3396b36, type: 2}
+  healthBar: {fileID: 143280, guid: 1b922b89d0ea8e54e8de5321ea604d42, type: 2}
   damageNumberPrefab: {fileID: 141080, guid: 530c3305f649a8245b1d0e488eebedb5, type: 2}
   baseMaxHitPoints: 20
   maxHitPoints: 0
@@ -196,7 +196,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 143280, guid: 7da8a73b991583146988ec7fc3396b36, type: 2}
+      objectReference: {fileID: 143280, guid: 1b922b89d0ea8e54e8de5321ea604d42, type: 2}
     - target: {fileID: 0}
       propertyPath: damageNumberPrefab
       value: 

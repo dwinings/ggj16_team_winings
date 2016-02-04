@@ -105,7 +105,7 @@ public class PedestalPallet : MonoBehaviour {
       GameObject enter = GameObject.FindGameObjectWithTag ("Entrance");
       GameObject exit = GameObject.FindGameObjectWithTag ("Exit");
       ray = palletCamera.ScreenPointToRay (Input.mousePosition);
-      Debug.Log (Vector3.Distance (draggable.transform.position, enter.transform.position));
+      // Debug.Log (Vector3.Distance (draggable.transform.position, enter.transform.position));
       if((Vector3.Distance(draggable.transform.position, enter.transform.position) > 2) && 
         (Vector3.Distance(draggable.transform.position, exit.transform.position) > 2) &&
         (!(Physics.Raycast(ray, out hit)))) {
