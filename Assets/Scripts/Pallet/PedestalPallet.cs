@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine.UI;
 using Pathfinding;
+using System.Collections.Generic;
+using System;
 
 public class PedestalPallet : MonoBehaviour {
   public GameObject pedestal;
@@ -15,8 +17,6 @@ public class PedestalPallet : MonoBehaviour {
   private Vector3 offset;
   private int currentCash;
   private static int initted = 0;
-  private Ray ray;
-  private RaycastHit hit;
   private Vector3 failureVector = new Vector3(-255, -255, -255);
 
   public void Start() {
@@ -57,6 +57,7 @@ public class PedestalPallet : MonoBehaviour {
       if (!v.Equals(failureVector)) {
         GameObject instance = Instantiate (pedestal, v, Quaternion.identity) as GameObject;
         if (NoPathBlockage(instance)) {
+          AllEnemiesResetPath();
           GameManager.instance.playerCash -= pedestalCost;
           currentCash = 0;
         } else {
@@ -100,6 +101,11 @@ public class PedestalPallet : MonoBehaviour {
     } else {
       return failureVector;
     }
+  }
+
+  private void AllEnemiesResetPath() {
+    GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+    Array.ForEach(enemies, enemy => enemy.GetComponent<Enemy>().RefreshPath());
   }
 
   private bool NoPathBlockage(GameObject placedObject) {

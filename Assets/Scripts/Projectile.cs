@@ -13,11 +13,17 @@ public class Projectile : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		FindTarget ();
+    if (!FindTarget()) {
+      Destroy(gameObject);
+    }
 	}
 
-	void FindTarget () {
+	private bool FindTarget () {
 		enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+    if (enemies.Length == 0) {
+      return false;
+    }
 
 		foreach (GameObject enemy in enemies) {
 			float enemyDistance = (Mathf.Sqrt(Mathf.Pow((transform.position.x - enemy.transform.position.x), 2) + Mathf.Pow((transform.position.y - enemy.transform.position.y), 2)));
@@ -31,6 +37,7 @@ public class Projectile : MonoBehaviour {
 				closestEnemyLastPosition =  closestEnemy.transform.position;
 			}
 		}
+    return true;
 	}
 
 	public void OnTriggerEnter2D(Collider2D other) {
@@ -47,11 +54,11 @@ public class Projectile : MonoBehaviour {
 			diff.Normalize ();
 			float rot_z = Mathf.Atan2 (diff.y, diff.x) * Mathf.Rad2Deg;
 			transform.rotation = Quaternion.Euler (0f, 0f, rot_z - 90);
-		} else if (transform.position == closestEnemyLastPosition) {
+		} else if (Vector3.Distance(transform.position, closestEnemyLastPosition) < 0.005f) {
       SFXManager.instance.PlaySoundAt("proj_miss", this.transform.position);
 			Destroy(this.gameObject);
 		} else {
-			transform.position = Vector2.MoveTowards (transform.position, closestEnemyLastPosition, speed * Time.deltaTime);
+			transform.position = Vector2.MoveTowards(transform.position, closestEnemyLastPosition, speed * Time.deltaTime);
 		}
 	}
 }

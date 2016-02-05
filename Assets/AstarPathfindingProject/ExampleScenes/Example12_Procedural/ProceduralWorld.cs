@@ -136,8 +136,6 @@ public class ProceduralWorld : MonoBehaviour {
 		
 		int x, z;
 		System.Random rnd;
-		bool staticBatching;
-
 		ProceduralWorld world;
 
 		public bool destroyed { get; private set; }

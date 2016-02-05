@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Food
   - Exit
   - Enemy
   - DeathImage
@@ -20,8 +19,6 @@ TagManager:
   - BlueTower
   - WhiteTower
   - Pedestal
-  - Soda
-  - Tower
   layers:
   - Default
   - TransparentFX

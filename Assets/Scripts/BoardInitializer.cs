@@ -25,6 +25,7 @@ public class BoardInitializer : MonoBehaviour {
 	public Count foodCount = new Count(1, 5);
 	public GameObject exit;
 	public GameObject spawnPoint;
+  public GameObject baseEnemy;
 	public GameObject[] floorTiles;
 	public GameObject[] wallTiles;
 	public GameObject[] foodTiles;
@@ -106,11 +107,12 @@ public class BoardInitializer : MonoBehaviour {
 
   // Returns the delay for the nextdude
   public float SpawnDude() {
-    GameObject enemyObject =  GetRandomEnemy();
-    Enemy enemy = enemyObject.GetComponent<Enemy>();
-    GameObject instance = Instantiate(enemyObject, spawnPosition, Quaternion.identity) as GameObject;
+    GameObject enemyObject = GetRandomEnemy();
+    EnemyStats enemyStats = enemyObject.GetComponent<EnemyStats>();
+    GameObject instance = Instantiate(baseEnemy, spawnPosition, Quaternion.identity) as GameObject;
+    instance.GetComponent<Enemy>().AssignEnemyType(enemyStats);
     instance.transform.SetParent(boardHolder);
-    return spawnWave.generateNextSpawn(enemy.difficulty);
+    return spawnWave.generateNextSpawn(enemyStats.difficulty);
   }
 
 	// Entry Point

@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour {
 
   public enum DamageType { NORMAL, TRUE }
 
-  public int playerDamage;
   public Transform gotToCrystalParticleEffect;
   public Transform iAmSlainParticleEffect;
 
@@ -19,38 +18,38 @@ public class Enemy : MonoBehaviour {
   public Path path;
 
   private Transform target;
+  public EnemyStats enemyStats;
   public GameObject healthBar;
   public GameObject damageNumberPrefab;
-  public int baseMaxHitPoints;
-  public int maxHitPoints;
-  public int hitPoints;
+
   public float tickTime = 1f;
   private float lastTick;
-  public float speed;
-  public float currentSpeed;
-  public float difficulty;
-  public float baseDamageMultiplier;
-  public float damageMultiplier;
   public float effectDamageMultiplier = 1f;
+  public float currentSpeed;
+
+  // There is a baseMaxHitPoints, this can scale
+  public float maxHitPoints;
+  public float hitPoints;
 
   private List<Debuff> debuffs = new List<Debuff>();
-  private int currentWaypoint = 0;
-  private float nextWaypointDistance = 0.1f;
+  private int currentWaypoint;
+  private const float nextWaypointDistance = 0.1f;
 
   protected void Start() {
     GameManager.instance.AddEnemyToList(this);
     healthBar = Instantiate(healthBar, transform.position, Quaternion.identity) as GameObject;
     healthBar.transform.SetParent(transform);
-    maxHitPoints = (int)(baseMaxHitPoints * GameManager.instance.boardScript.spawnWave.HealthMultiplier());
-    hitPoints = maxHitPoints;
     target = GameManager.instance.exitPoint.transform;
     lastTick = Time.time - 1f;
-
-    seeker = GetComponent<Seeker>();
-    seeker.StartPath(transform.position, target.position, OnPathComplete);
+    RefreshPath();
   }
 
-  private void UpdateHealthBar() {
+  public void AssignEnemyType(EnemyStats stats) {
+    enemyStats = stats;
+    this.maxHitPoints = enemyStats.baseMaxHitPoints;
+    this.hitPoints = this.maxHitPoints;
+    this.currentSpeed = enemyStats.speed;
+    GetComponent<Animator>().runtimeAnimatorController = stats.animatiorController;
   }
 
   public void Update() {
@@ -58,37 +57,18 @@ public class Enemy : MonoBehaviour {
       lastTick = Time.time;
       TickDebuffs();
     }
+
     healthBar.GetComponent<HealthBar>().UpdatePercent(hitPoints / (float)maxHitPoints);
     Pathfind();
   }
 
-  public void Pathfind() {
-    if (path == null) {
-      return;
-    }
-    if (currentWaypoint > path.vectorPath.Count) {
-      Debug.Log("End Of Path Reached");
-      return;
-    }
-    Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
-    transform.Translate(dir * currentSpeed * Time.deltaTime);
-    if (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < nextWaypointDistance) {
-      currentWaypoint++;
-      return;
-    }
-  }
-
-  public int Bounty() {
-	float math = (-0.333f * Mathf.Log ((3f * GameManager.instance.boardScript.spawnWave.level) + 1)) + 1.8f;
-		return (int)(difficulty * 2f * math);
-  }
-
   public void TickDebuffs() {
     effectDamageMultiplier = 1f;
-    currentSpeed = speed;
+    currentSpeed = enemyStats.speed;
 
     debuffs.RemoveAll(debuff => debuff.IsExpired());
     debuffs.ForEach(debuff => debuff.ApplyToEnemy(this));
+
     List<Color> colors  = new List<Color>();
     colors.Add(Color.white);
     debuffs.ForEach(debuff => colors.Add(debuff.debuffColor));
@@ -138,7 +118,7 @@ public class Enemy : MonoBehaviour {
     if (other.tag == "Exit") {
       Instantiate(gotToCrystalParticleEffect, target.position, Quaternion.identity);
       Destroy(this.gameObject);
-      GameManager.instance.playerHitPoints -= playerDamage;
+      GameManager.instance.playerHitPoints -= enemyStats.playerDamage;
       SFXManager.instance.PlaySoundAt ("crystal_hit", this.transform.position);
     }
 		else if (other.tag == "Projectile") {
@@ -174,7 +154,7 @@ public class Enemy : MonoBehaviour {
       if (hitPoints <= 0) {
         Instantiate(iAmSlainParticleEffect, transform.position, Quaternion.identity);
         SFXManager.instance.PlaySoundAt ("enemy_die_2", this.transform.position);
-        GameManager.instance.playerCash += Bounty ();
+        GameManager.instance.playerCash += Bounty();
         Destroy (this.gameObject);
       } else {
         SFXManager.instance.PlaySoundAt ("proj_hit", this.transform.position);
@@ -188,7 +168,7 @@ public class Enemy : MonoBehaviour {
 
     switch (damageType) {
       case DamageType.NORMAL:
-        realMultiplier = baseDamageMultiplier * effectDamageMultiplier;
+        realMultiplier = enemyStats.baseDamageMultiplier * effectDamageMultiplier;
         break;
       case DamageType.TRUE:
         realMultiplier = 1;
@@ -204,6 +184,36 @@ public class Enemy : MonoBehaviour {
     Text dnText = damageNumber.GetComponentInChildren<Text>();
     dnText.color = damageType == DamageType.TRUE ? Color.white : new Color(1f, 86f / 255f, 86f / 255f);
     dnText.text = "" + realDamage;
+  }
+
+  public int Bounty() {
+    float math = (-0.333f * Mathf.Log((3f * GameManager.instance.boardScript.spawnWave.level) + 1)) + 1.8f;
+    return (int)(enemyStats.difficulty * 2f * math);
+  }
+
+  // Here is all the pathfinding stuff.
+  // RefreshPath() is called when there is a nav graph update.
+  public void Pathfind() {
+    if (path == null) {
+      return;
+    }
+
+    if (currentWaypoint > path.vectorPath.Count) {
+      Debug.Log("End Of Path Reached");
+      return;
+    }
+    Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
+    transform.Translate(dir * currentSpeed * Time.deltaTime);
+    if (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < nextWaypointDistance) {
+      currentWaypoint++;
+      return;
+    }
+  }
+
+  public void RefreshPath() {
+    seeker = GetComponent<Seeker>();
+    seeker.StartPath(transform.position, target.position, OnPathComplete);
+    currentWaypoint = 0;
   }
 
   public void OnPathComplete(Path path) {

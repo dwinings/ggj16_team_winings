@@ -7,10 +7,8 @@ public class HealthBar : MonoBehaviour {
   public float baseHeight;
   public float baseWidth;
   public float heightOffset;
-  private float leftAnchor;
 
 	void Start () {
-    leftAnchor = (1f - baseWidth) / 2f;
     transform.position = transform.position + (new Vector3(0f, heightOffset));
     Image image = GetComponentInChildren<Image>();
     image.transform.SetParent(transform);

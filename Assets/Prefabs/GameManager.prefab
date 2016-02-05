@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11481990}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Exit
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,6 +84,7 @@ MonoBehaviour:
     maximum: 5
   exit: {fileID: 197666, guid: 89ac9807b5e814022823568b70230bf1, type: 2}
   spawnPoint: {fileID: 168186, guid: ce01a0ebcc2544661ad1303d760c41b6, type: 2}
+  baseEnemy: {fileID: 166032, guid: a97be601f65672d4aa24a3d11117547f, type: 2}
   floorTiles:
   - {fileID: 174240, guid: a24edf19c35ee4d3cb11e7f86868be09, type: 2}
   - {fileID: 164226, guid: 26d9a5d2cc50d41b59179a1156a5e9cc, type: 2}
@@ -106,9 +107,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   enemyTiles:
-  - {fileID: 146564, guid: 591adc192a34841068abf4445242eabd, type: 2}
-  - {fileID: 137998, guid: 4979ed719b4db4a439a211b6cf4284de, type: 2}
-  - {fileID: 137998, guid: 07e5072b286c64275bd274c6db2b1caa, type: 2}
+  - {fileID: 154870, guid: 72e54a6ec6108914a83b16061aac7a85, type: 2}
+  - {fileID: 161308, guid: 240fbf875b41b6a448f47892e69bd7c5, type: 2}
+  - {fileID: 186498, guid: 89b125590e1b8674f846058f645989f1, type: 2}
   outerWallTiles:
   - {fileID: 154780, guid: aef2d949c789b49d28e25f12d3171ac3, type: 2}
   - {fileID: 186754, guid: 140779e6a789c4c1eb6e3fe77cac222d, type: 2}
@@ -148,7 +149,7 @@ Prefab:
       objectReference: {fileID: 119874, guid: de19177c8bc614508ab6af34b8e1ac7b, type: 2}
     - target: {fileID: 0}
       propertyPath: m_TagString
-      value: Exit
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: exitPoint
@@ -227,15 +228,15 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: enemyTiles.Array.data[2]
       value: 
-      objectReference: {fileID: 137998, guid: 07e5072b286c64275bd274c6db2b1caa, type: 2}
+      objectReference: {fileID: 186498, guid: 89b125590e1b8674f846058f645989f1, type: 2}
     - target: {fileID: 0}
       propertyPath: enemyTiles.Array.data[1]
       value: 
-      objectReference: {fileID: 137998, guid: 4979ed719b4db4a439a211b6cf4284de, type: 2}
+      objectReference: {fileID: 161308, guid: 240fbf875b41b6a448f47892e69bd7c5, type: 2}
     - target: {fileID: 0}
       propertyPath: enemyTiles.Array.data[0]
       value: 
-      objectReference: {fileID: 146564, guid: 591adc192a34841068abf4445242eabd, type: 2}
+      objectReference: {fileID: 154870, guid: 72e54a6ec6108914a83b16061aac7a85, type: 2}
     - target: {fileID: 0}
       propertyPath: aLittleDamage
       value: 
@@ -259,6 +260,10 @@ Prefab:
       propertyPath: waveCooldownDuration
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: baseEnemy
+      value: 
+      objectReference: {fileID: 166032, guid: a97be601f65672d4aa24a3d11117547f, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 198570}

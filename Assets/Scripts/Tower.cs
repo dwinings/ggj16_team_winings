@@ -49,7 +49,6 @@ public class Tower : MonoBehaviour {
 	}
 
 	public void RegenerateAdjacentTowers() {
-    GameObject[] towerObjects = GameObject.FindGameObjectsWithTag("Tower");
     List<Vector2> toDelete = new List<Vector2>();
     Collider2D ourCollider = GetComponent<Collider2D>();
 
