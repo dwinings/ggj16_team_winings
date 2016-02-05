@@ -12,31 +12,29 @@ public class PedestalPallet : MonoBehaviour {
   public float adjacentDistanceConst;
 
   private Camera palletCamera;
+  public GameObject draggableBlank;
   private static GameObject draggable;
   private Vector2 relativePosition;
   private Vector3 offset;
   private int currentCash;
   private static int initted = 0;
+  private float palletTextOffset = -30;
   private Vector3 failureVector = new Vector3(-255, -255, -255);
 
   public void Start() {
-    if (initted < 1) {
-      palletCamera = Camera.main;
-      offset = GetComponent<SpriteRenderer>().bounds.size;
-      offset.y = 0f;
-      offset.z = 0f;
-      pedestalCostText.transform.position = palletCamera.WorldToScreenPoint (transform.position) + offset;
-      pedestalCostText.text = "" + pedestalCost;
-      initted += 1;
-    }
-    initted = 0;
+    palletCamera = Camera.main;
+    pedestalCostText = GetComponentInChildren<Text>();
+    pedestalCostText.text = "" + pedestalCost;
+    transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+    pedestalCostText.transform.SetParent(transform);
+    pedestalCostText.transform.localPosition = new Vector3(palletTextOffset, 0f, 0f);
   }
 
   public void OnMouseDown() {
     currentCash = GameManager.instance.playerCash;
     if (currentCash >= pedestalCost) {
       GameManager.instance.UpdateText ();
-      draggable = getDraggable ();
+      draggable = getDraggable();
     } else {
       Destroy (draggable);
     }
@@ -44,9 +42,9 @@ public class PedestalPallet : MonoBehaviour {
 
   public void OnMouseDrag() {
     if (draggable) {
-      Transform dt = draggable.transform;
-      relativePosition = palletCamera.ScreenToWorldPoint (Input.mousePosition);
-      dt.position = relativePosition;
+      Vector3 newPos = palletCamera.ScreenToWorldPoint(Input.mousePosition);
+      newPos.z = 0;
+      draggable.transform.position = newPos;
     }
   }
 
@@ -69,11 +67,10 @@ public class PedestalPallet : MonoBehaviour {
   }
 
   private GameObject getDraggable() {
-    if (draggable != null)
-      Destroy (draggable);
-    GameObject d =  Instantiate (gameObject);
-    Destroy (d.GetComponent<BoxCollider> ());
-    return d;
+    if (draggable != null) {
+      Destroy(draggable);
+    }
+    return Instantiate(draggableBlank, palletCamera.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity) as GameObject;
   }
 
 

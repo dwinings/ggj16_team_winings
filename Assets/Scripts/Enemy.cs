@@ -148,17 +148,7 @@ public class Enemy : MonoBehaviour {
         }
         index += 1;
       }
-
       ApplyDamage(damage, DamageType.NORMAL);
-
-      if (hitPoints <= 0) {
-        Instantiate(iAmSlainParticleEffect, transform.position, Quaternion.identity);
-        SFXManager.instance.PlaySoundAt ("enemy_die_2", this.transform.position);
-        GameManager.instance.playerCash += Bounty();
-        Destroy (this.gameObject);
-      } else {
-        SFXManager.instance.PlaySoundAt ("proj_hit", this.transform.position);
-      }
 		}
   }
 
@@ -184,6 +174,15 @@ public class Enemy : MonoBehaviour {
     Text dnText = damageNumber.GetComponentInChildren<Text>();
     dnText.color = damageType == DamageType.TRUE ? Color.white : new Color(1f, 86f / 255f, 86f / 255f);
     dnText.text = "" + realDamage;
+
+    if (hitPoints <= 0) {
+      Instantiate(iAmSlainParticleEffect, transform.position, Quaternion.identity);
+      SFXManager.instance.PlaySoundAt("enemy_die_2", this.transform.position);
+      GameManager.instance.playerCash += Bounty();
+      Destroy(this.gameObject);
+    } else {
+      SFXManager.instance.PlaySoundAt("proj_hit", this.transform.position);
+    }
   }
 
   public int Bounty() {

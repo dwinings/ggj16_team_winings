@@ -60,6 +60,13 @@ MonoBehaviour:
   cashText: {fileID: 0}
   spawnPoint: {fileID: 109196, guid: 858d875daf94f4f56abe721ddb3149be, type: 2}
   exitPoint: {fileID: 152602, guid: de19177c8bc614508ab6af34b8e1ac7b, type: 2}
+  pallets:
+  - {fileID: 124170, guid: bfdb210eb45ba0847a0a6eb6a8d36c92, type: 2}
+  - {fileID: 110668, guid: 665f195a34fe4b344a6287f8f877503e, type: 2}
+  - {fileID: 168678, guid: 4842a729a32d0574aae94bea88b6a762, type: 2}
+  - {fileID: 150744, guid: 378e3e7ee00fadb4a9495b404b8d57f8, type: 2}
+  - {fileID: 183556, guid: e3390bd8422fb4f68833f5d34edfd370, type: 2}
+  pedestalPallet: {fileID: 0}
   aLittleDamage: {fileID: 21300054, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   mostlyDamaged: {fileID: 21300056, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   veryDamaged: {fileID: 21300058, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
@@ -123,6 +130,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: pallets.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: towerTiles.Array.size
       value: 1

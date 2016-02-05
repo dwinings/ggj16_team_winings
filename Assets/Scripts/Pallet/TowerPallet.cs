@@ -11,43 +11,42 @@ public class TowerPallet : MonoBehaviour
   public Text towerCostText;
 
   private Camera palletCamera;
+  public GameObject draggableBlank;
   private static GameObject draggable;
-  private Vector2 relativePosition;
   private Vector3 offset = new Vector3(0f, 0f, 0f);
   private int currentCash;
-  private static int initted = 0;
+  private float palletTextOffset = -30;
 
   public void Start() {
-    if (initted < 4) {
-      palletCamera = Camera.main;
-      towerCostText.transform.position = palletCamera.WorldToScreenPoint(transform.position) + offset;
-      towerCostText.text = "" + towerCost;
-      initted += 1;
-    }
-    initted = 0;
+    palletCamera = Camera.main;
+    towerCostText = GetComponentInChildren<Text>();
+    towerCostText.text = "" + towerCost;
+    transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+    towerCostText.transform.SetParent(transform);
+    towerCostText.transform.localPosition = new Vector3(palletTextOffset, 0f, 0f);
   }
 
   public void OnMouseDown() {
     currentCash = GameManager.instance.playerCash;
     if (currentCash >= towerCost) {
-      GameManager.instance.UpdateText ();
-      draggable = getDraggable ();
+      GameManager.instance.UpdateText();
+      draggable = getDraggable();
     } else {
-      Destroy (draggable);
+      Destroy(draggable);
     }
   }
 
   public void OnMouseDrag() {
     if (draggable) {
-      Transform dt = draggable.transform;
-      relativePosition = palletCamera.ScreenToWorldPoint (Input.mousePosition);
-      dt.position = relativePosition;
+      Vector3 newPos = palletCamera.ScreenToWorldPoint(Input.mousePosition);
+      newPos.z = 0;
+      draggable.transform.position = newPos;
     }
   }
 
- public void OnMouseUp() {
+  public void OnMouseUp() {
     if (draggable) {
-      Destroy (draggable);
+      Destroy(draggable);
       Vector3 mouseWorldPosition = palletCamera.ScreenToWorldPoint(Input.mousePosition);
       mouseWorldPosition.z = 0f; // Just in case
       RaycastHit2D hit = Physics2D.Raycast(mouseWorldPosition, Vector2.up, 0.0001f);
@@ -66,6 +65,6 @@ public class TowerPallet : MonoBehaviour
     if (draggable != null) {
       Destroy(draggable);
     }
-    return Instantiate (gameObject);
+    return Instantiate(draggableBlank, palletCamera.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity) as GameObject;
   }
 }

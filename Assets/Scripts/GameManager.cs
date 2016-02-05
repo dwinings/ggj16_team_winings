@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour {
   public static GameManager instance = null;
@@ -30,11 +31,14 @@ public class GameManager : MonoBehaviour {
   public Text cashText;
   public GameObject spawnPoint;
   public GameObject exitPoint;
+  public GameObject[] pallets;
+  public GameObject pedestalPallet;
 
 	public Sprite aLittleDamage;
 	public Sprite mostlyDamaged;
 	public Sprite veryDamaged;
 
+  private Canvas theCanvas;
   private float nextSpawnTime;
   private bool waveTransitioning;
 
@@ -46,8 +50,19 @@ public class GameManager : MonoBehaviour {
       Destroy(gameObject);
     }
   }
-	
-	void InitGame() {
+
+  public void InitializePallets() {
+    float palletPadding = 75f;
+    Vector3 palletStartVector = new Vector3(100f, -50f, 0f);
+    foreach(GameObject pallet in pallets) {
+      GameObject instance = Instantiate(pallet, palletStartVector, Quaternion.identity) as GameObject;
+      palletStartVector.y -= palletPadding;
+      instance.transform.SetParent(theCanvas.transform);
+    }
+  }
+
+  void InitGame() {
+    theCanvas = GameObject.FindGameObjectWithTag("UICanvas").GetComponent<Canvas>();
     spawnPoint = GameObject.FindGameObjectWithTag("Entrance");
     exitPoint = GameObject.FindGameObjectWithTag("Exit");
     deathImage = GameObject.FindGameObjectWithTag("DeathImage");
@@ -55,6 +70,8 @@ public class GameManager : MonoBehaviour {
     deathText = GameObject.FindGameObjectWithTag("DeathText").GetComponent<Text>();
     healthText = GameObject.FindGameObjectWithTag("HealthText").GetComponent<Text>();
     cashText = GameObject.FindGameObjectWithTag("CashText").GetComponent<Text>();
+
+    InitializePallets();
 
     initialHealth = playerHitPoints;
     deathImage.SetActive(false);

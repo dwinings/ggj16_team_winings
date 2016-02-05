@@ -19,6 +19,7 @@ TagManager:
   - BlueTower
   - WhiteTower
   - Pedestal
+  - UICanvas
   layers:
   - Default
   - TransparentFX
