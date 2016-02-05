@@ -96,14 +96,13 @@ public class Enemy : MonoBehaviour {
     transform.Translate(movementVector);
   }
 
-  public void ApplyDebuff(System.Type clazz, float duration, float intensity) {
-    Debuff debuff = (Debuff)Activator.CreateInstance(clazz, duration, intensity);
-
+  public void ApplyDebuff(Debuff debuff, float duration, float intensity) {
     switch(debuff.stackingType) {
       case Debuff.StackingType.DURATION:
         Debuff oldDebuff = debuffs.Find(db => db.GetType() == debuff.GetType());
         if (oldDebuff != null) {
           oldDebuff.expiration += duration;
+          Destroy(debuff.gameObject);
         } else {
           debuffs.Add(debuff);
         }
@@ -114,6 +113,10 @@ public class Enemy : MonoBehaviour {
     }
   }
 
+  public void OnDestroy() {
+    debuffs.ForEach(debuff => Destroy(debuff.gameObject));
+  }
+
   public void OnTriggerEnter2D(Collider2D other) {
     if (other.tag == "Exit") {
       Instantiate(gotToCrystalParticleEffect, target.position, Quaternion.identity);
@@ -122,33 +125,19 @@ public class Enemy : MonoBehaviour {
       SFXManager.instance.PlaySoundAt ("crystal_hit", this.transform.position);
     }
 		else if (other.tag == "Projectile") {
-      int index = 0;
       Projectile proj = other.gameObject.GetComponent<Projectile>();
-      List<TowerManager.TowerTypes> effects = proj.connectedTowers;
-      int damage = 0;
+      List<TowerStats> effects = proj.connectedTowers;
+      int totalDamage = 0;
 
-      foreach(TowerManager.TowerTypes effect in effects) {
-        float damageComboScaler = index > 0 ? 0.5f : 1f;
-        switch (effect) {
-        case TowerManager.TowerTypes.ORANGE_TOWER:
-          ApplyDebuff(typeof(Burn), 5, 3f);
-          damage += ((int)(GameManager.instance.orangeDamage * damageComboScaler));
-          break;
-        case TowerManager.TowerTypes.BLUE_TOWER:
-          ApplyDebuff(typeof(Slow), 2, 0.3f);
-          damage += ((int)(GameManager.instance.blueDamage * damageComboScaler));
-          break;
-        case TowerManager.TowerTypes.GREEN_TOWER:
-          damage += ((int)(GameManager.instance.greenDamage * damageComboScaler));
-          break;
-        case TowerManager.TowerTypes.WHITE_TOWER:
-          ApplyDebuff(typeof(Rend), 2, 0.1f);
-          damage += ((int)(GameManager.instance.whiteDamage * damageComboScaler));
-          break;
+      float damageComboScaler = 1f;
+      foreach(TowerStats effect in effects) {
+        if (effect.debuff != null) {
+          ApplyDebuff(effect.CreateNewDebuff(), effect.duration, effect.intensity);
         }
-        index += 1;
+        totalDamage += (int)(effect.damage * damageComboScaler);
+        damageComboScaler = 0.5f;
       }
-      ApplyDamage(damage, DamageType.NORMAL);
+      ApplyDamage(totalDamage, effects[0].damageType);
 		}
   }
 

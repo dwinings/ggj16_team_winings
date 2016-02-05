@@ -60,16 +60,17 @@ MonoBehaviour:
   cashText: {fileID: 0}
   spawnPoint: {fileID: 109196, guid: 858d875daf94f4f56abe721ddb3149be, type: 2}
   exitPoint: {fileID: 152602, guid: de19177c8bc614508ab6af34b8e1ac7b, type: 2}
-  pallets:
-  - {fileID: 124170, guid: bfdb210eb45ba0847a0a6eb6a8d36c92, type: 2}
-  - {fileID: 110668, guid: 665f195a34fe4b344a6287f8f877503e, type: 2}
-  - {fileID: 168678, guid: 4842a729a32d0574aae94bea88b6a762, type: 2}
-  - {fileID: 150744, guid: 378e3e7ee00fadb4a9495b404b8d57f8, type: 2}
-  - {fileID: 183556, guid: e3390bd8422fb4f68833f5d34edfd370, type: 2}
-  pedestalPallet: {fileID: 0}
+  towerStats:
+  - {fileID: 111204, guid: 5ba0292b108838d41bef582702a519df, type: 2}
+  - {fileID: 182912, guid: fde70cc0acb3e5448837265f967da74d, type: 2}
+  - {fileID: 172538, guid: fb4840f9ada7b9f40a302780e25fa622, type: 2}
+  - {fileID: 114260, guid: b99ff7c3831f2a747a1f1f89c98e15ff, type: 2}
+  - {fileID: 107102, guid: 2d50f1ffbaed4114aa6c2799d884de03, type: 2}
   aLittleDamage: {fileID: 21300054, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   mostlyDamaged: {fileID: 21300056, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   veryDamaged: {fileID: 21300058, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
+  basePallet: {fileID: 142232, guid: c81bd4477c005aa4592c67e1bdeb9fd7, type: 2}
+  pedestalPallet: {fileID: 183556, guid: e3390bd8422fb4f68833f5d34edfd370, type: 2}
 --- !u!114 &11481990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -141,6 +142,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: enemyTiles.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: towerStats.Array.size
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: pedestalTile.Array.size
@@ -275,6 +280,34 @@ Prefab:
       propertyPath: baseEnemy
       value: 
       objectReference: {fileID: 166032, guid: a97be601f65672d4aa24a3d11117547f, type: 2}
+    - target: {fileID: 0}
+      propertyPath: pallets.Array.data[0]
+      value: 
+      objectReference: {fileID: 124170, guid: bfdb210eb45ba0847a0a6eb6a8d36c92, type: 2}
+    - target: {fileID: 0}
+      propertyPath: pallets.Array.data[1]
+      value: 
+      objectReference: {fileID: 110668, guid: 665f195a34fe4b344a6287f8f877503e, type: 2}
+    - target: {fileID: 0}
+      propertyPath: pallets.Array.data[2]
+      value: 
+      objectReference: {fileID: 168678, guid: 4842a729a32d0574aae94bea88b6a762, type: 2}
+    - target: {fileID: 0}
+      propertyPath: pallets.Array.data[3]
+      value: 
+      objectReference: {fileID: 150744, guid: 378e3e7ee00fadb4a9495b404b8d57f8, type: 2}
+    - target: {fileID: 0}
+      propertyPath: pallets.Array.data[4]
+      value: 
+      objectReference: {fileID: 183556, guid: e3390bd8422fb4f68833f5d34edfd370, type: 2}
+    - target: {fileID: 0}
+      propertyPath: basePallet
+      value: 
+      objectReference: {fileID: 142232, guid: c81bd4477c005aa4592c67e1bdeb9fd7, type: 2}
+    - target: {fileID: 0}
+      propertyPath: pedestalPallet
+      value: 
+      objectReference: {fileID: 183556, guid: e3390bd8422fb4f68833f5d34edfd370, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 198570}

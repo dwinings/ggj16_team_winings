@@ -31,8 +31,12 @@ public class GameManager : MonoBehaviour {
   public Text cashText;
   public GameObject spawnPoint;
   public GameObject exitPoint;
-  public GameObject[] pallets;
-  public GameObject pedestalPallet;
+  public GameObject[] towerStats;
+  public Transform debuffHolder;
+  public Transform towerHolder;
+  public Transform blankHolder;
+  public Transform errataHolder;
+  public Transform audioHolder;
 
 	public Sprite aLittleDamage;
 	public Sprite mostlyDamaged;
@@ -41,8 +45,10 @@ public class GameManager : MonoBehaviour {
   private Canvas theCanvas;
   private float nextSpawnTime;
   private bool waveTransitioning;
+  public GameObject basePallet;
+  public GameObject pedestalPallet;
 
-	void Awake() {
+  void Awake() {
     if(instance == null) {
       instance = this;
       InitGame();
@@ -54,8 +60,19 @@ public class GameManager : MonoBehaviour {
   public void InitializePallets() {
     float palletPadding = 75f;
     Vector3 palletStartVector = new Vector3(100f, -50f, 0f);
-    foreach(GameObject pallet in pallets) {
-      GameObject instance = Instantiate(pallet, palletStartVector, Quaternion.identity) as GameObject;
+    int idx = 0;
+    foreach(GameObject towerStat in towerStats) {
+      TowerStats createdTowerStats = (Instantiate(towerStat) as GameObject).GetComponent<TowerStats>();
+      createdTowerStats.gameObject.transform.SetParent(this.errataHolder);
+      idx++;
+      GameObject instance;
+      // The last one is definitely the pedestal pallet;
+      if (idx == towerStats.Length) {
+        instance = Instantiate(pedestalPallet, palletStartVector, Quaternion.identity) as GameObject;
+      } else {
+        instance = Instantiate(basePallet, palletStartVector, Quaternion.identity) as GameObject;
+      }
+      instance.GetComponent<TowerPallet>().ApplyStats(createdTowerStats.GetComponent<TowerStats>());
       palletStartVector.y -= palletPadding;
       instance.transform.SetParent(theCanvas.transform);
     }
@@ -70,6 +87,11 @@ public class GameManager : MonoBehaviour {
     deathText = GameObject.FindGameObjectWithTag("DeathText").GetComponent<Text>();
     healthText = GameObject.FindGameObjectWithTag("HealthText").GetComponent<Text>();
     cashText = GameObject.FindGameObjectWithTag("CashText").GetComponent<Text>();
+    towerHolder = new GameObject("Towers").transform;
+    blankHolder = new GameObject("Blanks").transform;
+    debuffHolder = new GameObject("Debuffs").transform;
+    errataHolder = new GameObject("Etc").transform;
+    audioHolder = new GameObject("Audio").transform;
 
     InitializePallets();
 

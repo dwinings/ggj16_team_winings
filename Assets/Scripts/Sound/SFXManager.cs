@@ -5,12 +5,6 @@ using System.Collections.Generic;
 public class SFXManager : MonoBehaviour {
 
   public static SFXManager instance = null;
-//  private static SFXManager _instance;
-//  public static SFXManager Instance {
-//    get {
-//      return _instance;
-//    }
-//  }
 
   [System.Serializable]
   public class NamedAudioClip {
@@ -23,8 +17,10 @@ public class SFXManager : MonoBehaviour {
   private Dictionary<string, AudioClip> audioDict;
 
   void Awake () {
-    if(instance == null)
+    if (instance == null) {
       instance = this;
+      this.transform.SetParent(GameManager.instance.audioHolder);
+    }
   }
 
   void Start() {
@@ -35,11 +31,22 @@ public class SFXManager : MonoBehaviour {
     }
   }
 
+  AudioSource PlayClipAt(AudioClip clip, Vector3 pos) {
+    GameObject tempGO = new GameObject("TempAudio"); // create the temp object
+    tempGO.transform.position = pos; // set its position
+    tempGO.transform.SetParent(GameManager.instance.audioHolder);
+    AudioSource aSource = tempGO.AddComponent<AudioSource>(); // add an audio source
+    aSource.clip = clip; // define the clip
+    aSource.Play(); // start the sound
+    Destroy(tempGO, clip.length); // destroy object after clip duration
+    return aSource; // return the AudioSource reference
+  }
+
   public void PlaySoundAt(string name, Vector3 location) {
-    AudioSource.PlayClipAtPoint (audioDict[name], location);
+    PlayClipAt(audioDict[name], location);
   }
 
   public void PlaySound(string name) {
-    AudioSource.PlayClipAtPoint (audioDict[name], Camera.main.transform.position);
+    PlayClipAt(audioDict[name], Camera.main.transform.position);
   }
 }

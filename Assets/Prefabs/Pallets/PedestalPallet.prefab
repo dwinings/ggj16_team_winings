@@ -48,11 +48,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 218f6770c09e14b218c25ecd104b9440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pedestal: {fileID: 167760, guid: 8411888022f4e45ea84992adcfbe55c4, type: 2}
-  pedestalCost: 50
-  pedestalCostText: {fileID: 11477354}
-  adjacentDistanceConst: 1.5
+  baseTower: {fileID: 0}
+  towerCostText: {fileID: 11477354}
   draggableBlank: {fileID: 129752, guid: f8a7e9f59dddec446b5022518c409c01, type: 2}
+  stats: {fileID: 0}
+  adjacentDistanceConst: 1.5
+  pedestal: {fileID: 167760, guid: 8411888022f4e45ea84992adcfbe55c4, type: 2}
 --- !u!114 &11440162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -334,6 +335,22 @@ Prefab:
       propertyPath: draggableBlank
       value: 
       objectReference: {fileID: 129752, guid: f8a7e9f59dddec446b5022518c409c01, type: 2}
+    - target: {fileID: 0}
+      propertyPath: tower
+      value: 
+      objectReference: {fileID: 167760, guid: 8411888022f4e45ea84992adcfbe55c4, type: 2}
+    - target: {fileID: 0}
+      propertyPath: towerCostText
+      value: 
+      objectReference: {fileID: 11477354}
+    - target: {fileID: 0}
+      propertyPath: towerCost
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: pedestal
+      value: 
+      objectReference: {fileID: 167760, guid: 8411888022f4e45ea84992adcfbe55c4, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 183556}

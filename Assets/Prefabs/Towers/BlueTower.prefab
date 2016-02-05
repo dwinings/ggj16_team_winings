@@ -1,97 +1,69 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &161196
+--- !u!1 &182912
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 450240}
-  - 114: {fileID: 11464362}
-  - 212: {fileID: 21258904}
-  - 61: {fileID: 6165172}
-  m_Layer: 8
+  - 4: {fileID: 407250}
+  - 114: {fileID: 11467156}
+  - 114: {fileID: 11432938}
+  m_Layer: 0
   m_Name: BlueTower
-  m_TagString: Tower
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &450240
+--- !u!4 &407250
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 161196}
+  m_GameObject: {fileID: 182912}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 6, z: 0}
+  m_LocalPosition: {x: 6.6036415, y: 2.8899536, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!61 &6165172
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 161196}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
---- !u!114 &11464362
+--- !u!114 &11432938
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 161196}
+  m_GameObject: {fileID: 182912}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c35a7064ea374bbabe6c873ac869051, type: 3}
+  m_Script: {fileID: 11500000, guid: ed8654a7d1646472ba983bf7d501f81c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 11454618, guid: 25ccb615ef28d46ad8c5fc8285c0c119, type: 2}
-  adjacentDistanceConstant: 1
-  fireSpeed: 1
-  enemies: []
-  range: 3
-  connectedTowers: 
-  towerType: 3
---- !u!212 &21258904
-SpriteRenderer:
+  expiration: 0
+  intensity: 0
+--- !u!114 &11467156
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 161196}
+  m_GameObject: {fileID: 182912}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_ReflectionProbeUsage: 0
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1615045119
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300004, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 853925d335dee3a44bf0e9b12100f8ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300004, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
+  projectile: {fileID: 21300044, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
+  blankObject: {fileID: 122668, guid: bdc2d96b7f3df4e4695d31a14cc9f752, type: 2}
+  damageType: 0
+  damage: 3
+  cost: 25
+  range: 2
+  firingSpeed: 1
+  debuff: {fileID: 0}
+  duration: 2
+  intensity: 0.3
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -100,63 +72,28 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
-      propertyPath: range
-      value: 3
-      objectReference: {fileID: 0}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300004, guid: fbe1e7b94bb1a4a099d5bcb15a00141c,
+        type: 3}
     - target: {fileID: 0}
       propertyPath: projectile
       value: 
-      objectReference: {fileID: 11454618, guid: 25ccb615ef28d46ad8c5fc8285c0c119,
-        type: 2}
+      objectReference: {fileID: 21300044, guid: fbe1e7b94bb1a4a099d5bcb15a00141c,
+        type: 3}
     - target: {fileID: 0}
-      propertyPath: blankOrangeTile
-      value: 
-      objectReference: {fileID: 137278, guid: cef0c060444664b489bf973450a594e9, type: 2}
-    - target: {fileID: 0}
-      propertyPath: blankGreenTile
-      value: 
-      objectReference: {fileID: 156634, guid: 90f748c022c594d549052433ff9aa377, type: 2}
-    - target: {fileID: 0}
-      propertyPath: blankBlueTile
-      value: 
-      objectReference: {fileID: 122668, guid: bdc2d96b7f3df4e4695d31a14cc9f752, type: 2}
-    - target: {fileID: 0}
-      propertyPath: blankWhiteTile
-      value: 
-      objectReference: {fileID: 165802, guid: 19d7b2751a9024586b4f7587fefd6c46, type: 2}
-    - target: {fileID: 0}
-      propertyPath: adjacentDistanceConstant
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_TagString
-      value: Tower
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_SortingLayerID
-      value: 1615045119
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: towerType
+      propertyPath: type
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: blankObject
+      value: 
+      objectReference: {fileID: 122668, guid: bdc2d96b7f3df4e4695d31a14cc9f752, type: 2}
     - target: {fileID: 0}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Layer
-      value: 8
+      propertyPath: cost
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 161196}
+  m_RootGameObject: {fileID: 182912}
   m_IsPrefabParent: 1

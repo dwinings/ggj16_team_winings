@@ -1,52 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &172538
+--- !u!1 &107102
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 465548}
-  - 114: {fileID: 11412066}
+  - 4: {fileID: 434456}
+  - 114: {fileID: 11492270}
   m_Layer: 0
-  m_Name: GreenTower
+  m_Name: PedestalStatsPlaceholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &465548
+--- !u!4 &434456
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 172538}
+  m_GameObject: {fileID: 107102}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.6036415, y: 2.8899536, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11412066
+--- !u!114 &11492270
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 172538}
+  m_GameObject: {fileID: 107102}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 853925d335dee3a44bf0e9b12100f8ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300002, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
-  projectile: {fileID: 21300040, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
-  blankObject: {fileID: 156634, guid: 90f748c022c594d549052433ff9aa377, type: 2}
+  sprite: {fileID: 21300010, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
+  projectile: {fileID: 0}
+  blankObject: {fileID: 129752, guid: f8a7e9f59dddec446b5022518c409c01, type: 2}
   damageType: 0
-  damage: 3
-  cost: 15
-  range: 4
-  firingSpeed: 1
+  damage: 0
+  cost: 50
+  range: 0
+  firingSpeed: 0
   debuff: {fileID: 0}
   duration: 0
   intensity: 0
@@ -56,25 +56,8 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: projectile
-      value: 
-      objectReference: {fileID: 21300040, guid: fbe1e7b94bb1a4a099d5bcb15a00141c,
-        type: 3}
-    - target: {fileID: 0}
-      propertyPath: type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: blankObject
-      value: 
-      objectReference: {fileID: 156634, guid: 90f748c022c594d549052433ff9aa377, type: 2}
-    - target: {fileID: 0}
-      propertyPath: cost
-      value: 15
-      objectReference: {fileID: 0}
+    m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 172538}
+  m_RootGameObject: {fileID: 107102}
   m_IsPrefabParent: 1

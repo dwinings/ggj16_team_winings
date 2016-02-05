@@ -49,7 +49,7 @@ public class BoardInitializer : MonoBehaviour {
           int[] p = new int[2];
           p[0] = x;
           p[1] = y;
-          pedestalPlacement.Add (p);
+          pedestalPlacement.Add(p);
         }
 			}
 		}

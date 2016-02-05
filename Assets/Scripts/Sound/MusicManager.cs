@@ -16,8 +16,10 @@ public class MusicManager : MonoBehaviour {
 	// Use this for initialization
 
   void Awake () {
-    if(instance == null)
+    if (instance == null) {
       instance = this;
+      transform.SetParent(GameManager.instance.audioHolder);
+    }
   }
 
 	void Start () {

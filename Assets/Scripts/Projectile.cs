@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour {
 	public Vector3 closestEnemyLastPosition;
 
 	public float speed;
-	public List<TowerManager.TowerTypes> connectedTowers = new List<TowerManager.TowerTypes>();
+	public List<TowerStats> connectedTowers = new List<TowerStats>();
 
 	// Use this for initialization
 	void Start () {
@@ -46,19 +46,19 @@ public class Projectile : MonoBehaviour {
 		}
 	}
 
-	// Update is called once per frame
-	void Update () {
-		if (closestEnemy) {
-			transform.position = Vector2.MoveTowards (transform.position, closestEnemy.transform.position, speed * Time.deltaTime);
-			Vector3 diff = transform.position - closestEnemy.transform.position;
-			diff.Normalize ();
-			float rot_z = Mathf.Atan2 (diff.y, diff.x) * Mathf.Rad2Deg;
-			transform.rotation = Quaternion.Euler (0f, 0f, rot_z - 90);
-		} else if (Vector3.Distance(transform.position, closestEnemyLastPosition) < 0.005f) {
+  // Update is called once per frame
+  void Update() {
+    if (closestEnemy) {
+      transform.position = Vector2.MoveTowards(transform.position, closestEnemy.transform.position, speed * Time.deltaTime);
+      Vector3 diff = transform.position - closestEnemy.transform.position;
+      diff.Normalize();
+      float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+      transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+    } else if (Vector3.Distance(transform.position, closestEnemyLastPosition) < 0.005f) {
       SFXManager.instance.PlaySoundAt("proj_miss", this.transform.position);
-			Destroy(this.gameObject);
-		} else {
-			transform.position = Vector2.MoveTowards(transform.position, closestEnemyLastPosition, speed * Time.deltaTime);
-		}
-	}
+      Destroy(this.gameObject);
+    } else {
+      transform.position = Vector2.MoveTowards(transform.position, closestEnemyLastPosition, speed * Time.deltaTime);
+    }
+  }
 }

@@ -1,78 +1,28 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
 using Pathfinding;
-using System.Collections.Generic;
 using System;
 
-public class PedestalPallet : MonoBehaviour {
-  public GameObject pedestal;
-  public int pedestalCost;
-  public Text pedestalCostText;
+public class PedestalPallet : TowerPallet {
   public float adjacentDistanceConst;
-
-  private Camera palletCamera;
-  public GameObject draggableBlank;
-  private static GameObject draggable;
-  private Vector2 relativePosition;
-  private Vector3 offset;
-  private int currentCash;
-  private static int initted = 0;
-  private float palletTextOffset = -30;
+  public GameObject pedestal;
   private Vector3 failureVector = new Vector3(-255, -255, -255);
 
-  public void Start() {
-    palletCamera = Camera.main;
-    pedestalCostText = GetComponentInChildren<Text>();
-    pedestalCostText.text = "" + pedestalCost;
-    transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-    pedestalCostText.transform.SetParent(transform);
-    pedestalCostText.transform.localPosition = new Vector3(palletTextOffset, 0f, 0f);
-  }
-
-  public void OnMouseDown() {
-    currentCash = GameManager.instance.playerCash;
-    if (currentCash >= pedestalCost) {
-      GameManager.instance.UpdateText ();
-      draggable = getDraggable();
-    } else {
-      Destroy (draggable);
-    }
-  }
-
-  public void OnMouseDrag() {
+  public override void OnMouseUp() {
     if (draggable) {
-      Vector3 newPos = palletCamera.ScreenToWorldPoint(Input.mousePosition);
-      newPos.z = 0;
-      draggable.transform.position = newPos;
-    }
-  }
-
-  public void OnMouseUp() {
-    if (draggable) {
-      Destroy (draggable);
+      Destroy(draggable);
       Vector3 v = FindPedestalPlacement();
       if (!v.Equals(failureVector)) {
-        GameObject instance = Instantiate (pedestal, v, Quaternion.identity) as GameObject;
+        GameObject instance = Instantiate(pedestal, v, Quaternion.identity) as GameObject;
         if (NoPathBlockage(instance)) {
           AllEnemiesResetPath();
-          GameManager.instance.playerCash -= pedestalCost;
+          GameManager.instance.playerCash -= stats.cost;
           currentCash = 0;
         } else {
           Destroy(instance);
-          AstarPath.active.UpdateGraphs(instance.GetComponent<Collider2D>().bounds);
         }
       }
     }
   }
-
-  private GameObject getDraggable() {
-    if (draggable != null) {
-      Destroy(draggable);
-    }
-    return Instantiate(draggableBlank, palletCamera.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity) as GameObject;
-  }
-
 
   private Vector3 FindPedestalPlacement() {
     Vector3 worldPoint = palletCamera.ScreenToWorldPoint(Input.mousePosition);
