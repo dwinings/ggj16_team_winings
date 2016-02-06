@@ -42,8 +42,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orangeDamage: 5
   blueDamage: 3
-  greenDamage: 3
-  whiteDamage: 10
+  greenDamage: 10
+  whiteDamage: 7
   levelStartDelay: 2
   waveTextDuration: 3
   waveCooldownDuration: 3
@@ -52,7 +52,7 @@ MonoBehaviour:
   initialHealth: 0
   initialCash: 0
   playerHitPoints: 30
-  playerCash: 1000
+  playerCash: 40
   enemies: []
   waveText: {fileID: 0}
   deathText: {fileID: 0}
@@ -66,6 +66,11 @@ MonoBehaviour:
   - {fileID: 172538, guid: fb4840f9ada7b9f40a302780e25fa622, type: 2}
   - {fileID: 114260, guid: b99ff7c3831f2a747a1f1f89c98e15ff, type: 2}
   - {fileID: 107102, guid: 2d50f1ffbaed4114aa6c2799d884de03, type: 2}
+  debuffHolder: {fileID: 0}
+  towerHolder: {fileID: 0}
+  blankHolder: {fileID: 0}
+  errataHolder: {fileID: 0}
+  audioHolder: {fileID: 0}
   aLittleDamage: {fileID: 21300054, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   mostlyDamaged: {fileID: 21300056, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   veryDamaged: {fileID: 21300058, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
@@ -83,7 +88,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   columns: 16
-  rows: 10
+  rows: 11
   wallCount:
     minimum: 5
     maximum: 9
@@ -189,7 +194,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: rows
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: tower
@@ -227,15 +232,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: greenDamage
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: whiteDamage
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
+      propertyPath: whiteDamage
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: playerCash
-      value: 1000
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: pedestal

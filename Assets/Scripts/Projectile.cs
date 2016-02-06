@@ -11,11 +11,15 @@ public class Projectile : MonoBehaviour {
 	public float speed;
 	public List<TowerStats> connectedTowers = new List<TowerStats>();
 
+	//public float lifeTime;
+	private float destroyByTime;
+
 	// Use this for initialization
 	void Start () {
     if (!FindTarget()) {
       Destroy(gameObject);
     }
+		destroyByTime = Time.time + 2;
 	}
 
 	private bool FindTarget () {
@@ -60,5 +64,8 @@ public class Projectile : MonoBehaviour {
     } else {
       transform.position = Vector2.MoveTowards(transform.position, closestEnemyLastPosition, speed * Time.deltaTime);
     }
+
+		if (Time.time > destroyByTime)
+			Destroy (gameObject);
   }
 }

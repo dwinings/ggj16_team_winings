@@ -23,7 +23,7 @@ public class Wave {
   }
 
   public float HealthMultiplier() {
-		return 1f + ((level - 1f) * (level / 10f));
+		return 1f + ((level - 1f) * (level / 5f));
   }
 
   public float generateNextSpawn(float lastDifficulty) {

@@ -35,8 +35,8 @@ public class PedestalPallet : TowerPallet {
     // Check if we're close to spawn/egress points.
     GameObject enter = GameObject.FindGameObjectWithTag("Entrance");
     GameObject exit = GameObject.FindGameObjectWithTag("Exit");
-    if ( (Vector3.Distance(worldPoint, enter.transform.position) <= 2)
-      || (Vector3.Distance(worldPoint, exit.transform.position) <= 2)) {
+    if ( (Vector3.Distance(worldPoint, enter.transform.position) <= 1.5)
+      || (Vector3.Distance(worldPoint, exit.transform.position) <= 1.5)) {
       return failureVector;
     }
 

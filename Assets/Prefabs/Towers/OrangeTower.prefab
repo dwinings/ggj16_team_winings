@@ -59,7 +59,7 @@ MonoBehaviour:
   damageType: 0
   damage: 3
   cost: 10
-  range: 2
+  range: 2.5
   firingSpeed: 1
   debuff: {fileID: 0}
   duration: 5
@@ -91,7 +91,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: range
-      value: 2
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

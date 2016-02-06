@@ -39,7 +39,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a5fb13f2df59dd4cbe0ef2cf8244261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseMaxHitPoints: 35
+  baseMaxHitPoints: 20
   speed: 2
   difficulty: 2
   baseDamageMultiplier: 1.1
@@ -59,7 +59,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: baseMaxHitPoints
-      value: 35
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: baseDamageMultiplier
