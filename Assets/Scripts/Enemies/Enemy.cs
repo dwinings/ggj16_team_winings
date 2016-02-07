@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour {
 
   public void AssignEnemyType(EnemyStats stats) {
     enemyStats = stats;
-    this.maxHitPoints = enemyStats.baseMaxHitPoints;
+    this.maxHitPoints = enemyStats.baseMaxHitPoints * GameManager.instance.boardScript.spawnWave.HealthMultiplier();
     this.hitPoints = this.maxHitPoints;
     this.currentSpeed = enemyStats.speed;
     GetComponent<Animator>().runtimeAnimatorController = stats.animatiorController;
