@@ -3,6 +3,7 @@ using System;
 
 public abstract class Debuff : MonoBehaviour {
   public enum StackingType { DURATION, INTENSITY };
+  public static Enemy.DamageType type = Enemy.DamageType.NORMAL;
   public float expiration;
   public float intensity;
 

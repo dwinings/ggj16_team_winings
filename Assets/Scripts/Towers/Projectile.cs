@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviour {
     if (!FindTarget()) {
       Destroy(gameObject);
     }
-		destroyByTime = Time.time + 2;
+    transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
 	}
 
 	private bool FindTarget () {
@@ -52,20 +52,25 @@ public class Projectile : MonoBehaviour {
 
   // Update is called once per frame
   void Update() {
-    if (closestEnemy) {
-      transform.position = Vector2.MoveTowards(transform.position, closestEnemy.transform.position, speed * Time.deltaTime);
-      Vector3 diff = transform.position - closestEnemy.transform.position;
-      diff.Normalize();
-      float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-      transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
-    } else if (Vector3.Distance(transform.position, closestEnemyLastPosition) < 0.005f) {
+    Vector3 targetPosition;
+    if (closestEnemy != null) {
+      targetPosition = closestEnemy.transform.position;
+      closestEnemyLastPosition = targetPosition;
+    } else {
+      targetPosition = closestEnemyLastPosition;
+    }
+
+    targetPosition.z = 0f;
+
+    if (closestEnemy == null && Vector3.Distance(transform.position, targetPosition) < 0.005) {
       SFXManager.instance.PlaySoundAt("proj_miss", this.transform.position);
       Destroy(this.gameObject);
     } else {
-      transform.position = Vector2.MoveTowards(transform.position, closestEnemyLastPosition, speed * Time.deltaTime);
+      transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+      Vector3 diff = transform.position - targetPosition;
+      diff.Normalize();
+      float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+      transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
     }
-
-		if (Time.time > destroyByTime)
-			Destroy (gameObject);
   }
 }

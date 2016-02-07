@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour {
   private List<Debuff> debuffs = new List<Debuff>();
   private int currentWaypoint;
   private const float nextWaypointDistance = 0.1f;
+  private Dictionary<Type, int> debuffDamageThisTick = new Dictionary<Type, int>();
 
   protected void Start() {
     GameManager.instance.AddEnemyToList(this);
@@ -62,12 +63,29 @@ public class Enemy : MonoBehaviour {
     Pathfind();
   }
 
+  public void ApplyDebuffDamage(Type debuffType, int damage) {
+    int oldDamage;
+    if (!debuffDamageThisTick.TryGetValue(debuffType, out oldDamage)) {
+      oldDamage = 0;
+    }
+    debuffDamageThisTick[debuffType] = oldDamage + damage;
+  }
+
   public void TickDebuffs() {
     effectDamageMultiplier = 1f;
     currentSpeed = enemyStats.speed;
 
     debuffs.RemoveAll(debuff => debuff.IsExpired());
     debuffs.ForEach(debuff => debuff.ApplyToEnemy(this));
+
+    foreach(var entry in debuffDamageThisTick) {
+      Type debuff = entry.Key;
+      int damage = entry.Value;
+      DamageType type = (DamageType) debuff.GetField("damageType").GetValue(null);
+      ApplyDamage(damage, type);
+    }
+
+    debuffDamageThisTick.Clear();
 
     List<Color> colors  = new List<Color>();
     colors.Add(Color.white);
