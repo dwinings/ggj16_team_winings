@@ -16,6 +16,15 @@ public class Tower : MonoBehaviour {
 
 	void Awake () {
     directionsRemaining = new List<Vector2>(new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right });
+    if (towerStats != null) {
+      ApplyTowerStats(towerStats);
+    }
+  }
+
+  public void ApplyTowerStatsAsleep(TowerStats stats) {
+    this.towerStats = stats;
+    GetComponent<SpriteRenderer>().sprite = stats.sprite;
+    projectile.GetComponent<SpriteRenderer>().sprite = stats.projectile;
   }
 
   public void ApplyTowerStats(TowerStats stats) {

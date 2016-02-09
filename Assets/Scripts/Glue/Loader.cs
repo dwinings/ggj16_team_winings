@@ -7,7 +7,7 @@ public class Loader : MonoBehaviour {
   public MusicManager musicManager;
   public SFXManager sfxManager;
   public TowerManager towerManager;
-
+  
   // Use this for initialization
   void Awake() {
     if (GameManager.instance == null) 

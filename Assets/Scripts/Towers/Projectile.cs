@@ -11,9 +11,6 @@ public class Projectile : MonoBehaviour {
 	public float speed;
 	public List<TowerStats> connectedTowers = new List<TowerStats>();
 
-	//public float lifeTime;
-	private float destroyByTime;
-
 	// Use this for initialization
 	void Start () {
     if (!FindTarget()) {

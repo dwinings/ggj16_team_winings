@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset name="TD" tilewidth="32" tileheight="32" tilecount="56" columns="8">
- <image source="Scavengers_SpriteSheet.png" width="256" height="224"/>
+ <image source="../Sprites/Scavengers_SpriteSheet.png" width="256" height="224"/>
  <tile id="0">
   <properties>
    <property name="type" value="orange_tower"/>
@@ -41,7 +41,52 @@
    <property name="type" value="wall"/>
   </properties>
  </tile>
+ <tile id="25">
+  <properties>
+   <property name="type" value="wall"/>
+  </properties>
+ </tile>
+ <tile id="26">
+  <properties>
+   <property name="type" value="wall"/>
+  </properties>
+ </tile>
  <tile id="32">
+  <properties>
+   <property name="type" value="floor"/>
+  </properties>
+ </tile>
+ <tile id="33">
+  <properties>
+   <property name="type" value="floor"/>
+  </properties>
+ </tile>
+ <tile id="34">
+  <properties>
+   <property name="type" value="floor"/>
+  </properties>
+ </tile>
+ <tile id="35">
+  <properties>
+   <property name="type" value="floor"/>
+  </properties>
+ </tile>
+ <tile id="36">
+  <properties>
+   <property name="type" value="floor"/>
+  </properties>
+ </tile>
+ <tile id="37">
+  <properties>
+   <property name="type" value="floor"/>
+  </properties>
+ </tile>
+ <tile id="38">
+  <properties>
+   <property name="type" value="floor"/>
+  </properties>
+ </tile>
+ <tile id="39">
   <properties>
    <property name="type" value="floor"/>
   </properties>

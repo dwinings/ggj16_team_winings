@@ -101,6 +101,10 @@ Prefab:
       propertyPath: projectile
       value: 
       objectReference: {fileID: 132902, guid: dbf37c6a6dee7475b9450849a60125fb, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 134386}
