@@ -58,6 +58,62 @@ TextureImporter:
     21300106: Scavengers_SpriteSheet_53
     21300108: Scavengers_SpriteSheet_54
     21300110: Scavengers_SpriteSheet_55
+    21300112: test_level_1_1
+    21300114: test_level_1_2
+    21300116: test_level_1_3
+    21300118: test_level_1_4
+    21300120: test_level_1_5
+    21300122: test_level_1_6
+    21300124: test_level_1_7
+    21300126: test_level_1_8
+    21300128: test_level_1_9
+    21300130: test_level_1_10
+    21300132: test_level_1_11
+    21300134: test_level_1_12
+    21300136: test_level_1_13
+    21300138: test_level_1_14
+    21300140: test_level_1_15
+    21300142: test_level_1_16
+    21300144: test_level_1_17
+    21300146: test_level_1_18
+    21300148: test_level_1_19
+    21300150: test_level_1_20
+    21300152: test_level_1_21
+    21300154: test_level_1_22
+    21300156: test_level_1_23
+    21300158: test_level_1_24
+    21300160: test_level_1_25
+    21300162: test_level_1_26
+    21300164: test_level_1_27
+    21300166: test_level_1_28
+    21300168: test_level_1_29
+    21300170: test_level_1_30
+    21300172: test_level_1_31
+    21300174: test_level_1_32
+    21300176: test_level_1_33
+    21300178: test_level_1_34
+    21300180: test_level_1_35
+    21300182: test_level_1_36
+    21300184: test_level_1_37
+    21300186: test_level_1_38
+    21300188: test_level_1_39
+    21300190: test_level_1_40
+    21300192: test_level_1_41
+    21300194: test_level_1_42
+    21300196: test_level_1_43
+    21300198: test_level_1_44
+    21300200: test_level_1_45
+    21300202: test_level_1_46
+    21300204: test_level_1_47
+    21300206: test_level_1_48
+    21300208: test_level_1_49
+    21300210: test_level_1_50
+    21300212: test_level_1_51
+    21300214: test_level_1_52
+    21300216: test_level_1_53
+    21300218: test_level_1_54
+    21300220: test_level_1_55
+    21300222: test_level_1_56
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -114,25 +170,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -15, y: 16}
-        - {x: -16, y: 14}
-        - {x: -16, y: -13}
-        - {x: -14, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
-      - - {x: -4, y: -8}
-        - {x: -7, y: -5}
-        - {x: -2, y: 8}
-        - {x: 9, y: -3}
-      - - {x: -6, y: 7}
-        - {x: -7, y: 4}
-        - {x: -7, y: -6}
-        - {x: -4, y: -7}
-        - {x: 4, y: -7}
-        - {x: 7, y: -4}
-        - {x: 7, y: 4}
-        - {x: 4, y: 7}
+      outline: []
     - name: Scavengers_SpriteSheet_1
       rect:
         serializedVersion: 2
@@ -143,13 +181,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -15, y: 16}
-        - {x: -16, y: 14}
-        - {x: -16, y: -13}
-        - {x: -14, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_2
       rect:
         serializedVersion: 2
@@ -160,14 +192,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 14, y: 12}
-        - {x: -16, y: 12}
-        - {x: -16, y: -16}
-        - {x: 12, y: -16}
-        - {x: 15, y: -12}
-        - {x: 16, y: -11}
-        - {x: 16, y: 10}
+      outline: []
     - name: Scavengers_SpriteSheet_3
       rect:
         serializedVersion: 2
@@ -178,13 +203,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -15, y: 16}
-        - {x: -16, y: 14}
-        - {x: -16, y: -13}
-        - {x: -14, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_4
       rect:
         serializedVersion: 2
@@ -195,17 +214,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 3, y: 16}
-        - {x: 2, y: 16}
-        - {x: -6, y: 8}
-        - {x: -9, y: 3}
-        - {x: -9, y: -8}
-        - {x: -7, y: -11}
-        - {x: -3, y: -11}
-        - {x: 6, y: -5}
-        - {x: 10, y: 3}
-        - {x: 10, y: 12}
+      outline: []
     - name: Scavengers_SpriteSheet_5
       rect:
         serializedVersion: 2
@@ -227,14 +236,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 16}
-        - {x: -16, y: 0}
-        - {x: -16, y: -9}
-        - {x: -14, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 15}
-        - {x: 11, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_7
       rect:
         serializedVersion: 2
@@ -245,20 +247,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 14, y: -5}
-        - {x: 12, y: -2}
-        - {x: 15, y: 3}
-        - {x: 16, y: 4}
-        - {x: 16, y: 9}
-        - {x: 8, y: 15}
-        - {x: -9, y: 15}
-        - {x: -16, y: 8}
-        - {x: -16, y: -16}
-        - {x: 13, y: -16}
-        - {x: 14, y: -15}
-        - {x: 13, y: -12}
-        - {x: 14, y: -10}
+      outline: []
     - name: Scavengers_SpriteSheet_8
       rect:
         serializedVersion: 2
@@ -269,19 +258,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 15, y: -5}
-        - {x: 12, y: -2}
-        - {x: 16, y: 3}
-        - {x: 16, y: 10}
-        - {x: 9, y: 15}
-        - {x: -8, y: 15}
-        - {x: -15, y: 8}
-        - {x: -15, y: -16}
-        - {x: 14, y: -16}
-        - {x: 15, y: -15}
-        - {x: 14, y: -12}
-        - {x: 15, y: -10}
+      outline: []
     - name: Scavengers_SpriteSheet_9
       rect:
         serializedVersion: 2
@@ -292,20 +269,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 14, y: -5}
-        - {x: 11, y: -2}
-        - {x: 15, y: 2}
-        - {x: 16, y: 5}
-        - {x: 16, y: 8}
-        - {x: 9, y: 15}
-        - {x: -8, y: 15}
-        - {x: -16, y: 5}
-        - {x: -16, y: -16}
-        - {x: 13, y: -16}
-        - {x: 14, y: -15}
-        - {x: 13, y: -12}
-        - {x: 14, y: -10}
+      outline: []
     - name: Scavengers_SpriteSheet_10
       rect:
         serializedVersion: 2
@@ -316,14 +280,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 15}
-        - {x: -16, y: 3}
-        - {x: -16, y: -13}
-        - {x: -15, y: -16}
-        - {x: 15, y: -16}
-        - {x: 15, y: 8}
-        - {x: 8, y: 15}
+      outline: []
     - name: Scavengers_SpriteSheet_11
       rect:
         serializedVersion: 2
@@ -334,15 +291,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -5, y: 16}
-        - {x: -16, y: 1}
-        - {x: -16, y: -11}
-        - {x: -14, y: -16}
-        - {x: 15, y: -16}
-        - {x: 16, y: -11}
-        - {x: 16, y: 12}
-        - {x: 9, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_12
       rect:
         serializedVersion: 2
@@ -353,14 +302,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -9, y: 16}
-        - {x: -16, y: 4}
-        - {x: -16, y: -16}
-        - {x: 14, y: -16}
-        - {x: 15, y: -15}
-        - {x: 15, y: 11}
-        - {x: 11, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_13
       rect:
         serializedVersion: 2
@@ -371,14 +313,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -9, y: 16}
-        - {x: -16, y: 2}
-        - {x: -16, y: -16}
-        - {x: 14, y: -16}
-        - {x: 15, y: -15}
-        - {x: 15, y: 14}
-        - {x: 8, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_14
       rect:
         serializedVersion: 2
@@ -389,14 +324,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 9, y: 16}
-        - {x: -7, y: 16}
-        - {x: -16, y: 1}
-        - {x: -16, y: -16}
-        - {x: 15, y: -16}
-        - {x: 15, y: 3}
-        - {x: 14, y: 10}
+      outline: []
     - name: Scavengers_SpriteSheet_15
       rect:
         serializedVersion: 2
@@ -407,14 +335,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 16}
-        - {x: -16, y: 2}
-        - {x: -16, y: -16}
-        - {x: 14, y: -16}
-        - {x: 16, y: -15}
-        - {x: 16, y: 6}
-        - {x: 12, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_16
       rect:
         serializedVersion: 2
@@ -425,14 +346,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -4, y: 16}
-        - {x: -16, y: 5}
-        - {x: -16, y: -16}
-        - {x: 15, y: -16}
-        - {x: 16, y: -15}
-        - {x: 16, y: 10}
-        - {x: 7, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_17
       rect:
         serializedVersion: 2
@@ -443,14 +357,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 9, y: 16}
-        - {x: -7, y: 16}
-        - {x: -16, y: 1}
-        - {x: -16, y: -16}
-        - {x: 15, y: -16}
-        - {x: 15, y: 3}
-        - {x: 14, y: 10}
+      outline: []
     - name: Scavengers_SpriteSheet_18
       rect:
         serializedVersion: 2
@@ -461,12 +368,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -15, y: 16}
-        - {x: -16, y: 15}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_19
       rect:
         serializedVersion: 2
@@ -477,13 +379,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -15, y: 16}
-        - {x: -16, y: 14}
-        - {x: -16, y: -13}
-        - {x: -14, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_20
       rect:
         serializedVersion: 2
@@ -494,11 +390,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_21
       rect:
         serializedVersion: 2
@@ -509,11 +401,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_22
       rect:
         serializedVersion: 2
@@ -524,11 +412,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_23
       rect:
         serializedVersion: 2
@@ -539,11 +423,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_24
       rect:
         serializedVersion: 2
@@ -554,11 +434,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_25
       rect:
         serializedVersion: 2
@@ -569,11 +445,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_26
       rect:
         serializedVersion: 2
@@ -584,11 +456,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_27
       rect:
         serializedVersion: 2
@@ -599,11 +467,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_28
       rect:
         serializedVersion: 2
@@ -614,11 +478,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_29
       rect:
         serializedVersion: 2
@@ -629,11 +489,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_30
       rect:
         serializedVersion: 2
@@ -644,11 +500,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_31
       rect:
         serializedVersion: 2
@@ -659,11 +511,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_32
       rect:
         serializedVersion: 2
@@ -674,11 +522,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_33
       rect:
         serializedVersion: 2
@@ -689,11 +533,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_34
       rect:
         serializedVersion: 2
@@ -704,11 +544,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_35
       rect:
         serializedVersion: 2
@@ -719,11 +555,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_36
       rect:
         serializedVersion: 2
@@ -734,11 +566,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_37
       rect:
         serializedVersion: 2
@@ -749,11 +577,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_38
       rect:
         serializedVersion: 2
@@ -764,11 +588,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_39
       rect:
         serializedVersion: 2
@@ -779,11 +599,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_40
       rect:
         serializedVersion: 2
@@ -882,11 +698,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_49
       rect:
         serializedVersion: 2
@@ -897,11 +709,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_50
       rect:
         serializedVersion: 2
@@ -912,11 +720,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_51
       rect:
         serializedVersion: 2
@@ -927,11 +731,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_52
       rect:
         serializedVersion: 2
@@ -942,11 +742,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_53
       rect:
         serializedVersion: 2
@@ -957,11 +753,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_54
       rect:
         serializedVersion: 2
@@ -972,11 +764,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
     - name: Scavengers_SpriteSheet_55
       rect:
         serializedVersion: 2
@@ -987,11 +775,623 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
+      outline: []
+    - name: test_level_1_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_3
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_6
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_8
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_11
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_12
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_13
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_14
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_15
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_16
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_18
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_19
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_20
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_21
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_22
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_23
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_24
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_26
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_27
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_28
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_29
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_30
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_31
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_32
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_34
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_35
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_36
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_37
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_38
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_39
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_40
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_41
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_42
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_43
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_44
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_45
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_46
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_47
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_48
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_49
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_50
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_51
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_52
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_53
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_54
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_55
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: test_level_1_56
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 16, y: 16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     outline: []
   spritePackingTag: 
   userData: 

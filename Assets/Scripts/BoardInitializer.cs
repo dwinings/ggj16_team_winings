@@ -117,8 +117,9 @@ public class BoardInitializer : MonoBehaviour {
 
 	// Entry Point
 	public void SetupScene(int level) {
-    spawnPosition = GameManager.instance.spawnPoint.transform.position;
-    InitializeList();
-		BoardSetup();
+    spawnPosition = GameObject.FindGameObjectWithTag("Entrance").transform.position;
+    spawnWave = new Wave();
+    // InitializeList();
+		// BoardSetup();
 	}
 }

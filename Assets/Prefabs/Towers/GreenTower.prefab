@@ -78,6 +78,14 @@ Prefab:
       propertyPath: range
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: intensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: duration
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 172538}

@@ -3,12 +3,12 @@ using System.Collections;
 
 public class Loader : MonoBehaviour {
 
-public GameObject gameManager;
-public MusicManager musicManager;
-public SFXManager sfxManager;
-public TowerManager towerManager;
+  public GameObject gameManager;
+  public MusicManager musicManager;
+  public SFXManager sfxManager;
+  public TowerManager towerManager;
 
-// Use this for initialization
+  // Use this for initialization
   void Awake() {
     if (GameManager.instance == null) 
       Instantiate(gameManager);
