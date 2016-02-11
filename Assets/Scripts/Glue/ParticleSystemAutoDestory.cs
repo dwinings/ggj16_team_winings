@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ParticleSystemAutoDestory : MonoBehaviour {
+namespace Wisp.ElementalDefense {
+  public class ParticleSystemAutoDestory : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-    Destroy(gameObject, GetComponent<ParticleSystem>().duration);
-	}
+    // Use this for initialization
+    void Start() {
+      Destroy(gameObject, GetComponent<ParticleSystem>().duration);
+    }
+  }
 }

@@ -2,10 +2,12 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class QuitOnClick : MonoBehaviour {
-	
-	void Update () {
-    if (Input.GetMouseButtonDown(0))
-      SceneManager.LoadScene(0);
-	}
+namespace Wisp.ElementalDefense {
+  public class QuitOnClick : MonoBehaviour {
+
+    void Update() {
+      if (Input.GetMouseButtonDown(0))
+        SceneManager.LoadScene(0);
+    }
+  }
 }
