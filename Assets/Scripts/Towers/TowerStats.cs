@@ -5,6 +5,8 @@ namespace Wisp.ElementalDefense {
   public class TowerStats : MonoBehaviour {
     public Sprite sprite;
     public Sprite projectile;
+    public Projectile.Type projectileType;
+    public float projectileSizeModifier;
     public GameObject blankObject;
     public Enemy.DamageType damageType;
     public int damage;

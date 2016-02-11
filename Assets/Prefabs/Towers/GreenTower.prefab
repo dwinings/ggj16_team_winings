@@ -41,6 +41,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300002, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   projectile: {fileID: 21300040, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
+  projectileType: 1
+  projectileSizeModifier: 3
   blankObject: {fileID: 156634, guid: 90f748c022c594d549052433ff9aa377, type: 2}
   damageType: 0
   damage: 3
@@ -85,6 +87,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: duration
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: projectileType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: projectileSizeModifier
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

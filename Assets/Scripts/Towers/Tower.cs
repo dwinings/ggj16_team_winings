@@ -50,14 +50,21 @@ namespace Wisp.ElementalDefense {
     public bool MaybeShootHim() {
       enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-      Physics2D.Raycast(transform.position, Vector2.up);
+      float minDistance = float.MaxValue;
+      Enemy closestEnemy = null;
       foreach (GameObject enemy in enemies) {
         float distance = (Mathf.Sqrt(Mathf.Pow((transform.position.x - enemy.transform.position.x), 2) + Mathf.Pow((transform.position.y - enemy.transform.position.y), 2)));
-        if (distance > 0 && distance < towerStats.range) {
-          LaunchProjectile();
-          return true;
+        if (distance < minDistance) {
+          closestEnemy = enemy.GetComponent<Enemy>();
+          minDistance = distance;
         }
       }
+
+      if (closestEnemy != null && minDistance < towerStats.range) {
+        LaunchProjectile(closestEnemy);
+        return true;
+      }
+
       return false;
     }
 
@@ -84,10 +91,49 @@ namespace Wisp.ElementalDefense {
       toDelete.ForEach(deletion => directionsRemaining.Remove(deletion));
     }
 
-    void LaunchProjectile() {
-      GameObject shot = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
-      shot.GetComponent<SpriteRenderer>().sprite = towerStats.projectile;
-      shot.GetComponent<Projectile>().connectedTowers = new List<TowerStats>(connectedTowers);
+    void LaunchProjectile(Enemy enemy) {
+      // Oh look I accidentally invented polar coordinates.
+      if (towerStats.projectileType == Projectile.Type.MULTI) {
+        int shots = Mathf.RoundToInt(towerStats.projectileSizeModifier);
+        float cone = 30f;
+        float dist = towerStats.range;
+        float originAngle = Mathf.Atan2(enemy.transform.position.y - transform.position.y, enemy.transform.position.x - transform.position.x);
+        List<Vector3> targets = new List<Vector3>();
+        if (shots % 2 == 1) {
+          var x = dist * Mathf.Cos(originAngle) + transform.position.x;
+          var y = dist * Mathf.Sin(originAngle) + transform.position.y;
+          targets.Add(new Vector3(x, y, 0f));
+          shots -= 1;
+        }
+
+        for (int i = 1; i <= (shots / 2); i++) {
+          float anglePerPair = 20f * Mathf.Deg2Rad;
+          float[] multipliers = { 1, -1 };
+          foreach (var mult in multipliers) {
+            float currentAngle = originAngle + (anglePerPair * i * mult);
+            var x = dist * Mathf.Cos(currentAngle) + transform.position.x;
+            var y = dist * Mathf.Sin(currentAngle) + transform.position.y;
+            targets.Add(new Vector3(x, y, 0f));
+          }
+        }
+
+        foreach (var target in targets) {
+          GameObject shot = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
+          shot.GetComponent<SpriteRenderer>().sprite = towerStats.projectile;
+          var proj = shot.GetComponent<Projectile>();
+          proj.connectedTowers = new List<TowerStats>(connectedTowers);
+          proj.projectileType = towerStats.projectileType;
+          proj.projectileEffectSizeModifier = towerStats.projectileSizeModifier;
+          proj.SetTarget(target);
+        }
+      } else {
+        GameObject shot = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
+        shot.GetComponent<SpriteRenderer>().sprite = towerStats.projectile;
+        var proj = shot.GetComponent<Projectile>();
+        proj.connectedTowers = new List<TowerStats>(connectedTowers);
+        proj.projectileType = towerStats.projectileType;
+        proj.projectileEffectSizeModifier = towerStats.projectileSizeModifier;
+      }
     }
   }
 }

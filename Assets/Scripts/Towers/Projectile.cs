@@ -4,7 +4,10 @@ using System.Collections.Generic;
 
 namespace Wisp.ElementalDefense {
   public class Projectile : MonoBehaviour {
+    public enum Type { SINGLE, MULTI, ARTILLERY }
 
+    public Type projectileType;
+    public float projectileEffectSizeModifier;
     public GameObject[] enemies;
     public GameObject closestEnemy;
     public Vector3 closestEnemyLastPosition;
@@ -14,7 +17,7 @@ namespace Wisp.ElementalDefense {
 
     // Use this for initialization
     void Start() {
-      if (!FindTarget()) {
+      if (projectileType != Type.MULTI && !FindTarget()) {
         Destroy(gameObject);
       }
       transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
@@ -39,19 +42,51 @@ namespace Wisp.ElementalDefense {
           closestEnemyLastPosition = closestEnemy.transform.position;
         }
       }
+
       return true;
     }
 
+    public void SetTarget(Vector3 pos) {
+      closestEnemyLastPosition = pos;
+    }
+
     public void OnTriggerEnter2D(Collider2D other) {
-      if (other.tag == "Enemy") {
-        Destroy(this.gameObject);
+      switch (projectileType) {
+        case Type.ARTILLERY:
+          var others = Physics2D.OverlapCircleAll(transform.position, projectileEffectSizeModifier);
+          foreach (var potentialEnemy in others) {
+            if(potentialEnemy.gameObject.CompareTag("Enemy")) {
+              var distance = Vector2.Distance(potentialEnemy.transform.position, this.transform.position);
+              var blastRadiusRatio = (projectileEffectSizeModifier - distance) / projectileEffectSizeModifier;
+              blastRadiusRatio = Mathf.Clamp(blastRadiusRatio, 0.3f, 1f);
+              // Forget all this math if this dude is the primary target.
+              if (potentialEnemy == other) {
+                blastRadiusRatio = 1f;
+              }
+              potentialEnemy.GetComponent<Enemy>().ApplyProjectileEffects(this, blastRadiusRatio);
+            }
+          }
+          Destroy(this.gameObject);
+          break;
+        case Type.MULTI:
+          if (other.tag == "Enemy") {
+            other.GetComponent<Enemy>().ApplyProjectileEffects(this);
+          }
+          Destroy(this.gameObject);
+          break;
+        default:
+          if (other.tag == "Enemy") {
+            other.GetComponent<Enemy>().ApplyProjectileEffects(this);
+          }
+          Destroy(this.gameObject);
+          break;
       }
     }
 
     // Update is called once per frame
     void Update() {
       Vector3 targetPosition;
-      if (closestEnemy != null) {
+      if (closestEnemy != null && projectileType != Type.MULTI) {
         targetPosition = closestEnemy.transform.position;
         closestEnemyLastPosition = targetPosition;
       } else {
@@ -60,7 +95,7 @@ namespace Wisp.ElementalDefense {
 
       targetPosition.z = 0f;
 
-      if (closestEnemy == null && Vector3.Distance(transform.position, targetPosition) < 0.005) {
+      if ((closestEnemy == null || projectileType == Type.MULTI) && Vector3.Distance(transform.position, targetPosition) < 0.05f) {
         SFXManager.instance.PlaySoundAt("proj_miss", this.transform.position);
         Destroy(this.gameObject);
       } else {

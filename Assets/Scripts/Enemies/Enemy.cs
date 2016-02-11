@@ -127,6 +127,7 @@ namespace Wisp.ElementalDefense {
           }
           break;
         case Debuff.StackingType.INTENSITY:
+          debuff.intensity = intensity;
           debuffs.Add(debuff);
           break;
       }
@@ -142,21 +143,22 @@ namespace Wisp.ElementalDefense {
         Destroy(this.gameObject);
         GameManager.instance.playerHitPoints -= enemyStats.playerDamage;
         SFXManager.instance.PlaySoundAt("crystal_hit", this.transform.position);
-      } else if (other.tag == "Projectile") {
-        Projectile proj = other.gameObject.GetComponent<Projectile>();
-        List<TowerStats> effects = proj.connectedTowers;
-        int totalDamage = 0;
-
-        float damageComboScaler = 1f;
-        foreach (TowerStats effect in effects) {
-          if (effect.debuff != null) {
-            ApplyDebuff(effect.CreateNewDebuff(), effect.duration, effect.intensity);
-          }
-          totalDamage += (int)(effect.damage * damageComboScaler);
-          damageComboScaler = 0.5f;
-        }
-        ApplyDamage(totalDamage, effects[0].damageType);
       }
+    }
+
+    public void ApplyProjectileEffects(Projectile proj, float projectileMultiplier = 1f) {
+      List<TowerStats> effects = proj.connectedTowers;
+      int totalDamage = 0;
+
+      float damageComboScaler = projectileMultiplier;
+      foreach (TowerStats effect in effects) {
+        if (effect.debuff != null) {
+          ApplyDebuff(effect.CreateNewDebuff(), effect.duration, effect.intensity * projectileMultiplier);
+        }
+        totalDamage += (int)(effect.damage * damageComboScaler);
+        damageComboScaler = 0.5f * projectileMultiplier;
+      }
+      ApplyDamage(totalDamage, effects[0].damageType);
     }
 
     public void ApplyDamage(int damage, DamageType damageType) {
