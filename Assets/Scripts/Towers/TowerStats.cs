@@ -7,6 +7,7 @@ namespace Wisp.ElementalDefense {
     public Sprite projectile;
     public Projectile.Type projectileType;
     public float projectileSizeModifier;
+    public float projectileDeviationModifier;
     public GameObject blankObject;
     public Enemy.DamageType damageType;
     public int damage;

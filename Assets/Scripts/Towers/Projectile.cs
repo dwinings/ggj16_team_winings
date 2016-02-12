@@ -4,11 +4,13 @@ using System.Collections.Generic;
 
 namespace Wisp.ElementalDefense {
   public class Projectile : MonoBehaviour {
-    public enum Type { SINGLE, MULTI, ARTILLERY }
+    public enum Type { SINGLE, PIERCE, MULTI, ARTILLERY, PULSE }
 
     public Type projectileType;
     public float projectileEffectSizeModifier;
+    public float projectileEffectDeviationModifier;
     public GameObject[] enemies;
+    private List<Enemy> enemiesDamaged = new List<Enemy>();
     public GameObject closestEnemy;
     public Vector3 closestEnemyLastPosition;
 
@@ -17,7 +19,7 @@ namespace Wisp.ElementalDefense {
 
     // Use this for initialization
     void Start() {
-      if (projectileType != Type.MULTI && !FindTarget()) {
+      if (UnitTargeted() && !FindTarget()) {
         Destroy(gameObject);
       }
       transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
@@ -50,36 +52,70 @@ namespace Wisp.ElementalDefense {
       closestEnemyLastPosition = pos;
     }
 
+    private void MaybeDamageEnemy(Enemy enemy, float projectileScaler = 1f) {
+      if (!enemiesDamaged.Contains(enemy)) {
+        enemy.ApplyProjectileEffects(this, projectileScaler);
+        enemiesDamaged.Add(enemy);
+      }
+    }
+
+    public void DamageEnemiesInRadius(float radius, Enemy target = null) {
+      var others = Physics2D.OverlapCircleAll(transform.position, projectileEffectSizeModifier);
+      foreach (var potentialEnemy in others) {
+        if (potentialEnemy.gameObject.CompareTag("Enemy")) {
+          var distance = Vector2.Distance(potentialEnemy.transform.position, this.transform.position);
+          var blastRadiusRatio = (projectileEffectSizeModifier - distance) / projectileEffectSizeModifier;
+          blastRadiusRatio = 1f - (1f - projectileEffectDeviationModifier) * (1f - blastRadiusRatio);
+          var enemy = potentialEnemy.GetComponent<Enemy>();
+          // Forget all this math if this dude is the primary target.
+          if (enemy == target) {
+            blastRadiusRatio = 1f;
+          }
+          MaybeDamageEnemy(enemy, blastRadiusRatio);
+        }
+      }
+    }
+
     public void OnTriggerEnter2D(Collider2D other) {
       switch (projectileType) {
         case Type.ARTILLERY:
-          var others = Physics2D.OverlapCircleAll(transform.position, projectileEffectSizeModifier);
-          foreach (var potentialEnemy in others) {
-            if(potentialEnemy.gameObject.CompareTag("Enemy")) {
-              var distance = Vector2.Distance(potentialEnemy.transform.position, this.transform.position);
-              var blastRadiusRatio = (projectileEffectSizeModifier - distance) / projectileEffectSizeModifier;
-              blastRadiusRatio = Mathf.Clamp(blastRadiusRatio, 0.3f, 1f);
-              // Forget all this math if this dude is the primary target.
-              if (potentialEnemy == other) {
-                blastRadiusRatio = 1f;
-              }
-              potentialEnemy.GetComponent<Enemy>().ApplyProjectileEffects(this, blastRadiusRatio);
-            }
-          }
+          DamageEnemiesInRadius(projectileEffectSizeModifier, other.GetComponent<Enemy>());
           Destroy(this.gameObject);
+          break;
+        case Type.PIERCE:
+          if (other.tag == "Enemy") {
+            MaybeDamageEnemy(other.GetComponent<Enemy>());
+          }
           break;
         case Type.MULTI:
           if (other.tag == "Enemy") {
-            other.GetComponent<Enemy>().ApplyProjectileEffects(this);
+            MaybeDamageEnemy(other.GetComponent<Enemy>());
           }
           Destroy(this.gameObject);
           break;
         default:
           if (other.tag == "Enemy") {
-            other.GetComponent<Enemy>().ApplyProjectileEffects(this);
+            MaybeDamageEnemy(other.GetComponent<Enemy>());
           }
           Destroy(this.gameObject);
           break;
+      }
+    }
+
+    public bool UnitTargeted() {
+      return !PointTargeted();
+    }
+
+    public bool PointTargeted() {
+      switch(projectileType) {
+        case Type.PIERCE:
+          return true;
+        case Type.MULTI:
+          return true;
+        case Type.PULSE:
+          return true;
+        default:
+          return false;
       }
     }
 
@@ -95,8 +131,12 @@ namespace Wisp.ElementalDefense {
 
       targetPosition.z = 0f;
 
-      if ((closestEnemy == null || projectileType == Type.MULTI) && Vector3.Distance(transform.position, targetPosition) < 0.05f) {
-        SFXManager.instance.PlaySoundAt("proj_miss", this.transform.position);
+      if ((closestEnemy == null || PointTargeted()) && Vector3.Distance(transform.position, targetPosition) < 0.05f) {
+        if (projectileType == Type.PULSE) {
+          DamageEnemiesInRadius(projectileEffectSizeModifier);
+        } else {
+          SFXManager.instance.PlaySoundAt("proj_miss", this.transform.position);
+        }
         Destroy(this.gameObject);
       } else {
         transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);

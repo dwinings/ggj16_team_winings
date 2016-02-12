@@ -93,47 +93,62 @@ namespace Wisp.ElementalDefense {
 
     void LaunchProjectile(Enemy enemy) {
       // Oh look I accidentally invented polar coordinates.
-      if (towerStats.projectileType == Projectile.Type.MULTI) {
+      if (towerStats.projectileType == Projectile.Type.PIERCE) {
+        float dist = towerStats.range;
+        float originAngle = Mathf.Atan2(enemy.transform.position.y - transform.position.y, enemy.transform.position.x - transform.position.x);
+        Vector3 target;
+        var x = dist * Mathf.Cos(originAngle) + transform.position.x;
+        var y = dist * Mathf.Sin(originAngle) + transform.position.y;
+        target = new Vector3(x, y, 0f);
+        FireProjectile(new Vector3(x, y, 0f));
+      } else if (towerStats.projectileType == Projectile.Type.MULTI) {
         int shots = Mathf.RoundToInt(towerStats.projectileSizeModifier);
-        float cone = 30f;
+        float cone = towerStats.projectileDeviationModifier;
         float dist = towerStats.range;
         float originAngle = Mathf.Atan2(enemy.transform.position.y - transform.position.y, enemy.transform.position.x - transform.position.x);
         List<Vector3> targets = new List<Vector3>();
         if (shots % 2 == 1) {
-          var x = dist * Mathf.Cos(originAngle) + transform.position.x;
-          var y = dist * Mathf.Sin(originAngle) + transform.position.y;
-          targets.Add(new Vector3(x, y, 0f));
+          targets.Add(PolarToWorldSpace(dist, originAngle, transform.position));
           shots -= 1;
         }
 
         for (int i = 1; i <= (shots / 2); i++) {
-          float anglePerPair = 20f * Mathf.Deg2Rad;
+          float anglePerPair = (cone / shots) * Mathf.Deg2Rad;
           float[] multipliers = { 1, -1 };
           foreach (var mult in multipliers) {
             float currentAngle = originAngle + (anglePerPair * i * mult);
-            var x = dist * Mathf.Cos(currentAngle) + transform.position.x;
-            var y = dist * Mathf.Sin(currentAngle) + transform.position.y;
-            targets.Add(new Vector3(x, y, 0f));
+            targets.Add(PolarToWorldSpace(dist, currentAngle, transform.position));
           }
         }
+        targets.ForEach(target => FireProjectile(target));
 
-        foreach (var target in targets) {
-          GameObject shot = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
-          shot.GetComponent<SpriteRenderer>().sprite = towerStats.projectile;
-          var proj = shot.GetComponent<Projectile>();
-          proj.connectedTowers = new List<TowerStats>(connectedTowers);
-          proj.projectileType = towerStats.projectileType;
-          proj.projectileEffectSizeModifier = towerStats.projectileSizeModifier;
-          proj.SetTarget(target);
-        }
+      } else if (towerStats.projectileType == Projectile.Type.PULSE) {
+        FireProjectile(transform.position);
       } else {
-        GameObject shot = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
-        shot.GetComponent<SpriteRenderer>().sprite = towerStats.projectile;
-        var proj = shot.GetComponent<Projectile>();
-        proj.connectedTowers = new List<TowerStats>(connectedTowers);
-        proj.projectileType = towerStats.projectileType;
-        proj.projectileEffectSizeModifier = towerStats.projectileSizeModifier;
+        FireProjectile();
       }
+    }
+
+    public Vector3 PolarToWorldSpace(float radius, float theta, Vector3 origin) {
+      var x = radius * Mathf.Cos(theta) + origin.x;
+      var y = radius * Mathf.Sin(theta) + origin.y;
+      return new Vector3(x, y, 0f);
+    }
+
+    private void FireProjectile(Vector3 target) {
+      var proj = FireProjectile();
+      proj.SetTarget(target);
+    }
+
+    private Projectile FireProjectile() {
+      GameObject shot = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
+      shot.GetComponent<SpriteRenderer>().sprite = towerStats.projectile;
+      var proj = shot.GetComponent<Projectile>();
+      proj.connectedTowers = new List<TowerStats>(connectedTowers);
+      proj.projectileType = towerStats.projectileType;
+      proj.projectileEffectSizeModifier = towerStats.projectileSizeModifier;
+      proj.projectileEffectDeviationModifier = towerStats.projectileDeviationModifier;
+      return proj;
     }
   }
 }
