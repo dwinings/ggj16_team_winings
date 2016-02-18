@@ -9,6 +9,7 @@ namespace Wisp.ElementalDefense {
     public Type projectileType;
     public float projectileEffectSizeModifier;
     public float projectileEffectDeviationModifier;
+    public ParticleSystem splashParticle;
     public GameObject[] enemies;
     private List<Enemy> enemiesDamaged = new List<Enemy>();
     public GameObject closestEnemy;
@@ -22,6 +23,15 @@ namespace Wisp.ElementalDefense {
       if (UnitTargeted() && !FindTarget()) {
         Destroy(gameObject);
       }
+
+      // Pulse projectiles aren't really projectiles per se, so we blow it up here so that the sprite never touches the screen.
+      if (projectileType == Type.PULSE) {
+        DamageEnemiesInRadius(projectileEffectSizeModifier);
+        var fx = Instantiate(splashParticle, transform.position, Quaternion.identity) as ParticleSystem;
+        fx.startSize = projectileEffectSizeModifier * 4;
+        Destroy(this.gameObject);
+      }
+
       transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
     }
 
@@ -33,12 +43,12 @@ namespace Wisp.ElementalDefense {
       }
 
       foreach (GameObject enemy in enemies) {
-        float enemyDistance = (Mathf.Sqrt(Mathf.Pow((transform.position.x - enemy.transform.position.x), 2) + Mathf.Pow((transform.position.y - enemy.transform.position.y), 2)));
+        float enemyDistance = Vector2.Distance(transform.position, enemy.transform.position);
         if (closestEnemy == null) {
           closestEnemy = enemy;
           closestEnemyLastPosition = closestEnemy.transform.position;
         }
-        float currentClosestEnemyDistance = (Mathf.Sqrt(Mathf.Pow((transform.position.x - closestEnemy.transform.position.x), 2) + Mathf.Pow((transform.position.y - closestEnemy.transform.position.y), 2)));
+        float currentClosestEnemyDistance = Vector2.Distance(transform.position, closestEnemy.transform.position);
         if (enemyDistance < currentClosestEnemyDistance) {
           closestEnemy = enemy;
           closestEnemyLastPosition = closestEnemy.transform.position;
@@ -74,12 +84,15 @@ namespace Wisp.ElementalDefense {
           MaybeDamageEnemy(enemy, blastRadiusRatio);
         }
       }
+
     }
 
     public void OnTriggerEnter2D(Collider2D other) {
       switch (projectileType) {
         case Type.ARTILLERY:
           DamageEnemiesInRadius(projectileEffectSizeModifier, other.GetComponent<Enemy>());
+          var fx = Instantiate(splashParticle, other.transform.position, Quaternion.identity) as ParticleSystem;
+          fx.startSize = projectileEffectSizeModifier * 4;
           Destroy(this.gameObject);
           break;
         case Type.PIERCE:
@@ -132,9 +145,7 @@ namespace Wisp.ElementalDefense {
       targetPosition.z = 0f;
 
       if ((closestEnemy == null || PointTargeted()) && Vector3.Distance(transform.position, targetPosition) < 0.05f) {
-        if (projectileType == Type.PULSE) {
-          DamageEnemiesInRadius(projectileEffectSizeModifier);
-        } else {
+        if (!PointTargeted()) {
           SFXManager.instance.PlaySoundAt("proj_miss", this.transform.position);
         }
         Destroy(this.gameObject);

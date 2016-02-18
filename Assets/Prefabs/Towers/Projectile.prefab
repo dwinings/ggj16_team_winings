@@ -58,6 +58,7 @@ MonoBehaviour:
   projectileType: 0
   projectileEffectSizeModifier: 0
   projectileEffectDeviationModifier: 0
+  splashParticle: {fileID: 19828526, guid: b9583702a1e8ee343a4f42e119b4d3d8, type: 2}
   enemies: []
   closestEnemy: {fileID: 0}
   closestEnemyLastPosition: {x: 0, y: 0, z: 0}
@@ -89,7 +90,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -900995045
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300042, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
+  m_Sprite: {fileID: 21300046, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,6 +105,11 @@ Prefab:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: splashParticle
+      value: 
+      objectReference: {fileID: 19828526, guid: b9583702a1e8ee343a4f42e119b4d3d8,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 132902}
