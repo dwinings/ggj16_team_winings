@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Wisp.ElementalDefense {
   public class TowerStats : MonoBehaviour {
     public Sprite sprite;
+    public Color color;
     public Sprite projectile;
     public Projectile.Type projectileType;
     public float projectileSizeModifier;

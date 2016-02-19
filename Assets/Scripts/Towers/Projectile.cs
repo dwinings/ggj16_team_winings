@@ -27,12 +27,37 @@ namespace Wisp.ElementalDefense {
       // Pulse projectiles aren't really projectiles per se, so we blow it up here so that the sprite never touches the screen.
       if (projectileType == Type.PULSE) {
         DamageEnemiesInRadius(projectileEffectSizeModifier);
-        var fx = Instantiate(splashParticle, transform.position, Quaternion.identity) as ParticleSystem;
-        fx.startSize = projectileEffectSizeModifier * 4;
+        CreateSplashFX(transform.position);
         Destroy(this.gameObject);
       }
 
       transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
+    }
+
+    // Update is called once per frame
+    void Update() {
+      Vector3 targetPosition;
+      if (closestEnemy != null && projectileType != Type.MULTI) {
+        targetPosition = closestEnemy.transform.position;
+        closestEnemyLastPosition = targetPosition;
+      } else {
+        targetPosition = closestEnemyLastPosition;
+      }
+
+      targetPosition.z = 0f;
+
+      if ((closestEnemy == null || PointTargeted()) && Vector3.Distance(transform.position, targetPosition) < 0.05f) {
+        if (!PointTargeted()) {
+          SFXManager.instance.PlaySoundAt("proj_miss", this.transform.position);
+        }
+        Destroy(this.gameObject);
+      } else {
+        transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        Vector3 diff = transform.position - targetPosition;
+        diff.Normalize();
+        float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+      }
     }
 
     private bool FindTarget() {
@@ -91,8 +116,7 @@ namespace Wisp.ElementalDefense {
       switch (projectileType) {
         case Type.ARTILLERY:
           DamageEnemiesInRadius(projectileEffectSizeModifier, other.GetComponent<Enemy>());
-          var fx = Instantiate(splashParticle, other.transform.position, Quaternion.identity) as ParticleSystem;
-          fx.startSize = projectileEffectSizeModifier * 4;
+          CreateSplashFX(other.transform.position);
           Destroy(this.gameObject);
           break;
         case Type.PIERCE:
@@ -132,30 +156,10 @@ namespace Wisp.ElementalDefense {
       }
     }
 
-    // Update is called once per frame
-    void Update() {
-      Vector3 targetPosition;
-      if (closestEnemy != null && projectileType != Type.MULTI) {
-        targetPosition = closestEnemy.transform.position;
-        closestEnemyLastPosition = targetPosition;
-      } else {
-        targetPosition = closestEnemyLastPosition;
-      }
-
-      targetPosition.z = 0f;
-
-      if ((closestEnemy == null || PointTargeted()) && Vector3.Distance(transform.position, targetPosition) < 0.05f) {
-        if (!PointTargeted()) {
-          SFXManager.instance.PlaySoundAt("proj_miss", this.transform.position);
-        }
-        Destroy(this.gameObject);
-      } else {
-        transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-        Vector3 diff = transform.position - targetPosition;
-        diff.Normalize();
-        float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
-      }
+    private void CreateSplashFX(Vector3 position) {
+      var fx = Instantiate(splashParticle, position, Quaternion.identity) as ParticleSystem;
+      fx.startSize = projectileEffectSizeModifier * 4;
+      fx.startColor = connectedTowers[0].color;
     }
   }
 }

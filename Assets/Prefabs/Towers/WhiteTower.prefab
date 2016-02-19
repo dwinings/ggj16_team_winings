@@ -54,6 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300006, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
+  color: {r: 0.9882353, g: 0.99607843, b: 0.81960785, a: 1}
   projectile: {fileID: 21300046, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   projectileType: 1
   projectileSizeModifier: 0
@@ -97,6 +98,22 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: projectileDeviationModifier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: color.r
+      value: 0.9882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: color.g
+      value: 0.99607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: color.b
+      value: 0.81960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: color.a
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
