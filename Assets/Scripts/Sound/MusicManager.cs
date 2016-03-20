@@ -19,7 +19,7 @@ namespace Wisp.ElementalDefense {
     void Awake() {
       if (instance == null) {
         instance = this;
-        transform.SetParent(GameManager.instance.audioHolder);
+        transform.SetParent(GameManager.instance.AudioHolder);
       }
     }
 

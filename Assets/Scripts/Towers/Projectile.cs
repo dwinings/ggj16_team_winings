@@ -158,6 +158,7 @@ namespace Wisp.ElementalDefense {
 
     private void CreateSplashFX(Vector3 position) {
       var fx = Instantiate(splashParticle, position, Quaternion.identity) as ParticleSystem;
+      fx.transform.SetParent(GameManager.instance.ErrataHolder);
       fx.startSize = projectileEffectSizeModifier * 4;
       fx.startColor = connectedTowers[0].color;
     }

@@ -3,8 +3,8 @@ using System.Collections;
 
 namespace Wisp.ElementalDefense {
   public class CameraMovement : MonoBehaviour {
-    public int boardWidth;
-    public int boardHeight;
+    private int boardWidth = -1;
+    private int boardHeight = -1;
     public float cameraZoomSpeed;
     public float cameraPanSpeed;
     public bool middleMouseButtonPressed;
@@ -15,6 +15,26 @@ namespace Wisp.ElementalDefense {
       theCamera = GetComponent<Camera>();
       theCamera.orthographicSize = MaxOrthoSize();
       TransformCameraPosition(Vector3.zero);
+    }
+
+    public int BoardWidth {
+      get {
+        if (boardWidth <= 0) {
+          Board board = GameObject.FindGameObjectWithTag("Board").GetComponent<Board>();
+          boardWidth = board.width;
+        }
+        return boardWidth;
+      }
+    }
+
+    public int BoardHeight {
+      get {
+        if (boardHeight <= 0) {
+          Board board = GameObject.FindGameObjectWithTag("Board").GetComponent<Board>();
+          boardHeight = board.height;
+        }
+        return boardHeight;
+      }
     }
 
     void Update() {
@@ -45,9 +65,9 @@ namespace Wisp.ElementalDefense {
 
       // we want to say, the place where position - horizontalExtent = 0
       float minX = -0.5f + horizontalExtent;
-      float maxX = boardWidth - 0.5f - horizontalExtent;
+      float maxX = BoardWidth - 0.5f - horizontalExtent;
       float minY = -0.5f + verticalExtent;
-      float maxY = boardHeight - 0.5f - verticalExtent;
+      float maxY = BoardHeight - 0.5f - verticalExtent;
       Vector3 newPosition = new Vector3(
         Mathf.Clamp(theCamera.transform.position.x + worldCoordDelta.x, minX, maxX),
         Mathf.Clamp(theCamera.transform.position.y + worldCoordDelta.y, minY, maxY),
@@ -59,8 +79,8 @@ namespace Wisp.ElementalDefense {
     public float MaxOrthoSize() {
       // this works since our tile is 1 world-unit
       // set a sane minimum max as well.
-      var horizontalOrtho = boardWidth * ((float)Screen.height / Screen.width) / 2.5f;
-      return Mathf.Max(4, Mathf.Min(horizontalOrtho, boardHeight / 2.5f));
+      var horizontalOrtho = BoardWidth * ((float)Screen.height / Screen.width) / 2.5f;
+      return Mathf.Max(4, Mathf.Min(horizontalOrtho, BoardHeight / 2.5f));
     }
   }
 }

@@ -80,7 +80,7 @@ namespace Wisp.ElementalDefense {
             Tower tower = hit.collider.gameObject.GetComponent<Tower>();
             connectedTowers.Add(tower.towerStats);
             GameObject instance = Instantiate(tower.towerStats.blankObject, transform.position, Quaternion.identity) as GameObject;
-            instance.transform.SetParent(GameManager.instance.blankHolder);
+            instance.transform.SetParent(GameManager.instance.BlankHolder);
             toDelete.Add(direction);
           }
         }

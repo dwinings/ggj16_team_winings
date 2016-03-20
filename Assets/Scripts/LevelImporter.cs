@@ -86,6 +86,11 @@ namespace Wisp.ElementalDefense {
 
       SpawnLevelBoundary();
       SpawnSceneScaffolding();
+
+      Board board = boardHolder.AddComponent<Board>();
+      board.width = width + 2;
+      board.height = height + 2;
+      boardHolder.tag = "Board";
     }
 
     // This maps the type properties defined in the tileset to the logical game objects we'd want to create for our level.
@@ -221,20 +226,20 @@ namespace Wisp.ElementalDefense {
 
     // The standard components that make up level that *aren't* the board.
     private static void SpawnSceneScaffolding() {
-      var camera = GameObject.Instantiate(cameraPrefab, new Vector3(0f, 0f, -10f), Quaternion.identity) as GameObject;
-      camera.transform.SetParent(levelHolder.transform);
-      var pathfinder = GameObject.Instantiate(pathfindingPrefab, Vector3.zero, Quaternion.identity) as GameObject;
-      pathfinder.transform.SetParent(levelHolder.transform);
-      var canvas = GameObject.Instantiate(canvasPrefab, Vector3.zero, Quaternion.identity) as GameObject;
-      canvas.transform.SetParent(levelHolder.transform);
-      boardHolder.transform.SetParent(levelHolder.transform);
-      var cameraMoverScript = camera.GetComponent<CameraMovement>();
+      // var camera = GameObject.Instantiate(cameraPrefab, new Vector3(0f, 0f, -10f), Quaternion.identity) as GameObject;
+      // camera.transform.SetParent(levelHolder.transform);
+      // var pathfinder = GameObject.Instantiate(pathfindingPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+      // pathfinder.transform.SetParent(levelHolder.transform);
+      // var canvas = GameObject.Instantiate(canvasPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+      // canvas.transform.SetParent(levelHolder.transform);
+       boardHolder.transform.SetParent(levelHolder.transform);
+      // var cameraMoverScript = camera.GetComponent<CameraMovement>();
 
-      // if we don't set this we won't be able to set camera bounds and people could zoom out forever
-      // ...
-      // spaaaace
-      cameraMoverScript.boardWidth = width + 2;
-      cameraMoverScript.boardHeight = height + 2;
+      // // if we don't set this we won't be able to set camera bounds and people could zoom out forever
+      // // ...
+      // // spaaaace
+      // cameraMoverScript.boardWidth = width + 2;
+      // cameraMoverScript.boardHeight = height + 2;
     }
 
     // The map can either define the tileset inline, or point to a file.

@@ -49,8 +49,8 @@ MonoBehaviour:
   waveCooldownDuration: 3
   deathImage: {fileID: 0}
   boardScript: {fileID: 0}
-  initialHealth: 0
-  initialCash: 0
+  initialHealth: 30
+  initialCash: 40
   playerHitPoints: 30
   playerCash: 40
   enemies: []
@@ -66,16 +66,11 @@ MonoBehaviour:
   - {fileID: 172538, guid: fb4840f9ada7b9f40a302780e25fa622, type: 2}
   - {fileID: 114260, guid: b99ff7c3831f2a747a1f1f89c98e15ff, type: 2}
   - {fileID: 107102, guid: 2d50f1ffbaed4114aa6c2799d884de03, type: 2}
-  debuffHolder: {fileID: 0}
-  towerHolder: {fileID: 0}
-  blankHolder: {fileID: 0}
-  errataHolder: {fileID: 0}
-  audioHolder: {fileID: 0}
   aLittleDamage: {fileID: 21300054, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   mostlyDamaged: {fileID: 21300056, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   veryDamaged: {fileID: 21300058, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
-  basePallet: {fileID: 142232, guid: c81bd4477c005aa4592c67e1bdeb9fd7, type: 2}
-  pedestalPallet: {fileID: 183556, guid: e3390bd8422fb4f68833f5d34edfd370, type: 2}
+  basePallet: {fileID: 135380, guid: c81bd4477c005aa4592c67e1bdeb9fd7, type: 2}
+  pedestalPallet: {fileID: 124978, guid: e3390bd8422fb4f68833f5d34edfd370, type: 2}
 --- !u!114 &11481990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -308,11 +303,19 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: basePallet
       value: 
-      objectReference: {fileID: 142232, guid: c81bd4477c005aa4592c67e1bdeb9fd7, type: 2}
+      objectReference: {fileID: 135380, guid: c81bd4477c005aa4592c67e1bdeb9fd7, type: 2}
     - target: {fileID: 0}
       propertyPath: pedestalPallet
       value: 
-      objectReference: {fileID: 183556, guid: e3390bd8422fb4f68833f5d34edfd370, type: 2}
+      objectReference: {fileID: 124978, guid: e3390bd8422fb4f68833f5d34edfd370, type: 2}
+    - target: {fileID: 0}
+      propertyPath: initialHealth
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: initialCash
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 198570}

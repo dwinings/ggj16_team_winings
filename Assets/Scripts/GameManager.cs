@@ -33,11 +33,11 @@ namespace Wisp.ElementalDefense {
     public GameObject spawnPoint;
     public GameObject exitPoint;
     public GameObject[] towerStats;
-    public Transform debuffHolder;
-    public Transform towerHolder;
-    public Transform blankHolder;
-    public Transform errataHolder;
-    public Transform audioHolder;
+    private Transform debuffHolder;
+    private Transform towerHolder;
+    private Transform blankHolder;
+    private Transform errataHolder;
+    private Transform audioHolder;
 
     public Sprite aLittleDamage;
     public Sprite mostlyDamaged;
@@ -45,41 +45,39 @@ namespace Wisp.ElementalDefense {
 
     private Canvas theCanvas;
     private float nextSpawnTime;
-    private bool waveTransitioning;
+    private bool waveTransitioning = false;
     public GameObject basePallet;
     public GameObject pedestalPallet;
+    private bool initted = false;
 
     void Awake() {
       if (instance == null) {
         instance = this;
-        InitGame();
       } else if (instance != this) {
         Destroy(gameObject);
       }
     }
 
     public void InitializePallets() {
-      float palletPadding = 75f;
-      Vector3 palletStartVector = new Vector3(100f, -50f, 0f);
+      GameObject palletHolder = GameObject.FindGameObjectWithTag("PalletHolder");
       int idx = 0;
       foreach (GameObject towerStat in towerStats) {
         TowerStats createdTowerStats = (Instantiate(towerStat) as GameObject).GetComponent<TowerStats>();
         createdTowerStats.gameObject.transform.SetParent(this.errataHolder);
-        idx++;
         GameObject instance;
         // The last one is definitely the pedestal pallet;
+        idx += 1;
         if (idx == towerStats.Length) {
-          instance = Instantiate(pedestalPallet, palletStartVector, Quaternion.identity) as GameObject;
+          instance = Instantiate(pedestalPallet, Vector3.zero, Quaternion.identity) as GameObject;
         } else {
-          instance = Instantiate(basePallet, palletStartVector, Quaternion.identity) as GameObject;
+          instance = Instantiate(basePallet, Vector3.zero, Quaternion.identity) as GameObject;
         }
         instance.GetComponent<TowerPallet>().ApplyStats(createdTowerStats.GetComponent<TowerStats>());
-        palletStartVector.y -= palletPadding;
-        instance.transform.SetParent(theCanvas.transform);
+        instance.transform.SetParent(palletHolder.transform);
       }
     }
 
-    void InitGame() {
+    public void InitGame() {
       theCanvas = GameObject.FindGameObjectWithTag("UICanvas").GetComponent<Canvas>();
       spawnPoint = GameObject.FindGameObjectWithTag("Entrance");
       exitPoint = GameObject.FindGameObjectWithTag("Exit");
@@ -88,11 +86,6 @@ namespace Wisp.ElementalDefense {
       deathText = GameObject.FindGameObjectWithTag("DeathText").GetComponent<Text>();
       healthText = GameObject.FindGameObjectWithTag("HealthText").GetComponent<Text>();
       cashText = GameObject.FindGameObjectWithTag("CashText").GetComponent<Text>();
-      towerHolder = new GameObject("Towers").transform;
-      blankHolder = new GameObject("Blanks").transform;
-      debuffHolder = new GameObject("Debuffs").transform;
-      errataHolder = new GameObject("Etc").transform;
-      audioHolder = new GameObject("Audio").transform;
 
       InitializePallets();
 
@@ -103,6 +96,7 @@ namespace Wisp.ElementalDefense {
       enemies.Clear();
       boardScript.SetupScene(0);
       AstarPath.active.Scan();
+      initted = true;
     }
 
     public void GameOver() {
@@ -180,15 +174,17 @@ namespace Wisp.ElementalDefense {
         SceneManager.LoadScene(0);
     }
 
-    void Update() {
-      UpdateText();
-      UpdateCrystal();
-      UpdateEnemies();
-      CheckIfGameOver();
-      ProcessInput();
+    public void Update() {
+      if (initted) {
+        UpdateText();
+        UpdateCrystal();
+        UpdateEnemies();
+        CheckIfGameOver();
+        ProcessInput();
 
-      if (!waveTransitioning) {
-        MaybeSpawnEnemy();
+        if (!waveTransitioning) {
+          MaybeSpawnEnemy();
+        }
       }
     }
 
@@ -205,6 +201,49 @@ namespace Wisp.ElementalDefense {
 
     public void AddEnemyToList(Enemy script) {
       enemies.Add(script);
+    }
+
+    public Transform TowerHolder {
+      get {
+        if (towerHolder == null) {
+          towerHolder = new GameObject("Towers").transform;
+        }
+        return towerHolder;
+      }
+    }
+
+    public Transform BlankHolder {
+      get {
+        if (blankHolder == null) {
+          blankHolder = new GameObject("Blanks").transform;
+        }
+        return blankHolder;
+      }
+    }
+    public Transform DebuffHolder {
+      get {
+        if (debuffHolder == null) {
+          debuffHolder = new GameObject("Debuffs").transform;
+        }
+        return debuffHolder;
+      }
+    }
+    public Transform ErrataHolder {
+      get {
+        if (errataHolder == null) {
+          errataHolder = new GameObject("Etc").transform;
+        }
+        return errataHolder;
+      }
+    }
+
+    public Transform AudioHolder {
+      get {
+        if (audioHolder == null) {
+          audioHolder = new GameObject("Audio").transform;
+        }
+        return audioHolder;
+      }
     }
   }
 }

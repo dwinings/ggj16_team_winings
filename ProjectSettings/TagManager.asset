@@ -20,6 +20,10 @@ TagManager:
   - WhiteTower
   - Pedestal
   - UICanvas
+  - Root
+  - Loader
+  - PalletHolder
+  - Board
   layers:
   - Default
   - TransparentFX

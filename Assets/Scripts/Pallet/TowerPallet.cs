@@ -52,7 +52,7 @@ namespace Wisp.ElementalDefense {
         if (hit.collider && (currentCash >= stats.cost)) {
           if (hit.transform.gameObject.CompareTag("Pedestal")) {
             GameObject instance = Instantiate(baseTower, hit.transform.position, Quaternion.identity) as GameObject;
-            instance.transform.SetParent(GameManager.instance.towerHolder);
+            instance.transform.SetParent(GameManager.instance.TowerHolder);
             instance.GetComponent<Tower>().ApplyTowerStats(stats);
             Destroy(hit.transform.gameObject.GetComponent<BoxCollider2D>());
             GameManager.instance.playerCash -= stats.cost;
@@ -64,7 +64,7 @@ namespace Wisp.ElementalDefense {
 
     public void ApplyStats(TowerStats stats) {
       this.stats = stats;
-      GetComponent<Image>().sprite = stats.sprite;
+      GetComponentInChildren<Image>().sprite = stats.sprite;
       towerCostText.text = "" + stats.cost;
     }
 

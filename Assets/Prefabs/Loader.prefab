@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &165480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 476806}
+  - 114: {fileID: 11464784}
+  m_Layer: 0
+  m_Name: Loader
+  m_TagString: Loader
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &476806
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165480}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -427.5, y: -285, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11464784
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3528cdb759e214800b48d098d6a8e381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 11466946, guid: e2506ce46ee82487581852fc035b52b0, type: 2}
+  musicManager: {fileID: 11461756, guid: a7595f457899d45bc8dcd201c7161791, type: 2}
+  sfxManager: {fileID: 11425818, guid: 7f2a4c28ed3fa4736b19740ebd40256b, type: 2}
+  towerManager: {fileID: 11409832, guid: 628527db0df42f44f8b72e5be026064d, type: 2}
+  mainCameraPrefab: {fileID: 111296, guid: 53463b9e2e7850941b242350c844d5f3, type: 2}
+  mainCanvasPrefab: {fileID: 179496, guid: 4690782a6532a44498f0412d7a0a6ddf, type: 2}
+  pathfinderPrefab: {fileID: 132878, guid: 82e6dc03489ae1940a71411393d278f2, type: 2}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: mainCanvasPrefab
+      value: 
+      objectReference: {fileID: 179496, guid: 4690782a6532a44498f0412d7a0a6ddf, type: 2}
+    - target: {fileID: 0}
+      propertyPath: mainCameraPrefab
+      value: 
+      objectReference: {fileID: 111296, guid: 53463b9e2e7850941b242350c844d5f3, type: 2}
+    - target: {fileID: 0}
+      propertyPath: pathfinderPrefab
+      value: 
+      objectReference: {fileID: 132878, guid: 82e6dc03489ae1940a71411393d278f2, type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 165480}
+  m_IsPrefabParent: 1

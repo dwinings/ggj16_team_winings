@@ -12,7 +12,6 @@ GameObject:
   - 92: {fileID: 9221944}
   - 124: {fileID: 12414080}
   - 81: {fileID: 8188140}
-  - 114: {fileID: 11449612}
   - 114: {fileID: 11480936}
   m_Layer: 0
   m_Name: Main Camera
@@ -81,21 +80,6 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 111296}
   m_Enabled: 1
---- !u!114 &11449612
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 111296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3528cdb759e214800b48d098d6a8e381, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 198570, guid: e2506ce46ee82487581852fc035b52b0, type: 2}
-  musicManager: {fileID: 11461756, guid: a7595f457899d45bc8dcd201c7161791, type: 2}
-  sfxManager: {fileID: 11425818, guid: 7f2a4c28ed3fa4736b19740ebd40256b, type: 2}
-  towerManager: {fileID: 11409832, guid: 628527db0df42f44f8b72e5be026064d, type: 2}
 --- !u!114 &11480936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -107,6 +91,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b130596072c60a947934ffb6d2fc95ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardWidth: 0
+  boardHeight: 0
   cameraZoomSpeed: 3
   cameraPanSpeed: 3
   middleMouseButtonPressed: 0

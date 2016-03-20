@@ -20,7 +20,7 @@ namespace Wisp.ElementalDefense {
     void Awake() {
       if (instance == null) {
         instance = this;
-        this.transform.SetParent(GameManager.instance.audioHolder);
+        this.transform.SetParent(GameManager.instance.AudioHolder);
       }
     }
 
@@ -35,7 +35,7 @@ namespace Wisp.ElementalDefense {
     AudioSource PlayClipAt(AudioClip clip, Vector3 pos) {
       GameObject tempGO = new GameObject("TempAudio"); // create the temp object
       tempGO.transform.position = pos; // set its position
-      tempGO.transform.SetParent(GameManager.instance.audioHolder);
+      tempGO.transform.SetParent(GameManager.instance.AudioHolder);
       AudioSource aSource = tempGO.AddComponent<AudioSource>(); // add an audio source
       aSource.clip = clip; // define the clip
       aSource.Play(); // start the sound

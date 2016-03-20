@@ -18,7 +18,7 @@ namespace Wisp.ElementalDefense {
 
     public static Debuff Create(Debuff baseInstance, float duration, float intensity) {
       Debuff newInstance = Instantiate(baseInstance);
-      newInstance.gameObject.transform.SetParent(GameManager.instance.debuffHolder);
+      newInstance.gameObject.transform.SetParent(GameManager.instance.DebuffHolder);
       newInstance.expiration = Time.time + duration;
       newInstance.intensity = intensity;
       return newInstance;
